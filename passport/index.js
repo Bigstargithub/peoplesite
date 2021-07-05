@@ -10,6 +10,5 @@ module.exports = () => {
         done(null, admin_id);
     });
 
-    
     local();
 };
