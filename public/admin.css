@@ -1,0 +1,60 @@
+@font-face{
+    font-family: 'gainge';
+    src: url('./font/NotoSansCJKkr-Light.otf') format('truetype');
+}
+
+body{
+    min-width:100%;
+    min-height:100%;
+    font-family: 'gainge';
+}
+
+body, div{
+    margin:0;
+    padding:0;
+}
+
+input::placeholder{
+    color:#383838;
+    font-weight:100;
+}
+
+.login_form{
+    box-sizing:border-box;
+    width:13%;
+    margin:0 auto;
+}
+
+.login_page{
+    margin:0 auto;
+    text-align: center;
+}
+
+.login_logo{
+    margin-top:4em;
+}
+
+.login_detail{
+    padding:20px;
+}
+
+.login_label{
+    margin-right:1em;
+    float:left;
+    margin-bottom:5px;
+}
+
+.login_textbox{
+    padding:5px;
+    width:100%;
+}
+
+.login_button{
+    width:197px;
+    margin-top:20px;
+    background-color: #000f9f;
+    color:#fff;
+    border: 1px solid #000f9f;
+    border-radius: 5px;
+    padding:5px;
+}
