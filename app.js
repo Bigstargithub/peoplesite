@@ -14,8 +14,8 @@ var cors = require('cors');
 dotenv.config();
 passportConfig();
 
-class App{
-    constructor(){
+class App {
+    constructor() {
         this.app = express();
 
         //뷰 엔진 셋팅
@@ -23,7 +23,7 @@ class App{
 
         //미들웨어 셋팅
         this.setMiddleWare();
-        
+
         //로컬 변수
         this.setStatic();
 
@@ -44,9 +44,7 @@ class App{
         this.app.use(cors());
         this.app.use(morgan('dev'));
         this.app.use(express.json());
-        this.app.use(passport.initialize());
-        this.app.use(passport.session());
-        this.app.use(express.urlencoded({ extended: false}));
+        this.app.use(express.urlencoded({ extended: false }));
         this.app.use(cookieParser(process.env.COOKIE_SECRET));
         this.app.use(session({
             resave: false,
@@ -57,8 +55,10 @@ class App{
                 secure: false,
             },
         }));
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
 
-        
+
     }
 
     setViewEngine() {
@@ -72,7 +72,7 @@ class App{
     }
 
     setStatic() {
-        this.app.use(express.static(path.join(__dirname,'public')));
+        this.app.use(express.static(path.join(__dirname, 'public')));
         this.app.use(express.static('public/img'));
         this.app.use(express.static('upload/'));
     }
@@ -83,26 +83,26 @@ class App{
 
     dbConnection() {
         db.sequelize.authenticate()
-        .then(() => {
-            console.log('연결 성공');
-            return db.sequelize.sync();
-        })
-        .catch((err) => {
-            console.log('연결 실패');
-            console.log(err);
-        });
+            .then(() => {
+                console.log('연결 성공');
+                return db.sequelize.sync();
+            })
+            .catch((err) => {
+                console.log('연결 실패');
+                console.log(err);
+            });
     }
 
     status404() {
-        this.app.use((req,res,next)=> {
+        this.app.use((req, res, next) => {
             const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
-            error.status=404;
+            error.status = 404;
             next(error);
         });
     }
 
     errorHandler() {
-        this.app.use((err,req,res,next) => {
+        this.app.use((err, req, res, next) => {
             res.locals.message = err.message;
             res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
             res.status(err.status || 500);

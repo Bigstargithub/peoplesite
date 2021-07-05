@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const ctrl = require('./admin.ctrl');
+const cors = require('cors');
 
 router.get('/', ctrl.get_main);
 
