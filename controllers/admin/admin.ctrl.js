@@ -1,5 +1,4 @@
 const models = require('../../models');
-<<<<<<< HEAD
 const {Op} = require('sequelize');
 const passport = require('passport');
 
@@ -18,7 +17,6 @@ exports.post_login = (req, res, next) => {
     passport.authenticate('local', (user,info) => {
         res.redirect('/login');
     });(req,res,next);
-=======
 const { Op } = require('sequelize');
 const passport = require('passport');
 
@@ -64,6 +62,5 @@ exports.regist_notice = (req, res) => {
 }
 
 exports.get_notice_member = (req, res) => {
-    res.render('admin/notice_member.html');
->>>>>>> gaingebunker
+    res.render('admin/notice_member');
 }
