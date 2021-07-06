@@ -44,5 +44,5 @@ exports.regist_notice = (req, res) => {
 }
 
 exports.get_notice_member = (req, res) => {
-    res.render('admin/notice_member.html');
+    res.render('admin/notice_member');
 }
