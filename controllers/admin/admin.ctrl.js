@@ -4,7 +4,15 @@ const passport = require('passport');
 
 exports.get_main = (req, res) => {
 
-    res.render('admin/login');
+    if(req.user == undefined)
+    {
+        res.render('admin/login');
+    }
+    else
+    {
+        res.render('admin/main');
+    }
+    
 }
 
 exports.post_login = (req, res, next) => {
@@ -24,4 +32,17 @@ exports.post_login = (req, res, next) => {
             return res.redirect('/admin');
         });
     })(req, res, next);
+}
+
+exports.get_logout = (req,res) => {
+    req.logout();
+    res.send("<script>alert('로그아웃되었습니다.');location.href='/admin';</script>");
+}
+
+exports.regist_notice = (req, res) => {
+    res.render('admin/regist_notice');
+}
+
+exports.get_notice_member = (req, res) => {
+    res.render('admin/notice_member.html');
 }

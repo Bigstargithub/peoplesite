@@ -1,0 +1,115 @@
+{% extends 'admin/header.html' %}
+
+{% block content %}
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<div class="people_notice">
+     <div class="notice_title">
+        <h2>채용공고 등록</h2>
+        <button type="button" id="notice_regist" class="notice_regist_button">공고 등록</button>
+    </div>
+    <div class="notice_regist_detail">
+        <form action="/admin/notice/regist" method="post" id="notice_regist_form">
+        <table colspacing="0" colpadding="0" class="notice_table">
+            <tr>
+                <th>공고제목</th>
+                <td><input type="text" name="notice_title" id="notice_title" class="notice_textbox" placeholder="공고제목을 입력하시기 바랍니다."></td>
+            </tr>
+            <tr>
+                <th>메인 이미지</th>
+                <td><input type="file" name="notice_main_image" class="notice_regist_file" id="notice_main_image"></td>
+            </tr>
+            <tr>
+                <th style="vertical-align:baseline">기업간단소개</th>
+                <td>
+                    <div id="editor1" style="height:200px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>회사대표채널</th>
+                <td>
+                    <input type="text" name="notice_channel" id="notice_channel" class="notice_textbox" placeholder="대표채널을 입력하시기 바랍니다.">
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align:baseline">포지션 정보</th>
+                <td>
+                    <div id="editor2" style="height:300px;">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>채용기간</th>
+                <td><input type="date" name="notice_date" id="notice_date" class="notice_textbox"></td>
+            </tr>
+            <tr>
+                <th>인터뷰 기사</th>
+                <td>
+                    <div id="editor3" style="height:400px;">
+                    </div>
+                </td>
+            </tr>
+        </table>
+            <div class="notice_submit">
+                <button type="button" id="notice_list_button" class="notice_regist_button" style="display:inline;margin-right:10px;padding:10px 20px;font-size:16px;">목록</button>
+                <button type="button" id="notice_submit_button" class="notice_regist_button" style="display:inline;padding:10px 20px;font-size:16px;">저장</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+<script>
+    var toolbarOptions = [
+[{ 'font': ['gainge'] }],
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  [{ 'align': [] }],
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+
+  ['clean'],                                        // remove formatting button
+  ['link'],
+  ['image'],
+  ['video'],
+
+];
+
+    var quill1 = new Quill('#editor1', {
+         modules:{
+            toolbar: toolbarOptions,
+        },
+        theme: 'snow'
+    });
+    /*var quill2 = new Quill('#editor2', {
+        modules:{
+            toolbar: toolbarOptions,
+        },
+        theme: 'snow'
+    });*/
+    var quill2 = new Quill('#editor2', {
+         modules:{
+            toolbar: toolbarOptions,
+        },
+        theme: 'snow'
+    });
+    var quill3 = new Quill('#editor3', {
+         modules:{
+            toolbar: toolbarOptions,
+        },
+        theme: 'snow'
+    });
+</script>
+{% endblock %}
