@@ -7,10 +7,8 @@
     </div>
     <button type="button" id="notice_regist" class="notice_regist_button">공고 등록</button>
     <div class="notice_list">
-        {% for Notice in notice %}
-        <input type="hidden" name="notice_number" id="notice_number" value="{{Notice.number}}">
         <div class="notice_detail">
-            <span>{{Notice.notice_title}}</span>
+            <span>가인지컨설팅그룹 디자이너 채용</span>
             <div class="notice_detail_button">
                 <button type="button" class="notice_detail_button" id="notice_delete">삭제</button>
                 <button type="button" class="notice_detail_button" id="notice_modify">수정</button>
@@ -29,7 +27,46 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="notice_detail">
+            <span>가인지컨설팅그룹 디자이너 채용</span>
+            <div class="notice_detail_button">
+                <button type="button" class="notice_detail_button" id="notice_delete">삭제</button>
+                <button type="button" class="notice_detail_button" id="notice_modify">수정</button>
+                <button type="button" class="notice_detail_button" id="notice_member">지원자 보기</button>
+            </div>
+            <div class="notice_detail_select">
+                <select name="notice_status" id="notice_status" class="notice_selectbox">
+                    <option name="notice_open" {{is_opened}}>활성화</option>
+                    <option name="notice_close" {{is_closed}}>비활성화</option>
+                </select>
+            </div>
+            <div class="notice_detail_move">
+                <div class="notice_button_move">
+                    <button type="button" class="move_button" id="notice_move">공고로 이동</button>
+                    <button type="button" class="copy_button" id="notice_copy">공고 복사</button>
+                </div>
+            </div>
+        </div>
+        <div class="notice_detail">
+            <span>가인지컨설팅그룹 디자이너 채용</span>
+            <div class="notice_detail_button">
+                <button type="button" class="notice_detail_button" id="notice_delete">삭제</button>
+                <button type="button" class="notice_detail_button" id="notice_modify">수정</button>
+                <button type="button" class="notice_detail_button" id="notice_member">지원자 보기</button>
+            </div>
+            <div class="notice_detail_select">
+                <select name="notice_status" id="notice_status" class="notice_selectbox">
+                    <option name="notice_open" {{is_opened}}>활성화</option>
+                    <option name="notice_close" {{is_closed}}>비활성화</option>
+                </select>
+            </div>
+            <div class="notice_detail_move">
+                <div class="notice_button_move">
+                    <button type="button" class="move_button" id="notice_move">공고로 이동</button>
+                    <button type="button" class="copy_button" id="notice_copy">공고 복사</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
  {% endblock %}
@@ -41,8 +78,7 @@
     })
 
     document.getElementById('notice_member').addEventListener('click', function() {
-        console.log(document.getElementById('notice_number').value);
-        //location.href = '/admin/notice/member/';
+        location.href = '/admin/notice/member';
     })
  </script>
  {% endblock %}
