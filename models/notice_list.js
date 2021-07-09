@@ -10,6 +10,7 @@ module.exports = function(sequelize, dataTypes){
         notice_position: {type: Sequelize.TEXT, allowNull:false},
         notice_date : {type: Sequelize.DATEONLY, allowNull: false, defaultValue: Sequelize.NOW},
         notice_interview: {type: Sequelize.TEXT},
+        is_active: {type: Sequelize.INTEGER(1), defaultValue: 0},
     });
 
     return notice_list;
