@@ -19,11 +19,6 @@ input::placeholder{
     font-weight:100;
 }
 
-<<<<<<< HEAD
-.login_form{
-    box-sizing:border-box;
-    width:13%;
-=======
 .wrap
 {
     width:100%;
@@ -33,7 +28,6 @@ input::placeholder{
 .login_form{
     box-sizing:border-box;
     width:233px;
->>>>>>> gaingebunker
     margin:0 auto;
 }
 
@@ -69,8 +63,6 @@ input::placeholder{
     border: 1px solid #000f9f;
     border-radius: 5px;
     padding:5px;
-<<<<<<< HEAD
-=======
 }
 
 .admin_header{
@@ -207,5 +199,4 @@ input::placeholder{
 .notice_submit{
     margin-top:20px;
     text-align:center;
->>>>>>> gaingebunker
 }
