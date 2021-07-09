@@ -19,6 +19,11 @@ input::placeholder{
     font-weight:100;
 }
 
+.login_form{
+    box-sizing:border-box;
+    width:13%;
+}
+
 .wrap
 {
     width:100%;
