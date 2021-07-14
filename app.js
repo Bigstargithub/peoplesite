@@ -79,6 +79,7 @@ class App {
 
     setStatic() {
         this.app.use(express.static(path.join(__dirname, 'public')));
+        this.app.use(express.static(path.join(__dirname)));
         this.app.use(express.static('public/img'));
         this.app.use(express.static('upload/'));
     }
