@@ -98,6 +98,12 @@ input::placeholder{
     margin:0 auto;
 }
 
+.notice_option
+{
+    padding:5px;
+    width:100px;
+}
+
 .notice_title
 {
     padding-bottom:20px;
@@ -186,6 +192,8 @@ input::placeholder{
 .notice_table tr th
 {
     width:200px;
+    vertical-align: baseline;
+    font-size:20px;
 }
 
 .notice_regist_file{
@@ -204,4 +212,64 @@ input::placeholder{
 .notice_submit{
     margin-top:20px;
     text-align:center;
+}
+
+.summary_table
+{
+    margin-top:20px;
+    border:1px solid #000f9f;
+    border-collapse: collapse;
+
+}
+
+.summary_table tr
+{
+    display:block;
+    margin-top:0;
+    border:1px solid #000f9f;
+    
+}
+
+.summary_table tr th
+{
+    width:130px;
+    vertical-align: middle;
+    border-right:1px solid #000f9f;
+    font-size:14px;
+}
+
+.summary_table tr td
+{
+    /* border: 1px solid #000f9f */
+}
+
+.summary_textbox
+{
+    width:100%;
+    border: 0;
+    height:30px;
+    padding:5px;
+    font-size:16px;
+    outline:none;
+
+}
+
+.position_info_title
+{
+    vertical-align:baseline; 
+    margin:0;
+    font-size:18px;
+    font-weight:bold;
+    margin: 15px 0;
+}
+
+.summary_textarea
+{
+    padding-bottom:20px;
+    border-bottom:1px solid #000f9f;
+}
+
+.notice_textbox2{
+    width:400px;
+    padding:7px;
 }

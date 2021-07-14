@@ -12,12 +12,41 @@
         <form action="/admin/notice/regist" method="post" id="notice_regist_form" name="notice_regist_form" enctype="multipart/form-data">
         <table colspacing="0" colpadding="0" class="notice_table">
             <tr>
-                <th>공고제목</th>
-                <td><input type="text" name="notice_title" id="notice_title" class="notice_textbox" placeholder="공고제목을 입력하시기 바랍니다."></td>
+                <th>
+                </th>
+                <td>
+                    <span>
+                        <select name="job_group" id="job_group" class="notice_option">
+                            <option value="">직군</option>
+                            <option value="마케터">마케터</option>
+                            <option value="영업">영업</option>
+                            <option value="개발">개발</option>
+                            <option value="디자인">디자인</option>
+                            <option value="인사">인사</option>
+                            <option value="사무">사무</option>
+                            <option value="R&D">R&D</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <select name="is_continue" id="is_continue" class="notice_option">
+                            <option value="진행중">진행중</option>
+                            <option value="마감">마감</option>
+                        </select>
+                    </span>
+                    <p>
+                        <input type="text" name="notice_title" id="notice_title" class="notice_textbox" placeholder="포지션 제목을 입력하세요.">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th>기업명</th>
+                <td><input type="text" name="company_name" id="company_name" class="notice_textbox" placeholder="기업명을 입력하세요."></td>
             </tr>
             <tr>
                 <th>메인 이미지</th>
-                <td><input type="file" name="notice_main_image" class="notice_regist_file" id="notice_main_image"></td>
+                <td>
+                    <input type="file" name="notice_main_image" class="notice_regist_file" id="notice_main_image" accept="image/png, image/jpeg">
+                    <img src="" id="preview_image" style="width:200px; margin-top:20px;" >
+                </td>
             </tr>
             <tr>
                 <th style="vertical-align:baseline">기업간단소개</th>
@@ -36,8 +65,58 @@
             <tr>
                 <th style="vertical-align:baseline">포지션 정보</th>
                 <td>
-                    <input type="hidden" name="company_position" id="company_position" value="">
-                    <div id="editor2" style="height:700px;">
+                    <div class="info_summary">
+                        <p style="vertical-align:baseline; margin:0;font-size:18px;font-weight:bold;">요약</p>
+                        <table class="summary_table" colspacing="1" colpadding="1">
+                            <tr>
+                                <th>직무</th>
+                                <td><input type="text" name="job_duty" id="job_duty" class="summary_textbox"></td>
+                            </tr>
+                            <tr>
+                                <th>고용형태</th>
+                                <td><input type="text" name="employ_type" id="employ_type" class="summary_textbox"></td>
+                            </tr>
+                            <tr>
+                                <th>경력</th>
+                                <td><input type="text" name="career" id="career" class="summary_textbox"></td>
+                            </tr>
+                            <tr>
+                                <th>회사규모 및 매출</th>
+                                <td><input type="text" name="company_size" id="company_size" class="summary_textbox"></td>
+                            </tr>
+                            <tr>
+                                <th>업종</th>
+                                <td><input type="text" name="job_sector" id="job_sector" class="summary_textbox"></td>
+                            </tr>
+                            <tr>
+                                <th>채용기간</th>
+                                <td><input type="date" name="notice_date" id="notice_date" class="summary_textbox" style="width:95%;"></td>
+                            </tr>
+                            <tr>
+                                <th>근무위치</th>
+                                <td><input type="text" name="company_location" id="company_location" class="summary_textbox"></td>
+                            </tr>
+                        </table>
+                        <p style="vertical-align:baseline; margin:0;font-size:18px;font-weight:bold;margin: 15px 0;" class="position_info_title">포지션 정보</p>
+                        <input type="hidden" name="position_info" id="position_info" value="">
+                        <div id="editor2" style="height:1000px;">
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">주요 업무</p>
+                            <input type="text" name="main_work" id="main_work" class="notice_textbox2">
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">자격조건</p>
+                            <input type="text" name="job_qualify" id="job_qualify" class="notice_textbox2">
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">우대사항</p>
+                            <input type="text" name="job_prefer" id="job_prefer" class="notice_textbox2">
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">근무조건 및 복지</p>
+                            <input type="text" name="job_welfare" id="job_welfare" class="notice_textbox2">
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -65,8 +144,10 @@
 <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/node_modules/quill-image-resize-module/image-resize.min.js"></script>
 
 <script>
+    
     var toolbarOptions = [
 [{ 'font': ['gainge'] }],
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -94,26 +175,33 @@
     var quill1 = new Quill('#editor1', {
          modules:{
             toolbar: toolbarOptions,
+            imageResize: 
+            {
+                    displaySize: true
+            }
         },
         theme: 'snow'
     });
-    /*var quill2 = new Quill('#editor2', {
+    var quill2 = new Quill('#editor2', {
         modules:{
             toolbar: toolbarOptions,
         },
         theme: 'snow'
-    });*/
-    var quill2 = new Quill('#editor2', {
+    });
+    /*var quill2 = new Quill('#editor2', {
          modules:{
             toolbar: toolbarOptions,
         },
         theme: 'snow'
-    });
+    });*/
     var quill3 = new Quill('#editor3', {
          modules:{
             toolbar: toolbarOptions,
-        },
-        theme: 'snow'
+            imageResize: {
+                    displaySize: true
+                }
+            },
+            theme: 'snow',
     });
 
     quill1.getModule('toolbar').addHandler('image', function() {
@@ -134,12 +222,10 @@
         input.setAttribute('id','notice_image');
         input.click();
 
-        input.onchange = function(e) {
+        input.onchange = function() {
             const fd = new FormData();
             const file = this.files[0];
             fd.append('image',file);
-
-            console.log('hihi');
 
             axios.post('/admin/notice/image',fd,{
                 headers:{
@@ -151,7 +237,6 @@
                 var range = select_quill.getSelection();
                 var filename = data.data.filename;
                 var url = decodeURI('/notice_image/'+filename);
-                console.log(url);
                 select_quill.insertEmbed(range.index, 'image', url);
             })
             .catch((error) => {
@@ -165,10 +250,27 @@
     
     document.getElementById('notice_submit_button').addEventListener('click', function() {
         document.getElementById('company_introduce').value = quill1.root.innerHTML;
-        document.getElementById('company_position').value = quill2.root.innerHTML;
+        document.getElementById('position_info').value = quill2.root.innerHTML;
         document.getElementById('company_interview').value = quill3.root.innerHTML;
 
         document.notice_regist_form.submit();
-    })
+    });
+
+    document.getElementById('notice_main_image').addEventListener('change',function(e){
+        readImage(e.target);
+    });
+
+    function readImage(input){
+        if(input.files && input.files[0])
+        {
+            const reader = new FileReader();
+
+            reader.onload = e => {
+                document.getElementById('preview_image').src = e.target.result;
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 {% endblock %}

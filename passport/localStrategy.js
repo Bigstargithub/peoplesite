@@ -13,7 +13,7 @@ module.exports = () => {
                 }
                 else
                 {
-                    alert('아이디 또는 비밀번호가 다릅니다.');
+                    res.send("<script>alert('아이디 또는 비밀번호가 다릅니다.')</script>");
                     location.reload();
                 }
             }
