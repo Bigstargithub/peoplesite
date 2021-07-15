@@ -103,26 +103,117 @@
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">주요 업무</p>
-                            <input type="text" name="main_work" id="main_work" class="notice_textbox2">
+                            <div id="main_work_container">
+                                <input type="hidden" name="main_work" id="main_work_input">
+                                <input type="text" id="main_work_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_main_work" class="position_addbutton" data-id="main_work_container" data-obj="main_work">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">자격조건</p>
-                            <input type="text" name="job_qualify" id="job_qualify" class="notice_textbox2">
+                            <div id="qualify_container">
+                                <input type="hidden" name="job_qualify" id="job_qualify_input">
+                                <input type="text"  id="job_qualify_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_qualify" class="position_addbutton" data-id="qualify_container" data-obj="job_qualify">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">우대사항</p>
-                            <input type="text" name="job_prefer" id="job_prefer" class="notice_textbox2">
+                            <div id="prefer_container">
+                                <input type="hidden" name="job_prefer" id="job_prefer_input">
+                                <input type="text"  id="job_prefer_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_prefer" class="position_addbutton" data-id="prefer_container" data-obj="job_prefer">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">근무조건 및 복지</p>
-                            <input type="text" name="job_welfare" id="job_welfare" class="notice_textbox2">
+                            <div id="welfare_container">
+                                <input type="hidden" name="job_welfare" id="job_welfare_input">
+                                <input type="text"  id="job_welfare_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_welfare" class="position_addbutton" data-id="welfare_container" data-obj="job_welfare">추가</button>
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">팀 구성 및 커뮤니케이션</p>
+                            <div id="communication_container">
+                                <input type="hidden" name="company_communication" id="company_communication_input">
+                                <input type="text"  id="company_communication_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_communication" class="position_addbutton" data-id="communication_container" data-obj="company_communication">추가</button>
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">조직문화</p>
+                            <div id="culture_container">
+                                <input type="hidden" name="company_culture" id="company_culture_input">
+                                <input type="text"  id="company_culture_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_culture" class="position_addbutton" data-id="culture_container" data-obj="company_culture">추가</button>
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">인재상</p>
+                            <div id="people_container">
+                                <input type="hidden" name="company_people" id="company_culture_input">
+                                <input type="text"  id="company_people_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_people" class="position_addbutton" data-id="people_container" data-obj="company_people">추가</button>
+                        </div>
+                        <div class="summary_textarea">
+                            <p class="position_info_title">향후 커리어</p>
+                            <div id="nextcareer_container">
+                                <input type="hidden" name="next_career" id="nextcareer_input">
+                                <input type="text"  id="next_career_0" class="notice_textbox2">
+                            </div>
+                            <button type="button" id="add_career" class="position_addbutton" data-id="nextcareer_container" data-obj="next_career">추가</button>
+                        </div>
+                        <div class="people_process">
+                            <p class="position_info_title">채용 프로세스</p>
+                            <table class="process_table" id="process_table" colspacing="1" colpadding="1">
+                                <input type="hidden" name="notice_process" id="notice_process_input">
+                                <tr>
+                                    <th>1단계</th>
+                                    <td>
+                                        <input type="text" id="process_1" class="process_textbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>2단계</th>
+                                    <td>
+                                        <input type="text" id="process_2" class="process_textbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>3단계</th>
+                                    <td>
+                                        <input type="text" id="process_3" class="process_textbox">
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="add_process">
+                                <button type="button" id="add_process_button" class="add_process_button" data-id="process_table">추가</button>
+                                <button type="button" id="del_process_button" class="del_process_button" style="display:none;" data-id="process_table">삭제</button>
+                            </div>
                         </div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th>채용기간</th>
-                <td><input type="date" name="notice_date" id="notice_date" required pattern="\d{4}-\d{2}-\d{2}" class="notice_textbox"></td>
+                <th style="vertical-align:baseline">자사양식 필수여부</th>
+                <td style="font-size:18px;font-weight:600">
+                    <input type="radio" value="1" name="is_resume" id="is_resume_agree">자사양식</input>
+                    <input type="radio" value="0" name="is_resume" id="is_resume_disagree">자유양식</input>
+                    <input type="file" name="resume_file" id="resume_file" style="display:none;margin-left:10px; vertical-align:bottom;">
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align:baseline">포트폴리오 필수여부</th>
+                <td style="font-size:18px;font-weight:600">
+                    <input type="radio" value="1" name="is_portfolio" class="is_portfolio">필수</input>
+                    <input type="radio" value="0" name="is_portfolio" class="is_portfolio">선택</input>
+                </td>
+            </tr>
+           <tr>
+                <th>메인영상(URL)</th>
+                <td><input type="text" name="main_video" id="main_video" class="notice_textbox" placeholder="URL을 입력하세요."></td>
             </tr>
             <tr>
                 <th style="vertical-align:baseline">인터뷰 기사</th>
@@ -147,7 +238,8 @@
 <script src="/node_modules/quill-image-resize-module/image-resize.min.js"></script>
 
 <script>
-    
+
+    {# console.log(document.querySelector('input[name=is_portfolio]').checked); #}
     var toolbarOptions = [
 [{ 'font': ['gainge'] }],
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -256,11 +348,54 @@
         document.notice_regist_form.submit();
     });
 
+
     document.getElementById('notice_main_image').addEventListener('change',function(e){
         readImage(e.target);
     });
 
-    function readImage(input){
+   var temp_button = document.querySelectorAll('.position_addbutton');
+   var count = 0;
+   for(temp_buttons of temp_button)
+   {
+       temp_buttons.addEventListener('click', function(event) {
+           count++;
+           addTextBox(event.target.dataset.obj,event.target.dataset.id, count);
+            /*var div_textarea = document.createElement('input');
+            div_textarea.setAttribute('type', 'text');
+            div_textarea.setAttribute('name','main_work');
+            div_textarea.setAttribute('class', 'notice_textbox2');
+            event.target.parentNode.appendChild(div_textarea);*/
+       })
+   }
+
+    var target_stage = 3;
+   document.getElementById('add_process_button').addEventListener('click', function(e){
+       target_stage++;
+       addProcessTable(e.target.dataset.id,target_stage);
+       if(target_stage > 3)
+       {
+           document.getElementById('del_process_button').style.display = '';
+       }
+   })
+
+   document.getElementById('del_process_button').addEventListener('click', function(e){
+       delProcessTable(e.target.dataset.id, target_stage);
+       if(target_stage <= 3)
+       {
+           document.getElementById('del_process_button').style.display = 'none';
+       }
+   });
+
+   document.getElementById('is_resume_agree').addEventListener('click',function(){
+       document.getElementById('resume_file').style.display = '';
+   })
+
+   document.getElementById('is_resume_disagree').addEventListener('click',function(){
+       document.getElementById('resume_file').style.display = 'none';
+       document.getElementById('resume_file').value = '';
+   })
+
+     function readImage(input){
         if(input.files && input.files[0])
         {
             const reader = new FileReader();
@@ -272,5 +407,74 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    function addTextBox(textarea,textbox, count)
+    {
+        var div_textarea = document.createElement('input');
+        div_textarea.setAttribute('type', 'text');
+        div_textarea.setAttribute('id',textarea+"_"+count);
+        div_textarea.setAttribute('class', 'notice_textbox2');
+        
+        var div = document.getElementById(textbox);
+        var div_make = document.createElement('div');
+        div_make.appendChild(div_textarea);
+
+        var div_delete_button = document.createElement('button');
+        div_delete_button.setAttribute('type','button');
+        div_delete_button.setAttribute('class','main_work_delete');
+        div_delete_button.setAttribute('data-obj',textarea+"_"+count);
+        div_delete_button.innerHTML = '삭제';
+        div_make.appendChild(div_delete_button);
+
+        div.appendChild(div_make);
+
+        var delete_button = document.querySelectorAll('.main_work_delete');
+        for(delete_buttons of delete_button)
+        {
+            delete_buttons.addEventListener('click', function(event){
+                var textbox_num = event.target.dataset.obj;
+                delTextBox(textbox_num, event.target);
+            })
+        }
+    }
+
+    function delTextBox(index,target)
+    {
+       var removeTextbox = document.getElementById(index);
+       removeTextbox.remove();
+       target.remove();
+        
+    }
+
+    function addProcessTable(table, stage)
+    {
+        var tr = document.createElement('tr');
+
+        var th = document.createElement('th');
+        var td = document.createElement('td');
+
+        th.innerHTML = stage+"단계";
+        tr.appendChild(th);
+
+        var stageinput = document.createElement('input')
+        stageinput.setAttribute('type','text');
+        stageinput.setAttribute('id', 'process_'+stage);
+        stageinput.setAttribute('class', 'process_textbox');
+        td.appendChild(stageinput);
+        tr.appendChild(td);
+
+        var table_id = document.getElementById(table);
+        table_id.appendChild(tr);
+    }
+
+    function delProcessTable(table_id, stage)
+    {
+        var process_textbox = document.getElementById('process_'+stage);
+        process_textbox.parentNode.parentNode.remove();
+        target_stage--;
+    }
+
+
+  
 </script>
 {% endblock %}
