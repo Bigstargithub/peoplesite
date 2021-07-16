@@ -16,10 +16,16 @@
                 <button type="button" class="notice_detail_button" id="notice_modify">수정</button>
                 <button type="button" class="notice_detail_button" id="notice_member">지원자 보기</button>
             </div>
-            <div class="notice_detail_select">
+            <div class="notice_detail_select" >
+                <select name="notice_continue" id="notice_continue" class="notice_selectbox">
+                    <option {{is_display}} value="1">노출</option>
+                    <option {{is_not_display}} value="0">숨김</option>
+                </select>
+            </div>
+            <div class="notice_detail_select" style="clear:left">
                 <select name="notice_status" id="notice_status" class="notice_selectbox">
-                    <option name="notice_open" id="notice_open" {{is_opened}} value="1">활성화</option>
-                    <option name="notice_close" id="notice_close" {{is_closed}} value="0">비활성화</option>
+                    <option  {{is_opened}} value="1">활성화</option>
+                    <option  {{is_closed}} value="0">비활성화</option>
                 </select>
             </div>
             <div class="notice_detail_move">
@@ -35,6 +41,7 @@
  {% endblock %}
 
  {% block script %}
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
  <script>
     document.getElementById('notice_regist').addEventListener('click', function() {
         location.href = '/admin/notice/regist';
@@ -46,10 +53,19 @@
     });
 
     document.getElementById('notice_status').addEventListener('change',function() {
-        if(document.getElementById('notice_status').value == '활성화' );
-        {
+        const fd = new FormData();
+        const input = document.getElementById('notice_status').value;
+        const num = {number :document.getElementById('notice_number').value};
 
-        }
+        fd.append('number', num);
+
+        axios.post('/admin/notice/active/'+input,num)
+        .then((response) => {
+            location.reload();
+        })
+        .catch((err) => {
+            console.error(err);
+        })
     })
  </script>
  {% endblock %}
