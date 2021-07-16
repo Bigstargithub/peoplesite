@@ -48,4 +48,6 @@ router.post('/notice/regist', upload_main_image.single('notice_main_image'), ctr
 
 router.post('/notice/image', upload_notice_image.single('image'), ctrl.upload_notice_image);
 
+router.post('/notice/active/:id', ctrl.update_notice_active);
+
 module.exports = router;

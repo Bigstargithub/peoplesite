@@ -80,3 +80,8 @@ exports.notice_regist = (req, res) => {
 exports.upload_notice_image = (req, res, next) => {
     res.send({filename: req.file.filename})
 }
+
+exports.update_notice_active = (req, res, next) => {
+    const notice_num = req.body.number;
+    res.send(notice_num);
+}
