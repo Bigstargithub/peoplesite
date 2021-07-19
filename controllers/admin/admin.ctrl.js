@@ -57,47 +57,53 @@ exports.get_notice_member = (req, res) => {
     res.render('admin/notice_member');
 }
 
-exports.notice_regist = (req, res) => {
-    const { job_group,is_continue,notice_title, company_name, company_introduce, notice_channel, job_duty,employ_type,career,company_size, 
-        job_sector, notice_date, company_location, main_work, job_qualify, job_prefer, job_welfare, company_communication, company_culture, 
-        company_people,next_career, notice_process, is_resume, is_portfolio, main_video, company_interview } = req.body;
+exports.notice_regist = async (req, res) => {
+    try{
+        const { job_group,is_continue,notice_title, company_name, company_introduce, notice_channel, job_duty,employ_type,career,company_size, 
+            job_sector, notice_date, position_info, company_location, main_work, job_qualify, job_prefer, job_welfare, company_communication, company_culture, 
+            company_people,next_career, notice_process, is_resume, is_portfolio, main_video, company_interview } = req.body;
 
-    const main_image_path = req.files['notice_main_image'][0].path;
-    const sample_file_path = req.files['resume_file'][0].path;
-    
-    models.notice_list.create({
-        job_group: job_group,
-        is_continue: is_continue,
-        notice_title: notice_title,
-        company_name: company_name,
-        notice_image: main_image_path,
-        company_info: company_introduce,
-        company_channel: notice_channel,
-        job_duty: job_duty,
-        employ_type: employ_type,
-        career: career,
-        company_size: company_size,
-        job_sector: job_sector,
-        notice_date: notice_date,
-        company_location: company_location,
-        main_work: main_work,
-        job_qualify: job_qualify,
-        job_prefer: job_prefer,
-        job_welfare: job_welfare,
-        company_communication: company_communication,
-        company_culture: company_culture,
-        company_people: company_people,
-        next_career: next_career,
-        notice_process: notice_process,
-        is_resume: is_resume,
-        resume_file: sample_file_path,
-        is_portfolio: is_portfolio,
-        main_video: main_video,
-        company_interview: company_interview,
-    })
-    .then(
-        res.send('<script>alert("공고를 등록하였습니다.");window.location.href="/admin";</script>')
-    );
+        const main_image_path = req.files['notice_main_image'][0].path;
+        const sample_file_path = req.files['resume_file'][0].path;
+        
+        models.notice_list.create({
+            job_group: job_group,
+            is_continue: is_continue,
+            notice_title: notice_title,
+            company_name: company_name,
+            notice_image: main_image_path,
+            company_info: company_introduce,
+            company_channel: notice_channel,
+            job_duty: job_duty,
+            employ_type: employ_type,
+            career: career,
+            company_size: company_size,
+            job_sector: job_sector,
+            notice_date: notice_date,
+            company_location: company_location,
+            position_info: position_info,
+            main_work: main_work,
+            job_qualify: job_qualify,
+            job_prefer: job_prefer,
+            job_welfare: job_welfare,
+            company_communication: company_communication,
+            company_culture: company_culture,
+            company_people: company_people,
+            next_career: next_career,
+            notice_process: notice_process,
+            is_resume: is_resume,
+            resume_file: sample_file_path,
+            is_portfolio: is_portfolio,
+            main_video: main_video,
+            company_interview: company_interview,
+        })
+        .then(
+            res.send('<script>alert("공고를 등록하였습니다.");window.location.href="/admin";</script>')
+        );
+    }
+    catch(error){
+        console.error(error);
+    }
 }
 
 exports.upload_notice_image = (req, res, next) => {
