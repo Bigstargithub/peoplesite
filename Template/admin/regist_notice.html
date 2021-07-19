@@ -28,7 +28,7 @@
                             <option value="기타">기타</option>
                         </select>
                         <select name="is_continue" id="is_continue" class="notice_option">
-                            <option value="진행중">진행중</option>
+                            <option value="진행중" selected>진행중</option>
                             <option value="마감">마감</option>
                         </select>
                     </span>
@@ -104,66 +104,82 @@
                         <div class="summary_textarea">
                             <p class="position_info_title">주요 업무</p>
                             <div id="main_work_container">
-                                <input type="hidden" name="main_work" id="main_work_input">
-                                <input type="text" id="main_work_0" class="notice_textbox2">
+                                <div class="detail_main_work">
+                                    <input type="text" id="main_work_0" class="notice_textbox2">
+                                    <input type="hidden" name="main_work" id="main_work_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_main_work" class="position_addbutton" data-id="main_work_container" data-obj="main_work">추가</button>
+                            <button type="button" id="add_main_work" class="position_addbutton" data-id="main_work_container" data-obj="main_work" data-target="detail_main_work">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">자격조건</p>
                             <div id="qualify_container">
-                                <input type="hidden" name="job_qualify" id="job_qualify_input">
-                                <input type="text"  id="job_qualify_0" class="notice_textbox2">
+                                <div class="detail_qualify">
+                                    <input type="text"  id="job_qualify_0" class="notice_textbox2">
+                                    <input type="hidden" name="job_qualify" id="job_qualify_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_qualify" class="position_addbutton" data-id="qualify_container" data-obj="job_qualify">추가</button>
+                            <button type="button" id="add_qualify" class="position_addbutton" data-id="qualify_container" data-obj="job_qualify" data-target="detail_qualify">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">우대사항</p>
                             <div id="prefer_container">
-                                <input type="hidden" name="job_prefer" id="job_prefer_input">
-                                <input type="text"  id="job_prefer_0" class="notice_textbox2">
+                                <div class="detail_prefer">
+                                    <input type="text"  id="job_prefer_0" class="notice_textbox2">
+                                    <input type="hidden" name="job_prefer" id="job_prefer_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_prefer" class="position_addbutton" data-id="prefer_container" data-obj="job_prefer">추가</button>
+                            <button type="button" id="add_prefer" class="position_addbutton" data-id="prefer_container" data-obj="job_prefer" data-target="detail_prefer">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">근무조건 및 복지</p>
                             <div id="welfare_container">
-                                <input type="hidden" name="job_welfare" id="job_welfare_input">
-                                <input type="text"  id="job_welfare_0" class="notice_textbox2">
+                                <div class="detail_welfare">
+                                    <input type="text"  id="job_welfare_0" class="notice_textbox2">
+                                    <input type="hidden" name="job_welfare" id="job_welfare_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_welfare" class="position_addbutton" data-id="welfare_container" data-obj="job_welfare">추가</button>
+                            <button type="button" id="add_welfare" class="position_addbutton" data-id="welfare_container" data-obj="job_welfare" data-target="detail_welfare">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">팀 구성 및 커뮤니케이션</p>
                             <div id="communication_container">
-                                <input type="hidden" name="company_communication" id="company_communication_input">
-                                <input type="text"  id="company_communication_0" class="notice_textbox2">
+                                <div class="detail_communication">
+                                    <input type="text"  id="company_communication_0" class="notice_textbox2">
+                                    <input type="hidden" name="company_communication" id="company_communication_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_communication" class="position_addbutton" data-id="communication_container" data-obj="company_communication">추가</button>
+                            <button type="button" id="add_communication" class="position_addbutton" data-id="communication_container" data-obj="company_communication" data-target>추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">조직문화</p>
                             <div id="culture_container">
-                                <input type="hidden" name="company_culture" id="company_culture_input">
-                                <input type="text"  id="company_culture_0" class="notice_textbox2">
+                                <div class="detail_culture">
+                                    <input type="text"  id="company_culture_0" class="notice_textbox2">
+                                    <input type="hidden" name="company_culture" id="company_culture_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_culture" class="position_addbutton" data-id="culture_container" data-obj="company_culture">추가</button>
+                            <button type="button" id="add_culture" class="position_addbutton" data-id="culture_container" data-obj="company_culture" data-target="detail_culture">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">인재상</p>
                             <div id="people_container">
-                                <input type="hidden" name="company_people" id="company_culture_input">
-                                <input type="text"  id="company_people_0" class="notice_textbox2">
+                                <div class="detail_people">
+                                    <input type="text"  id="company_people_0" class="notice_textbox2">
+                                    <input type="hidden" name="company_people" id="company_people_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_people" class="position_addbutton" data-id="people_container" data-obj="company_people">추가</button>
+                            <button type="button" id="add_people" class="position_addbutton" data-id="people_container" data-obj="company_people" data-target="detail_people">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">향후 커리어</p>
                             <div id="nextcareer_container">
-                                <input type="hidden" name="next_career" id="nextcareer_input">
-                                <input type="text"  id="next_career_0" class="notice_textbox2">
+                                <div class="detail_nextcareer">
+                                    <input type="text"  id="next_career_0" class="notice_textbox2">
+                                    <input type="hidden" name="next_career" id="nextcareer_input">
+                                </div>
                             </div>
-                            <button type="button" id="add_career" class="position_addbutton" data-id="nextcareer_container" data-obj="next_career">추가</button>
+                            <button type="button" id="add_career" class="position_addbutton" data-id="nextcareer_container" data-obj="next_career" data-target="detail_nextcareer">추가</button>
                         </div>
                         <div class="people_process">
                             <p class="position_info_title">채용 프로세스</p>
@@ -239,7 +255,7 @@
 
 <script>
 
-    {# console.log(document.querySelector('input[name=is_portfolio]').checked); #}
+    console.log(document.querySelector('input[name=is_portfolio]').checked);
     var toolbarOptions = [
 [{ 'font': ['gainge'] }],
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -344,6 +360,68 @@
         document.getElementById('company_introduce').value = quill1.root.innerHTML;
         document.getElementById('position_info').value = quill2.root.innerHTML;
         document.getElementById('company_interview').value = quill3.root.innerHTML;
+        
+        document.getElementById('main_work_input').value = sumString('detail_main_work');
+        document.getElementById('job_prefer_input').value= sumString('detail_qualify');
+        document.getElementById('job_qualify_input').value= sumString('detail_qualify');
+        document.getElementById('job_welfare_input').value = sumString('detail_welfare');
+        document.getElementById('company_communication_input').value = sumString('detail_communication');
+        document.getElementById('company_culture_input').value = sumString('detail_culture');
+        document.getElementById('company_people_input').value = sumString('detail_people');
+        document.getElementById('nextcareer_input').value = sumString('detail_nextcareer');
+
+        document.getElementById('notice_process_input').value = sumString2('process_textbox');
+        
+        // if(document.getElementById('job_group').value == '')
+        // {
+        //     alert('직군을 선택하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('notice_title').value == '')
+        // {
+        //     alert('포지션 제목을 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('company_name').value == '')
+        // {
+        //     alert('기업명을 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('company_introduce').value == '')
+        // {
+        //     alert('회사소개를 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('position_info').value == '')
+        // {
+        //     alert('포지션소개를 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('main_work_input').value == '')
+        // {
+        //     alert('주요 업무를 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('job_qualify_input').value == '')
+        // {
+        //     alert('자격조건을 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('job_welfare_input').value == '')
+        // {
+        //     alert('근무 조건 및 복지를 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('company_communication_input').value == '')
+        // {
+        //     alert('팀구성 & 커뮤니케이션을 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('company_culture_input').value == '')
+        // {
+        //     alert('조직문화를 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('company_people_input').value == '')
+        // {
+        //     alert('인재상을 입력하시기 바랍니다.'); return false;
+        // }
+        // else if(document.getElementById('notice_process_input').value == '')
+        // {
+        //     alert('채용 프로세스를 입력하시기 바랍니다.'); return false;
+        // } 
+
+        
 
         document.notice_regist_form.submit();
     });
@@ -359,7 +437,8 @@
    {
        temp_buttons.addEventListener('click', function(event) {
            count++;
-           addTextBox(event.target.dataset.obj,event.target.dataset.id, count);
+           console.log(event.target.parentNode.getElement);
+           addTextBox(event.target.dataset.obj,event.target.dataset.id, event.target.dataset.target ,count);
             /*var div_textarea = document.createElement('input');
             div_textarea.setAttribute('type', 'text');
             div_textarea.setAttribute('name','main_work');
@@ -408,7 +487,7 @@
         }
     }
 
-    function addTextBox(textarea,textbox, count)
+    function addTextBox(textarea,textbox, target, count)
     {
         var div_textarea = document.createElement('input');
         div_textarea.setAttribute('type', 'text');
@@ -417,6 +496,7 @@
         
         var div = document.getElementById(textbox);
         var div_make = document.createElement('div');
+        div_make.setAttribute('class', target);
         div_make.appendChild(div_textarea);
 
         var div_delete_button = document.createElement('button');
@@ -472,6 +552,32 @@
         var process_textbox = document.getElementById('process_'+stage);
         process_textbox.parentNode.parentNode.remove();
         target_stage--;
+    }
+
+    function sumString(className)
+    {
+        var main_work = document.querySelectorAll('.'+className);
+        var main_work_string = '';
+        for(let i = 0; i<main_work.length;i++)
+        {
+            main_work_string += main_work[i].children[0].value+",";
+        }
+
+        main_work_string = main_work_string.substring(0, main_work_string.length - 1);
+        return main_work_string;
+    }
+
+    function sumString2(inputName)
+    {
+        var input_text = document.getElementsByClassName(inputName);
+        var input_text_string = "";
+        for(let i = 0;i<input_text.length; i++)
+        {
+            input_text_string += input_text[i].value+",";
+        }
+        input_text_string = input_text_string.substring(0, input_text_string.length - 1);
+
+        return input_text_string;
     }
 
 

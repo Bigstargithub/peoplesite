@@ -16,19 +16,19 @@ var notice_image = multer.diskStorage({
 })
 
 
-var main_image = multer.diskStorage({
-    destination: function(req, file, cb)
+var sample_file_upload = multer.diskStorage({
+    destination: function(req,file, cb)
     {
-        cb(null, 'upload/main_image/');
+        cb(null, 'upload/notice_file');
     },
     filename: function(req, file, cb)
     {
         cb(null, file.originalname);
     }
-})
+});
 
 var upload_notice_image = multer({storage: notice_image});
-var upload_main_image = multer({storage: main_image});
+var sample_file = multer({storage: sample_file_upload});
 
 
 
@@ -44,7 +44,7 @@ router.get('/notice/regist/:id', ctrl.regist_notice);
 
 router.get('/notice/member', ctrl.get_notice_member);
 
-router.post('/notice/regist', upload_main_image.single('notice_main_image'), ctrl.notice_regist);
+router.post('/notice/regist', sample_file.fields([{'name': 'notice_main_image'}, {'name': 'resume_file'}]), ctrl.notice_regist);
 
 router.post('/notice/image', upload_notice_image.single('image'), ctrl.upload_notice_image);
 
