@@ -6,10 +6,10 @@
 <div class="people_notice">
      <div class="notice_title">
         <h2>채용공고 등록</h2>
-        <button type="button" id="notice_regist" class="notice_regist_button">공고 등록</button>
+        <button type="button" id="notice_regist" class="notice_regist_button">공고 수정</button>
     </div>
     <div class="notice_regist_detail">
-        <form action="/admin/notice/regist" method="post" id="notice_regist_form" name="notice_regist_form" enctype="multipart/form-data">
+        <form action="/admin/notice/modify/{{notice_detail.number}}" method="post" id="notice_modify_form" name="notice_modify_form" enctype="multipart/form-data">
         <table colspacing="0" colpadding="0" class="notice_table">
             <tr>
                 <th>
@@ -18,40 +18,86 @@
                     <span>
                         <select name="job_group" id="job_group" class="notice_option">
                             <option value="">직군</option>
+                            {% if notice_detail.job_group == '마케터' %}
+                            <option value="마케터" selected>마케터</option>
+                            {% else %}
                             <option value="마케터">마케터</option>
+                            {% endif %}
+
+                            {% if notice_detail.job_group == '영업' %}
+                            <option value="영업" selected >영업</option>
+                            {% else %}
                             <option value="영업">영업</option>
+                            {% endif %}
+
+                            {% if notice_detail.job_group == '개발' %}
+                            <option value="개발" selected>개발</option>
+                            {% else %}
                             <option value="개발">개발</option>
+                            {% endif %}
+
+                            {% if notice_detail.job_group == '디자인' %}
+                            <option value="디자인" selected>디자인</option>
+                            {% else %}
                             <option value="디자인">디자인</option>
+                            {% endif %}
+                            
+                            {% if notice_detail.job_group == '인사' %}
+                            <option value="인사" selected>인사</option>
+                            {% else %}
                             <option value="인사">인사</option>
+                            {% endif %}
+
+                            {% if notice_detail.job_group == '사무' %}
+                            <option value="사무" selected>사무</option>
+                            {% else %}
                             <option value="사무">사무</option>
+                            {% endif %}
+                            
+                            {% if notice_detail.job_group == 'R&D' %}
+                            <option value="R&D" selected>R&D</option>
+                            {% else %}
                             <option value="R&D">R&D</option>
+                            {% endif %}
+
+                            {% if notice_detail.job_group == '기타' %}
+                            <option value="기타" selected>기타</option>
+                            {% else %}
                             <option value="기타">기타</option>
+                            {% endif %}
+
                         </select>
                         <select name="is_continue" id="is_continue" class="notice_option">
+                            {% if notice_detail.is_continue == 1 %}
                             <option value="1" selected>진행중</option>
                             <option value="0">마감</option>
+                            {% else %}
+                            <option value="1">진행중</option>
+                            <option value="0" selected>마감</option>
+                            {% endif %}
+
                         </select>
                     </span>
                     <p>
-                        <input type="text" name="notice_title" id="notice_title" class="notice_textbox" placeholder="포지션 제목을 입력하세요.">
+                        <input type="text" name="notice_title" id="notice_title" class="notice_textbox" placeholder="포지션 제목을 입력하세요." value="{{notice_detail.notice_title}}">
                     </p>
                 </td>
             </tr>
             <tr>
                 <th>기업명</th>
-                <td><input type="text" name="company_name" id="company_name" class="notice_textbox" placeholder="기업명을 입력하세요."></td>
+                <td><input type="text" name="company_name" id="company_name" class="notice_textbox" placeholder="기업명을 입력하세요." value="{{notice_detail.company_name}}"></td>
             </tr>
             <tr>
                 <th>메인 이미지</th>
                 <td>
                     <input type="file" name="notice_main_image" class="notice_regist_file" id="notice_main_image" accept="image/png, image/jpeg">
-                    <img src="" id="preview_image" style="width:200px; margin-top:20px;" >
+                    <img src="/{{notice_detail.notice_image}}" id="preview_image" style="width:200px; margin-top:20px;" >
                 </td>
             </tr>
             <tr>
                 <th style="vertical-align:baseline">기업간단소개</th>
                 <td>
-                    <input type="hidden" name="company_introduce" id="company_introduce" value="">
+                    <input type="hidden" name="company_introduce" id="company_introduce" value="{{notice_detail.company_info}}">
                     <div id="editor1" style="height:500px;">
                     </div>
                 </td>
@@ -59,7 +105,7 @@
             <tr>
                 <th>회사대표채널</th>
                 <td>
-                    <input type="text" name="notice_channel" id="notice_channel" class="notice_textbox" placeholder="대표채널을 입력하시기 바랍니다.">
+                    <input type="text" name="notice_channel" id="notice_channel" class="notice_textbox" placeholder="대표채널을 입력하시기 바랍니다." value="{{notice_detail.company_channel}}">
                 </td>
             </tr>
             <tr>
@@ -70,114 +116,234 @@
                         <table class="summary_table" colspacing="1" colpadding="1">
                             <tr>
                                 <th>직무</th>
-                                <td><input type="text" name="job_duty" id="job_duty" class="summary_textbox"></td>
+                                <td><input type="text" name="job_duty" id="job_duty" class="summary_textbox" value="{{notice_detail.job_duty}}"></td>
                             </tr>
                             <tr>
                                 <th>고용형태</th>
-                                <td><input type="text" name="employ_type" id="employ_type" class="summary_textbox"></td>
+                                <td><input type="text" name="employ_type" id="employ_type" class="summary_textbox" value="{{notice_detail.employ_type}}"></td>
                             </tr>
                             <tr>
                                 <th>경력</th>
-                                <td><input type="text" name="career" id="career" class="summary_textbox"></td>
+                                <td><input type="text" name="career" id="career" class="summary_textbox" value="{{notice_detail.career}}"></td>
                             </tr>
                             <tr>
                                 <th>회사규모 및 매출</th>
-                                <td><input type="text" name="company_size" id="company_size" class="summary_textbox"></td>
+                                <td><input type="text" name="company_size" id="company_size" class="summary_textbox" value="{{notice_detail.company_size}}"></td>
                             </tr>
                             <tr>
                                 <th>업종</th>
-                                <td><input type="text" name="job_sector" id="job_sector" class="summary_textbox"></td>
+                                <td><input type="text" name="job_sector" id="job_sector" class="summary_textbox" value="{{notice_detail.job_sector}}"></td>
                             </tr>
                             <tr>
                                 <th>채용기간</th>
-                                <td><input type="date" name="notice_date" id="notice_date" class="summary_textbox" style="width:95%;"></td>
+                                <td><input type="date" name="notice_date" id="notice_date" class="summary_textbox" style="width:95%;" value="{{notice_detail.notice_date}}"></td>
                             </tr>
                             <tr>
                                 <th>근무위치</th>
-                                <td><input type="text" name="company_location" id="company_location" class="summary_textbox"></td>
+                                <td><input type="text" name="company_location" id="company_location" class="summary_textbox" value="{{notice_detail.company_location}}"></td>
                             </tr>
                         </table>
                         <p style="vertical-align:baseline; margin:0;font-size:18px;font-weight:bold;margin: 15px 0;" class="position_info_title">포지션 정보</p>
-                        <input type="hidden" name="position_info" id="position_info" value="">
+                        <input type="hidden" name="position_info" id="position_info" value="{{notice_detail.position_info}}">
                         <div id="editor2" style="height:1000px;">
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">주요 업무</p>
                             <div id="main_work_container">
-                                <div class="detail_main_work">
+                                {% if main_work %}
+                                    {% for Main_work in main_work %}
+                                        {% if loop.index == 1 %}
+                                        <div class="detail_main_work">
+                                            <input type="text" id="main_work_{{loop.index}}" class="notice_textbox2" value="{{Main_work}}">
+                                        </div>
+                                        {% else %}
+                                        <div class="detail_main_work">
+                                            <input type="text" id="main_work_{{loop.index}}" class="notice_textbox2" value="{{Main_work}}">
+                                            <button type="button" class="main_work_delete" data-obj="main_work_{{loop.index}}">삭제</button>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                 <div class="detail_main_work">
                                     <input type="text" id="main_work_0" class="notice_textbox2">
-                                    <input type="hidden" name="main_work" id="main_work_input">
                                 </div>
+                                {% endif %}
                             </div>
+                            <input type="hidden" name="main_work" id="main_work_input">
                             <button type="button" id="add_main_work" class="position_addbutton" data-id="main_work_container" data-obj="main_work" data-target="detail_main_work">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">자격조건</p>
                             <div id="qualify_container">
+                                {% if qualify %}
+                                {% for Qualify in qualify %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_qualify">
+                                        <input type="text"  id="job_qualify_{{loop.index}}" class="notice_textbox2" value="{{Qualify}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_qualify">
+                                        <input type="text"  id="job_qualify_{{loop.index}}" class="notice_textbox2" value="{{Qualify}}">
+                                        <button type="button" class="main_work_delete" data-obj="job_qualify_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% else %}
                                 <div class="detail_qualify">
                                     <input type="text"  id="job_qualify_0" class="notice_textbox2">
-                                    <input type="hidden" name="job_qualify" id="job_qualify_input">
                                 </div>
+                                {% endif %}
+                                    <input type="hidden" name="job_qualify" id="job_qualify_input">
                             </div>
                             <button type="button" id="add_qualify" class="position_addbutton" data-id="qualify_container" data-obj="job_qualify" data-target="detail_qualify">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">우대사항</p>
                             <div id="prefer_container">
+                                {% if prefer %}
+                                {% for Prefer in prefer %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_prefer">
+                                        <input type="text"  id="job_prefer_{{loop.index}}" class="notice_textbox2" value="{{Prefer}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_prefer">
+                                        <input type="text"  id="job_prefer_{{loop.index}}" class="notice_textbox2" value="{{Prefer}}">
+                                        <button type="button" class="main_work_delete" data-obj="job_prefer_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor%}
+                                {% else %}
                                 <div class="detail_prefer">
-                                    <input type="text"  id="job_prefer_0" class="notice_textbox2">
-                                    <input type="hidden" name="job_prefer" id="job_prefer_input">
+                                    <input type="text"  id="job_prefer_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" name="job_prefer" id="job_prefer_input">
                             </div>
                             <button type="button" id="add_prefer" class="position_addbutton" data-id="prefer_container" data-obj="job_prefer" data-target="detail_prefer">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">근무조건 및 복지</p>
                             <div id="welfare_container">
+                                {% if welfare %}
+                                {% for Welfare in welfare %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_welfare">
+                                        <input type="text"  id="job_welfare_{{loop.index}}" class="notice_textbox2" value="{{Welfare}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_welfare">
+                                        <input type="text"  id="job_welfare_{{loop.index}}" class="notice_textbox2" value="{{Welfare}}">
+                                        <button type="button" class="main_work_delete" data-obj="job_welfare_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor%}
+                                {% else %}
                                 <div class="detail_welfare">
-                                    <input type="text"  id="job_welfare_0" class="notice_textbox2">
-                                    <input type="hidden" name="job_welfare" id="job_welfare_input">
+                                    <input type="text"  id="job_welfare_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" name="job_welfare" id="job_welfare_input">
                             </div>
                             <button type="button" id="add_welfare" class="position_addbutton" data-id="welfare_container" data-obj="job_welfare" data-target="detail_welfare">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">팀 구성 및 커뮤니케이션</p>
                             <div id="communication_container">
+                                {% if communication %}
+                                {% for Communication in communication %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_communication">
+                                        <input type="text"  id="company_communication_{{loop.index}}" class="notice_textbox2" value="{{Communication}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_communication">
+                                        <input type="text"  id="company_communication_{{loop.index}}" class="notice_textbox2" value="{{Communication}}">
+                                        <button type="button" class="main_work_delete" data-obj="company_communication_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor%}
+                                {% else %}
                                 <div class="detail_communication">
-                                    <input type="text"  id="company_communication_0" class="notice_textbox2">
-                                    <input type="hidden" name="company_communication" id="company_communication_input">
+                                    <input type="text"  id="company_communication_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" name="company_communication" id="company_communication_input">
                             </div>
                             <button type="button" id="add_communication" class="position_addbutton" data-id="communication_container" data-obj="company_communication" data-target>추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">조직문화</p>
                             <div id="culture_container">
+                                {% if culture %}
+                                {% for Culture in culture %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_culture">
+                                        <input type="text"  id="company_culture_{{loop.index}}" class="notice_textbox2" value="{{Culture}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_culture">
+                                        <input type="text"  id="company_culture_{{loop.index}}" class="notice_textbox2" value="{{Culture}}">
+                                        <button type="button" class="main_work_delete" data-obj="company_culture_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor%}
+                                {% else %}
                                 <div class="detail_culture">
-                                    <input type="text"  id="company_culture_0" class="notice_textbox2">
-                                    <input type="hidden" name="company_culture" id="company_culture_input">
+                                    <input type="text"  id="job_culture_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" name="company_culture" id="company_culture_input">
                             </div>
                             <button type="button" id="add_culture" class="position_addbutton" data-id="culture_container" data-obj="company_culture" data-target="detail_culture">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">인재상</p>
                             <div id="people_container">
-                                <div class="detail_people">
-                                    <input type="text"  id="company_people_0" class="notice_textbox2">
-                                    <input type="hidden" name="company_people" id="company_people_input">
+                                {% if people %}
+                                {% for People in people %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_people">
+                                        <input type="text"  id="company_people_{{loop.index}}" class="notice_textbox2" value="{{People}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_people">
+                                        <input type="text"  id="company_people_{{loop.index}}" class="notice_textbox2" value="{{People}}">
+                                        <button type="button" class="main_work_delete" data-obj="job_people_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor%}
+                                {% else %}
+                                <div class="detail_prefer">
+                                    <input type="text"  id="company_people_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                                <input type="hidden" name="company_people" id="company_people_input">
                             </div>
                             <button type="button" id="add_people" class="position_addbutton" data-id="people_container" data-obj="company_people" data-target="detail_people">추가</button>
                         </div>
                         <div class="summary_textarea">
                             <p class="position_info_title">향후 커리어</p>
                             <div id="nextcareer_container">
-                                <div class="detail_nextcareer">
-                                    <input type="text"  id="next_career_0" class="notice_textbox2">
-                                    <input type="hidden" name="next_career" id="nextcareer_input">
+                                {% if next_career %}
+                                {% for Next_career in next_career %}
+                                    {% if loop.index == 1 %}
+                                    <div class="detail_nextcareer">
+                                        <input type="text"  id="next_career_{{loop.index}}" class="notice_textbox2" value="{{Next_career}}">
+                                    </div>
+                                    {% else %}
+                                    <div class="detail_nextcareer">
+                                        <input type="text"  id="next_career_{{loop.index}}" class="notice_textbox2" value="{{Next_career}}">
+                                        <button type="button" class="main_work_delete" data-obj="next_career_{{loop.index}}">삭제</button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                                {% else %}
+                                <div class="detail_prefer">
+                                    <input type="text"  id="next_career_{{loop.index}}" class="notice_textbox2">
                                 </div>
+                                {% endif %}
+                               <input type="hidden" name="next_career" id="nextcareer_input">
                             </div>
                             <button type="button" id="add_career" class="position_addbutton" data-id="nextcareer_container" data-obj="next_career" data-target="detail_nextcareer">추가</button>
                         </div>
@@ -185,29 +351,26 @@
                             <p class="position_info_title">채용 프로세스</p>
                             <table class="process_table" id="process_table" colspacing="1" colpadding="1">
                                 <input type="hidden" name="notice_process" id="notice_process_input">
+                                {% for Process in process %}
                                 <tr>
-                                    <th>1단계</th>
+                                    <th>{{loop.index}}단계</th>
                                     <td>
-                                        <input type="text" id="process_1" class="process_textbox">
+                                        <input type="text" id="process_{{loop.index}}" class="process_textbox" value="{{Process}}">
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>2단계</th>
-                                    <td>
-                                        <input type="text" id="process_2" class="process_textbox">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>3단계</th>
-                                    <td>
-                                        <input type="text" id="process_3" class="process_textbox">
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </table>
                             <div class="add_process">
                                 <button type="button" id="add_process_button" class="add_process_button" data-id="process_table">추가</button>
                                 <button type="button" id="del_process_button" class="del_process_button" style="display:none;" data-id="process_table">삭제</button>
                             </div>
+                            <script>
+                                var target_stage = {{process.length}};
+                                if(target_stage > 3)
+                                {
+                                    document.getElementById('del_process_button').style.display = "";
+                                }
+                            </script>
                         </div>
                     </div>
                 </td>
@@ -215,26 +378,37 @@
             <tr>
                 <th style="vertical-align:baseline">자사양식 필수여부</th>
                 <td style="font-size:18px;font-weight:600">
-                    <input type="radio" value="1" name="is_resume" id="is_resume_agree">자사양식</input>
+                    {% if notice_detail.is_resume == 1 %}
+                    <input type="radio" value="1" name="is_resume" id="is_resume_agree" checked>자사양식</input>
                     <input type="radio" value="0" name="is_resume" id="is_resume_disagree">자유양식</input>
+                    <input type="file" name="resume_file" id="resume_file" style="margin-left:10px; vertical-align:bottom;">
+                    {% else %}
+                    <input type="radio" value="1" name="is_resume" id="is_resume_agree">자사양식</input>
+                    <input type="radio" value="0" name="is_resume" id="is_resume_disagree" checked>자유양식</input>
                     <input type="file" name="resume_file" id="resume_file" style="display:none;margin-left:10px; vertical-align:bottom;">
+                    {% endif %}
                 </td>
             </tr>
             <tr>
                 <th style="vertical-align:baseline">포트폴리오 필수여부</th>
                 <td style="font-size:18px;font-weight:600">
-                    <input type="radio" value="1" name="is_portfolio" class="is_portfolio">필수</input>
+                    {% if notice_detail.is_portfolio == 1 %}
+                    <input type="radio" value="1" name="is_portfolio" class="is_portfolio" checked>필수</input>
                     <input type="radio" value="0" name="is_portfolio" class="is_portfolio">선택</input>
+                    {% else %}
+                    <input type="radio" value="1" name="is_portfolio" class="is_portfolio">필수</input>
+                    <input type="radio" value="0" name="is_portfolio" class="is_portfolio" checked>선택</input>
+                    {% endif %}
                 </td>
             </tr>
            <tr>
                 <th>메인영상(URL)</th>
-                <td><input type="text" name="main_video" id="main_video" class="notice_textbox" placeholder="URL을 입력하세요."></td>
+                <td><input type="text" name="main_video" id="main_video" class="notice_textbox" placeholder="URL을 입력하세요." value="{{notice_detail.main_video}}"></td>
             </tr>
             <tr>
                 <th style="vertical-align:baseline">인터뷰 기사</th>
                 <td>
-                    <input type="hidden" name="company_interview" id="company_interview" value="">
+                    <input type="hidden" name="company_interview" id="company_interview" value="{{notice_detail.notice_interview}}">
                     <div id="editor3" style="height:1000px;">
                     </div>
                 </td>
@@ -255,7 +429,6 @@
 
 <script>
 
-    console.log(document.querySelector('input[name=is_portfolio]').checked);
     var toolbarOptions = [
 [{ 'font': ['gainge'] }],
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -322,6 +495,10 @@
     quill3.getModule('toolbar').addHandler('image', function() {
         selectimage(quill3);
     })
+
+    quill1.root.innerHTML = document.getElementById('company_introduce').value;
+    quill2.root.innerHTML = document.getElementById('position_info').value;
+    quill3.root.innerHTML = document.getElementById('company_interview').value;
 
     function selectimage(select_quill) {
         const input = document.createElement('input');
@@ -422,7 +599,7 @@
 
         
 
-        document.notice_regist_form.submit();
+        document.notice_modify_form.submit();
     });
 
 
@@ -431,7 +608,7 @@
     });
 
    var temp_button = document.querySelectorAll('.position_addbutton');
-   var count = 0;
+   var count = 101;
    for(temp_buttons of temp_button)
    {
        temp_buttons.addEventListener('click', function(event) {
@@ -446,7 +623,6 @@
        })
    }
 
-    var target_stage = 3;
    document.getElementById('add_process_button').addEventListener('click', function(e){
        target_stage++;
        addProcessTable(e.target.dataset.id,target_stage);
@@ -471,10 +647,6 @@
    document.getElementById('is_resume_disagree').addEventListener('click',function(){
        document.getElementById('resume_file').style.display = 'none';
        document.getElementById('resume_file').value = '';
-   });
-
-   document.getElementById('notice_regist').addEventListener('click', function(e){
-       document.getElementById('notice_submit_button').click();
    })
 
      function readImage(input){
