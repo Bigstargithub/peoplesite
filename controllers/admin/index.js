@@ -50,4 +50,10 @@ router.post('/notice/image', upload_notice_image.single('image'), ctrl.upload_no
 
 router.post('/notice/active/:id', ctrl.update_notice_active);
 
+router.post('/notice/status/:id', ctrl.update_notice_status);
+
+router.get('/notice/modify/:id', ctrl.get_modify_notice);
+
+router.post('/notice/modify/:id', sample_file.fields([{'name': 'notice_main_image'}, {'name': 'resume_file'}]), ctrl.post_modify_notice);
+
 module.exports = router;
