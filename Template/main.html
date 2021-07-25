@@ -1,0 +1,46 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="main">
+    <div class="main_title">
+        <p style="font-size:23px; color:#909090;margin:20px 0">채용 공고</p>
+        <span>
+        <h2 style="font-size:40px;width:60%;color:#1a1a1a;display:contents">지금 당신을 기다리고 있어요</h2>
+        <select id="job_title" class="main_selectbox">
+                <option value="">분류</option>
+                <option value="마케터">마케터</option>
+                <option value="영업">영업</option>
+                <option value="개발">개발</option>
+                <option value="디자인">디자인</option>
+                <option value="인사">인사</option>
+                <option value="사무">사무</option>
+                <option value="R&D">R&D</option>
+                <option value="기타">기타</option>
+        </select>
+        </span>
+    </div>
+    <div class="main_content">
+        {% for Notice in notice_list %}
+        <div class="content_notice">
+            <div class="content_image">
+                <img src="{{Notice.notice_image}}" style="width:276px;height:170px;border-radius:25px 25px 0 0;">
+            </div>
+            <div class="content_detail">
+                <span style="margin-bottom:7px;display:block;font-size:12px;">
+                    <span>{{Notice.company_name}}</span>
+                    <span style="background-color:#F4F4FF;color:#000f9f;margin-left:6px;">{{Notice.job_group}}</span>
+                </span>
+                <p style="line-height:1.4; font-size:15px;height:55px;">
+                    {{Notice.notice_title}}
+                </p>
+                {% if Notice.is_continue == 1 %}
+                <img src="ing.svg" style="margin-top:24px;">
+                {% else %}
+                <img src="end.svg" style="margin-top:24px;">
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
