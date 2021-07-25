@@ -1,0 +1,98 @@
+@font-face{
+    font-family: 'gainge';
+    src: url('./font/NotoSansCJKkr-Light.otf') format('truetype');
+}
+
+body{
+    min-width:100%;
+    min-height:100%;
+    font-family: 'Spoqa Han Sans Neo,Bold';
+}
+
+body, div,p, h2{
+    margin:0;
+    padding:0;
+}
+
+input::placeholder{
+    color:#383838;
+    font-weight:100;
+}
+
+.header
+{
+    padding:20px;
+    -webkit-box-shadow:11px 6px 22px rgb(0 0 0 / 10%);
+}
+.header_logo
+{
+    width:1230px;
+    margin:0 auto;
+}
+.logo
+{
+    width:219px;
+}
+.main{
+    width:1210px;
+    margin:0 auto;
+}
+.main_title
+{
+    padding-top:76px;
+    padding-bottom:80px;
+
+}
+
+.title_select
+{
+    /* float:right; */
+}
+.main_selectbox
+{
+    padding:14px 20px;
+    font-size:18px;
+    width:185px;
+    float:right;
+    font-family:'Spoqa Han Sans Neo,Medium';
+    position:relative;
+    bottom:10px;
+}
+
+.main_content
+{
+    padding-top:40px;
+    width:1245px;
+    height:1500px;
+    overflow:hidden;
+}
+
+.content_notice
+{
+    width:272px;
+    height:336px;
+    border:1px solid #d9d9d9;
+    opacity:1;
+    border-radius:30px 30px 30px 0;
+    display:inline-block;
+    margin-right:32px;
+    margin-bottom:35px;
+}
+
+.content_notice:hover{
+    box-shadow: 30px 30px 20px rgb(0,0,0 / 15px);
+    position: relative;
+    bottom:5px;
+    opacity: 35;
+    
+}
+.content_image
+{
+    width:100%;
+    height:170px;
+}
+
+.content_detail
+{
+    padding:20px;
+}
