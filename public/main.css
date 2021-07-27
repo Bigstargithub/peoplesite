@@ -2,11 +2,16 @@
     font-family: 'gainge';
     src: url('./font/NotoSansCJKkr-Light.otf') format('truetype');
 }
-
+/* 공통 CSS */
 body{
     min-width:100%;
     min-height:100%;
     font-family: 'Spoqa Han Sans Neo,Bold';
+}
+
+a
+{
+    text-decoration:none;
 }
 
 body, div,p, h2{
@@ -18,7 +23,23 @@ input::placeholder{
     color:#383838;
     font-weight:100;
 }
-
+.font_medium
+{
+    font-family:'Spoqa Han Sans Neo, Medium';
+}
+.font_bold
+{
+    font-family:'Spoqa Han Sans Neo, Bold';
+}
+.font_18{font-size: 18px;}
+.font_20{font-size: 20px;}
+.font_23{font-size: 23px;}
+.font_28{font-size: 28px;}
+.font_32{font-size: 32px;}
+.wrap
+{
+    height:100vh;
+}
 .header
 {
     padding:20px;
@@ -57,13 +78,16 @@ input::placeholder{
     font-family:'Spoqa Han Sans Neo,Medium';
     position:relative;
     bottom:10px;
+    border: 1px solid #D9D9D9;
+    background: url('select_arrow.svg') no-repeat 152px;
+    appearance: none;
 }
 
 .main_content
 {
     padding-top:40px;
     width:1245px;
-    height:1500px;
+    max-height:1500px;
     overflow:hidden;
 }
 
@@ -80,7 +104,8 @@ input::placeholder{
 }
 
 .content_notice:hover{
-    box-shadow: 30px 30px 20px rgb(0,0,0 / 15px);
+    box-shadow: 0px 0px 15px rgb(0 0 0/ 15%);
+    /* box-shadow: 30px 30px 20px rgb(0,0,0 / 15px); */
     position: relative;
     bottom:5px;
     opacity: 35;
@@ -95,4 +120,236 @@ input::placeholder{
 .content_detail
 {
     padding:20px;
+}
+
+/* footer css */
+.footer
+{
+    margin-top:160px;
+    width: 100%;
+    height:240px;
+    box-shadow: 0px -1px 25px #0000001A;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.footer_content
+{
+    width:1200px;
+    margin:0 auto;
+    height:125px;
+    padding-top:57px;
+}
+.footer_title
+{
+    font-family: 'Spoqa Han Sans Neo, Medium';
+    font-size: 13px;
+    color: #A0A4B4;
+    margin-right:10px;
+}
+.footer_detail
+{
+    font-family: 'Spoqa Han Sans Neo, Medium';
+    font-size: 13px;
+    color: #566371;
+    margin-right:25px;
+}
+.company_information
+{
+    width:fit-content;
+    display: inline-block;
+}
+/* footer CSS */
+
+/* 공고 상세페이지 CSS */
+.notice
+{
+    width:1230px;
+    margin:0 auto;
+    margin-top:70px;
+}
+.notice_detail
+{
+    width:780px;
+    padding-bottom:40px;
+}
+.notice_title
+{
+    margin-top:40px;
+    width:650px;
+    color: #101010;
+    margin-bottom:60px;
+}
+.notice_image
+{
+    width:780px;
+    height:480px;
+    
+}
+.notice_info
+{
+    margin-top:70px;
+}
+.notice_info_title
+{
+    margin-bottom:40px;
+}
+
+/* 포지션 정보 css */
+.notice_position
+{
+    margin-top:70px;
+}
+
+.notice_position_detail
+{
+    width:780px;
+    border-collapse: collapse;
+}
+.notice_position_detail tr
+{
+    width:100%;
+    border-bottom:1px solid #d9d9d9;
+}
+.notice_position_detail tr th
+{
+    width:180px;
+    font-family:'Spoqa Han Sans Neo, Bold';
+    font-size:25px;
+    color:#566371;
+    text-align: left;
+    margin-right:45px;
+    vertical-align: baseline;
+    padding:75px 0;
+}
+.notice_position_detail tr td
+{
+    padding:75px 0;
+}
+.notice_position_subdetail{
+    width:100%;
+    border-collapse: collapse;
+}
+.notice_position_subdetail tr
+{
+    border:solid #D9D9D9;
+    border-width:1px 0;
+}
+.notice_position_subdetail tr th
+{
+    width:165px;
+    font-family: 'Spoqa Han Sans Neo, Bold';
+    font-size:18px;
+    color:#1A1A1A;
+    text-align: left;
+    margin-right:30px;
+    padding:12px 0;
+}
+.notice_position_subdetail tr td
+{
+    width:350px;
+    padding:0;
+    font-size:18px;
+    font-family: 'Spoqa Han Sans Neo, Regular';
+}
+.notice_position_list tr td
+{
+    display:list-item;
+    padding:0;
+    font-size:18px;
+    font-family: 'Spoqa Han Sans Neo, Regular';
+    margin:0 21px;
+    color: #1A1A1A;
+    padding-bottom:12px;
+}
+/* 포지션 정보 css */
+
+/* 채용프로세스 css */
+.process_detail
+{
+    margin-top:40px;
+    width:100%;
+    margin-bottom:150px;
+}
+.process_stage
+{
+    width:157px;
+    height:157px;
+    background:#FAFAFA;
+    box-shadow: 0px 5px 15px #0000001A;
+    opacity: 1;
+    text-align: center;
+    line-height: 160px;
+    border-radius:80px;
+    display:inline-block;
+    margin-bottom:30px;
+}
+.process_arrow
+{
+    margin:18px 0;
+}
+/*채용프로세스 css */
+
+/* 회사 영상 css */
+.company_video
+{
+    margin-bottom:100px;
+}
+.company_video_detail
+{
+    margin-top:40px;
+}
+/* 회사 영상 css */
+
+/* 인터뷰 css */
+.company_interview
+{
+    padding-bottom:40px;
+    border-bottom:1px solid #D9D9D9;
+}
+.company_interview_detail
+{
+    margin-top:40px;
+}
+/* 인터뷰 css */
+
+/* 지원하기 css */
+.submit_notice
+{
+    margin-top:70px;
+    padding-bottom:70px;
+    border-bottom:1px solid #D9d9d9;
+}
+/* 지원하기 css */
+
+/* 오른쪽 고정 div css */
+.notice_information
+{
+    width:370px;
+    height:480px;
+    border:1px solid #D9D9D9;
+    border-radius: 25px 25px 25px 0px;
+    position:fixed;
+    top:360px;
+    right:830px;
+}
+.notice_information_detail
+{
+    padding: 40px 40px 48px 40px;
+}
+.online_channel
+{
+    margin:0 30px 15px 30px;
+}
+.notice_apply
+{
+    margin:0 30px 16px 30px;
+}
+.notice_Qna
+{
+    text-align: center;
+}
+.notice_subtitle
+{
+    padding-bottom:16px;
+    border-bottom:1px solid #D9D9D9;
 }
