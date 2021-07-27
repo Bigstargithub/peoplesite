@@ -1,0 +1,266 @@
+{% extends 'header.html' %}
+{% extends 'footer.html' %}
+
+{% block content %}
+<div class="notice">
+    <div class="notice_detail">
+        <span>
+            <span class="font_bold font_23" style="color:#A0A4B4;margin-right:10px;">{{notice.company_name}}</span>
+            <span class="font_bold font_23" style="color:#000F9F;margin-right:10px;">{{notice.job_group}}</span>
+            <span style="vertical-align:middle">
+                {% if notice.is_continue == 1 %}
+                <img src="/notice_detail_ing.svg"></span>
+                {% else %}
+                <img src="/notice_detail_end.svg"></span>
+                {% endif %}
+            </span>
+        </span>
+        <div class="notice_title">
+            <p class="font_bold font_32">
+                {{notice.notice_title}}
+            </p>
+        </div>
+        <div class="notice_image">
+            <img src="/{{notice.notice_image}}" width="100%" height="100%">
+        </div>
+        <div class="notice_info">
+            <div class="notice_info_title notice_subtitle">
+                <p class="font_bold font_28">회사 소개</p>
+            </div>
+            <div class="notice_info_content" id="notice_info">
+                {{notice.company_info}}
+            </div>
+        </div>
+        <div class="notice_position">
+            <div class="notice_position_title notice_subtitle">
+                <p class="font_bold font_28">포지션 정보</p>
+            </div>
+            <div class="notice_position_div">
+                <table colspacing="0" colpadding="0" class="notice_position_detail">
+                    <tr>
+                        <th>요약</th>
+                        <td>
+                            <table colspacing="0" colpadding="0" class="notice_position_subdetail">
+                                <tr>
+                                    <th>직무 및 직급</th>
+                                    <td>{{notice.job_duty}}</td>
+                                </tr>
+                                <tr>
+                                    <th>고용형태</th>
+                                    <td>{{notice.employ_type}}</td>
+                                </tr>
+                                <tr>
+                                    <th>경력</th>
+                                    <td>{{notice.career}}</td>
+                                </tr>
+                                <tr>
+                                    <th>회사규모 및 매출</td>
+                                    <td>{{notice.company_size}}</td>
+                                </tr>
+                                <tr>
+                                    <th>업종</th>
+                                    <td>{{notice.job_sector}}</td>
+                                </tr>
+                                <tr>
+                                    <th>채용기간</th>
+                                    <td id="notice_date">{{notice.notice_date}}</td>
+                                </tr>
+                                <tr>
+                                    <th>근무위치</th>
+                                    <td>{{notice.company_location}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>포지션 정보</th>
+                        <td id="position_info">{{notice.position_info}}</td>
+                    </tr>
+                    <tr>
+                        <th>주요 업무</th>
+                        <td>
+                            <table class="notice_position_list">
+                                {% for Main in main_work %}
+                                <tr>
+                                    <td>{{Main}}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>자격 요건</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Qualify in job_qualify %}
+                            <tr>
+                                <td>{{Qualify}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>우대사항</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Prefer in job_prefer %}
+                            <tr>
+                                <td>{{Prefer}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            근무조건<br />및 복지
+                        </th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Welfare in job_welfare %}
+                            <tr>
+                                <td>{{Welfare}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>팀구성 & <br />커뮤니케이션</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Communication in company_communication %}
+                            <tr>
+                                <td>{{Communication}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>조직문화</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Culture in company_culture %}
+                            <tr>
+                                <td>{{Culture}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>인재상</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for People in company_people %}
+                            <tr>
+                                <td>{{People}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border-bottom:0; padding-bottom:70px;">
+                        <th>향후 커리어</th>
+                        <td>
+                            <table class="notice_position_list">
+                            {% for Next in next_career %}
+                            <tr>
+                                <td>{{Next}}</td>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="notice_process">
+            <div class="notice_process_title notice_subtitle">
+                <p class="font_bold font_28">채용프로세스</p>
+            </div>
+            <div class="process_detail">
+                {% for Process in notice_process %}
+                <div class="process_stage">
+                    <span>{{Process}}</span>
+                </div>
+                {% if loop.index != notice_process.length %}
+                <img src="/arrow_right.svg" style="margin:0 16px;">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="company_video">
+            <div class="company_video_title notice_subtitle">
+                <p class="font_bold font_28">회사 영상</p>
+            </div>
+            <div class="company_video_detail">
+                <iframe src="{{notice.main_video}}" width="780px" height="480px" style="border-radius:25px;border:0;"></iframe>
+            </div>
+        </div>
+        <div class="company_interview">
+            <div class="company_interview_title notice_subtitle">
+                <p class="font_bold font_28">인터뷰</p>
+            </div>
+            <div class="company_interview_detail" id="company_interview">
+                {{notice.notice_interview}}
+            </div>
+        </div>
+        <div class="submit_notice">
+            <p class="font_bold font_28" style="margin-bottom:40px">지금 당신을 기다리고 있습니다.</p>
+            {% if notice.is_continue == 1 %}
+            <img src="/detail_ing_big.svg" style="margin-bottom:25px;">
+            {% else %}
+            <img src="/detail_end_big.svg" style="margin-bottom:25px;">
+            {% endif %}
+            <p class="font_18 font_medium">
+                <span style="color:#A0A4B4;margin-right:20px">채용문의</span>
+                <span style="color:#566371;">문성훈 팀장(010-9139-5223)</span>
+            </p>
+        </div>
+    </div>
+    <div class="notice_information">
+        <div class="notice_information_detail">
+            <p class="font_bold font_23" style="color:#1A1A1A;margin-bottom:15px;">{{notice.company_name}}</p>
+            <div class="font_medium font_20" style="color: #000F9F;background:#F4F4FF;width:fit-content;margin-bottom:29px;">
+                {{notice.job_group}}
+            </div>
+            <div class="font_medium font_18" style="height:115px">
+                {{notice.notice_title}}
+            </div>
+        </div>
+        <a href="{{notice.company_channel}}" target="_blank">
+            <div class="online_channel">
+                <img src="/online_channel.svg">
+            </div>
+        </a>
+        <a href="" target_"_blank">
+            <div class="notice_apply">
+                <img src="/company_apply.svg">
+            </div>
+        </a>
+        <div class="notice_Qna">
+            <span class="font_medium font_13">
+                <span style="color:#A0A4B4;margin-right:10px">채용문의</span>
+                <span style="color:#566371">문성훈 팀장(010-9139-5223)</span>
+            </span>
+        </div>
+    </div>
+</div>
+<script>
+    var content = document.getElementById('notice_info');
+    content.innerHTML = content.innerText;
+    var content_position = document.getElementById('position_info');
+    content_position.innerHTML = content_position.innerText;
+    var content_interview = document.getElementById('company_interview');
+    content_interview.innerHTML = content_interview.innerText;
+
+    var date = '{{notice.notice_date}}';
+    var date_time = new Date(date);
+    
+    var date_content = document.getElementById('notice_date');
+    date_content.innerHTML = date_time.getUTCFullYear() + '년 '+ date_time.getUTCMonth() + '월 ' + date_time.getUTCDay() + '일까지';
+</script>
+{% endblock %}
