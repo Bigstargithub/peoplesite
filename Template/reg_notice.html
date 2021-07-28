@@ -1,0 +1,62 @@
+{% extends 'header.html' %}
+{% extends 'footer.html' %}
+
+{% block content %}
+<div class="apply">
+    <div class="apply_content">
+        <div class="apply_title">
+            <p class="font_bold font_23 text_subcolor" style="margin-bottom:20px;">지금 당신을 기다리고 있어요</p>
+            <span class="font_bold font_50">지원서 작성하기</span>
+        </div>
+        <div class="apply_info">
+            <img src="/apply_info.svg">
+        </div>
+        <div class="apply_table">
+            <form action="/apply/{{id}}" mehod="post" name="apply_form" id="apply_form">
+                <table colspacing="0" colpadding="0" id="apply_form_table" class="apply_form_table">
+                    <tr>
+                        <th class="font_bold font_25" style="padding-top:35px;">지원자 정보</th>
+                    </tr>
+                    <tr>
+                        <th class="font_bold font_21" style="padding-top:52px;">이름</th>
+                        <td><input type="text" class="apply_text font_medium font_20" name="name" id="name" placeholder="이름을 입력하세요."></td>
+                    </tr>
+                    <tr>
+                        <th class="font_bold font_21">이메일</th>
+                         <td>
+                            <input type="hidden" name="email" id="email">
+                            <span>
+                                <input type="text" id="email_header" class="apply_email font_medium font_20">
+                                <span> @ </span>
+                                <input type="text" id="email_tailer" class="apply_email font_medium font_20">
+                                <input type="text" id="email_text" class="font_medium font_20 apply_email" style="width:215px;margin-left:28px;" placeholder="직접입력">
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font_bold font_21">전화번호</th>
+                        <td><input type="text" class="apply_text font_medium font_20" name="phone" id="phone" placeholder="연락이 가능한 번호를 입력해주세요."></td>
+                    </tr>
+                </table>
+                <table colspacing="0" colpadding="0" class="apply_form_table">
+                    <tr>
+                        <th class="font_bold font_25" style="padding-top:35px;padding-bottom:60px;">지원서류 제출</th>
+                    </tr>
+                    <tr>
+                        <td style="height:77px">
+                            <span>
+                            <img src="/submit_resume.svg">
+                            <img src="/resume_notice.svg" style="margin-left:41px;margin-bottom:15px;">
+                                <span style="width: 336px;height: 55px; float:right;margin-top:16px;line-height:1.6;margin-left:22px;color:#A0A4B4">자유양식으로 지원받는 회사입니다. <br />지원서 양식이 필요하시면 다운받으십시오.</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="font_bold font_21" style="padding-top:83px;">지원서 제출</th>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
