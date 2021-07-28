@@ -270,9 +270,10 @@ input::placeholder{
 }
 
 .notice_textbox2{
-    width:400px;
-    padding:7px;
+    width:1000px;
+    padding:10px;
     margin-top:10px;
+    height:120px;
 }
 
 .position_addbutton

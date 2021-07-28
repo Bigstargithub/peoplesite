@@ -23,6 +23,7 @@ input::placeholder{
     color:#383838;
     font-weight:100;
 }
+/* 폰트 관련 CSS */
 .font_medium
 {
     font-family:'Spoqa Han Sans Neo, Medium';
@@ -33,56 +34,118 @@ input::placeholder{
 }
 .font_18{font-size: 18px;}
 .font_20{font-size: 20px;}
+.font_21{font-size: 21px;}
 .font_23{font-size: 23px;}
+.font_25{font-size: 25px;}
 .font_28{font-size: 28px;}
 .font_32{font-size: 32px;}
+.font_50{font-size: 50px;}
+/* 폰트 관련 CSS */
+
+/* 폰트 색깔 CSS */
+.text_maincolor{color:#1A1A1A}
+.text_subcolor{color:#A0A4B4}
+/* 폰트 색깔 CSS */
+
 .wrap
 {
-    height:100vh;
+    width:100%;
+    height:100%;
 }
+/* header css */
 .header
 {
-    padding:20px;
+    width:100%;
+    height:60px;
+    padding:20px 0;
     -webkit-box-shadow:11px 6px 22px rgb(0 0 0 / 10%);
+    position:fixed;
+    top:0;
+    z-index: 1000;
+    background:#fff;
 }
 .header_logo
 {
-    width:1230px;
+    width:1200px;
     margin:0 auto;
+    height:100%;
+    margin-top:11px;
 }
 .logo
 {
     width:219px;
 }
+/* header css */
+
 .main{
-    width:1210px;
+    width:1200px;
     margin:0 auto;
+    position: relative;
+    top:196px;
+    padding-bottom:160px;
 }
 .main_title
 {
     padding-top:76px;
     padding-bottom:80px;
-
+    width:100%;
+    display:inline-block;
+    height:160px;
 }
 
 .title_select
 {
     /* float:right; */
 }
+/* 메인페이지 selectbox css */
 .main_selectbox
 {
     padding:14px 20px;
     font-size:18px;
-    width:185px;
+    width:145px;
     float:right;
     font-family:'Spoqa Han Sans Neo,Medium';
     position:relative;
-    bottom:10px;
+    /* bottom:60px; */
     border: 1px solid #D9D9D9;
-    background: url('select_arrow.svg') no-repeat 152px;
+    background: url('select_arrow.svg') no-repeat 151px;
+    box-shadow: 0px 0px 20px #0000001A;
     appearance: none;
 }
-
+.main_subselectbox
+{
+    position:absolute;
+    width:163px;
+    top:65px;
+    left:0;
+    border-radius: 5px;
+    background: #fff;
+    padding:10px;
+    box-shadow: 0px 0px 20px #0000001A;
+}
+.main_option
+{
+    width:140px;
+    height:23px;
+    display:block;
+    color:#1F1F1F;
+    font-size:18px;
+    padding:8px 10px;
+    padding-top:15px;
+}
+.main_option:hover
+{
+    background: #EBF4FF;
+    color:#000F9F;
+    padding-left:15px;
+}
+.selected
+{
+    border:0;
+    background-color:#EBF4FF;
+    color:#000F9F;
+}
+/* 메인페이지 selectbox css */
 .main_content
 {
     padding-top:40px;
@@ -163,14 +226,16 @@ input::placeholder{
 /* 공고 상세페이지 CSS */
 .notice
 {
-    width:1230px;
+    width:1200px;
     margin:0 auto;
-    margin-top:70px;
+    margin-top:170px;
+    position:relative;
 }
 .notice_detail
 {
     width:780px;
     padding-bottom:40px;
+    display:inline-block;
 }
 .notice_title
 {
@@ -328,9 +393,19 @@ input::placeholder{
     height:480px;
     border:1px solid #D9D9D9;
     border-radius: 25px 25px 25px 0px;
-    position:fixed;
+    /* position:fixed;
     top:360px;
-    right:830px;
+    right:830px; */
+    float:right;
+    display:block;
+    position:relative;
+    top:200px;
+}
+.fixed_information
+{
+    position: fixed !important;
+    top:150px;
+    left:60.5%;
 }
 .notice_information_detail
 {
@@ -352,4 +427,60 @@ input::placeholder{
 {
     padding-bottom:16px;
     border-bottom:1px solid #D9D9D9;
+}
+
+/* 지원 페이지 CSS */
+.apply
+{
+    width:800px;
+    margin:0 auto;
+    margin-top:210px;
+}
+.apply_title
+{
+    text-align: center;
+
+}
+.apply_info
+{
+    margin-top:70px;
+    margin-bottom:25px;
+}
+.apply_form_table
+{
+    width:100%;
+    border-collapse: collapse;
+    border-top:5px solid #1A1A1A;
+    margin-bottom:131px;
+}
+.apply_form_table tr{
+    width:100%;
+    text-align:left;
+}
+.apply_form_table tr th{
+    width:121px;
+    padding-top:61px;
+    padding-bottom:18px;
+}
+.apply_form_table tr td{
+    vertical-align: bottom;
+    width: 679px;
+}
+.apply_text
+{
+    width:100%;
+    padding:18px;
+    border:0;
+    border-bottom:1px solid #A0A4B44D;
+}
+.apply_email
+{
+    width:136px;
+    padding:18px;
+    border:0;
+    border-bottom:1px solid #A0A4B44D;
+}
+.apply_email:focus
+{
+    outline:none;
 }

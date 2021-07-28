@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="notice">
+    <div>
     <div class="notice_detail">
         <span>
             <span class="font_bold font_23" style="color:#A0A4B4;margin-right:10px;">{{notice.company_name}}</span>
@@ -73,7 +74,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>포지션 정보</th>
+                        <th>포지션 소개</th>
                         <td id="position_info">{{notice.position_info}}</td>
                     </tr>
                     <tr>
@@ -196,7 +197,7 @@
             <div class="company_video_title notice_subtitle">
                 <p class="font_bold font_28">회사 영상</p>
             </div>
-            <div class="company_video_detail">
+            <div class="company_video_detail" id="company_video_detail">
                 <iframe src="{{notice.main_video}}" width="780px" height="480px" style="border-radius:25px;border:0;"></iframe>
             </div>
         </div>
@@ -221,8 +222,8 @@
             </p>
         </div>
     </div>
-    <div class="notice_information">
-        <div class="notice_information_detail">
+    <div class="notice_information" id="notice_information">
+        <div class="notice_information_detail" >
             <p class="font_bold font_23" style="color:#1A1A1A;margin-bottom:15px;">{{notice.company_name}}</p>
             <div class="font_medium font_20" style="color: #000F9F;background:#F4F4FF;width:fit-content;margin-bottom:29px;">
                 {{notice.job_group}}
@@ -236,7 +237,7 @@
                 <img src="/online_channel.svg">
             </div>
         </a>
-        <a href="" target_"_blank">
+        <a href="/apply/{{notice.number}}" target_"_blank">
             <div class="notice_apply">
                 <img src="/company_apply.svg">
             </div>
@@ -247,9 +248,11 @@
                 <span style="color:#566371">문성훈 팀장(010-9139-5223)</span>
             </span>
         </div>
+        </div>
     </div>
 </div>
 <script>
+    //HTML 에디터 변환
     var content = document.getElementById('notice_info');
     content.innerHTML = content.innerText;
     var content_position = document.getElementById('position_info');
@@ -257,10 +260,40 @@
     var content_interview = document.getElementById('company_interview');
     content_interview.innerHTML = content_interview.innerText;
 
+    //날짜 변경
     var date = '{{notice.notice_date}}';
     var date_time = new Date(date);
     
     var date_content = document.getElementById('notice_date');
     date_content.innerHTML = date_time.getUTCFullYear() + '년 '+ date_time.getUTCMonth() + '월 ' + date_time.getUTCDay() + '일까지';
+
+    // div 고정하기
+    
+    window.addEventListener('scroll',function(){
+        let scroll_location = document.documentElement.scrollTop;
+        const information = document.getElementById('notice_information');
+        const company_video_detail = document.getElementById('company_video_detail');
+        if(scroll_location >= 370)
+        {   
+            information.classList.add('fixed_information');
+            if(company_video_detail.offsetTop <= scroll_location)
+            {
+                information.classList.remove('fixed_information');
+                information.style.position = 'absolute';
+                information.style.top = company_video_detail.offsetTop+'px';
+                information.style.left = '69%';
+            }
+            else
+            {
+                information.style.position = '';
+                information.style.top = '';
+                information.style.left = '';
+            }
+        }
+        else
+        {
+            information.classList.remove('fixed_information');
+        }
+    })
 </script>
 {% endblock %}
