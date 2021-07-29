@@ -212,7 +212,9 @@
         <div class="submit_notice">
             <p class="font_bold font_28" style="margin-bottom:40px">지금 당신을 기다리고 있습니다.</p>
             {% if notice.is_continue == 1 %}
-            <img src="/detail_ing_big.svg" style="margin-bottom:25px;">
+            <a href="/apply/{{notice.number}}">
+                <img src="/detail_ing_big.svg" style="margin-bottom:25px;">
+            </a>
             {% else %}
             <img src="/detail_end_big.svg" style="margin-bottom:25px;">
             {% endif %}
@@ -222,7 +224,8 @@
             </p>
         </div>
     </div>
-    <div class="notice_information" id="notice_information">
+    <div style="float:right;position:relative;width:370px;">
+        <div class="notice_information" id="notice_information" style="position:relative;top:214px;">
         <div class="notice_information_detail" >
             <p class="font_bold font_23" style="color:#1A1A1A;margin-bottom:15px;">{{notice.company_name}}</p>
             <div class="font_medium font_20" style="color: #000F9F;background:#F4F4FF;width:fit-content;margin-bottom:29px;">
@@ -237,16 +240,23 @@
                 <img src="/online_channel.svg">
             </div>
         </a>
+        {% if notice.is_continue == 1 %}
         <a href="/apply/{{notice.number}}" target_"_blank">
             <div class="notice_apply">
                 <img src="/company_apply.svg">
             </div>
         </a>
+        {% else %}
+        <div class="notice_apply">
+            <img src="/apply_end.svg">
+        </div>
+        {% endif %}
         <div class="notice_Qna">
             <span class="font_medium font_13">
                 <span style="color:#A0A4B4;margin-right:10px">채용문의</span>
                 <span style="color:#566371">문성훈 팀장(010-9139-5223)</span>
             </span>
+        </div>
         </div>
         </div>
     </div>
@@ -281,13 +291,12 @@
                 information.classList.remove('fixed_information');
                 information.style.position = 'absolute';
                 information.style.top = company_video_detail.offsetTop+'px';
-                information.style.left = '69%';
+                //information.style.left = '69%';
             }
             else
             {
-                information.style.position = '';
-                information.style.top = '';
-                information.style.left = '';
+                information.style.position = 'relative';
+                information.style.top = '200px';
             }
         }
         else

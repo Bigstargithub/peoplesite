@@ -45,6 +45,7 @@ input::placeholder{
 /* 폰트 색깔 CSS */
 .text_maincolor{color:#1A1A1A}
 .text_subcolor{color:#A0A4B4}
+.text_blue{color:#000F9F}
 /* 폰트 색깔 CSS */
 
 .wrap
@@ -243,6 +244,7 @@ input::placeholder{
     width:650px;
     color: #101010;
     margin-bottom:60px;
+    height:86px;
 }
 .notice_image
 {
@@ -396,16 +398,16 @@ input::placeholder{
     /* position:fixed;
     top:360px;
     right:830px; */
-    float:right;
+    /* float:right; */
     display:block;
-    position:relative;
-    top:200px;
+    /* position:relative; */
+    /* top:200px; */
 }
 .fixed_information
 {
     position: fixed !important;
     top:150px;
-    left:60.5%;
+    /* left:60.5%; */
 }
 .notice_information_detail
 {
@@ -458,7 +460,7 @@ input::placeholder{
     text-align:left;
 }
 .apply_form_table tr th{
-    width:121px;
+    width:145px;
     padding-top:61px;
     padding-bottom:18px;
 }
