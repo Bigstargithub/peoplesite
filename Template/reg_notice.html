@@ -5,11 +5,11 @@
 <div class="apply">
     <div class="apply_content">
         <div class="apply_title">
-            <p class="font_bold font_23 text_subcolor" style="margin-bottom:20px;">지금 당신을 기다리고 있어요</p>
-            <span class="font_bold font_50">지원서 작성하기</span>
+            <p class="font_bold font_23 text_subcolor" style="margin-bottom:20px;">지금 당신을 기다리고 있어요!</p>
+            <span class="font_bold font_50 text_maincolor">지원서 작성하기</span>
         </div>
         <div class="apply_info">
-            <img src="/apply_info.svg">
+                <img src="/apply_info.svg" id="apply_info">
         </div>
         <div class="apply_table">
             <form action="/apply/{{id}}" mehod="post" name="apply_form" id="apply_form">
@@ -26,10 +26,18 @@
                          <td>
                             <input type="hidden" name="email" id="email">
                             <span>
-                                <input type="text" id="email_header" class="apply_email font_medium font_20">
+                                <input type="text" id="email_header" class="apply_email font_medium font_20" style="width:175px">
                                 <span> @ </span>
-                                <input type="text" id="email_tailer" class="apply_email font_medium font_20">
-                                <input type="text" id="email_text" class="font_medium font_20 apply_email" style="width:215px;margin-left:28px;" placeholder="직접입력">
+                                <select id="email_tailer" class="font_medium font_20 apply_select apply_email" style="width:175px">
+                                    <option value=""></option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="kakao.com">kakao.com</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="직접입력">직접입력</option>
+                                <input type="text" id="email_text" class="font_medium font_20 apply_email" style="width:206px;margin-left:28px;display:none;" placeholder="직접입력">
                             </span>
                         </td>
                     </tr>
@@ -46,16 +54,18 @@
                         <td colspan=2>
                         <div style="width:800px;display:flex;height:77px">
                             <span>
+
                                 <img src="/submit_resume.svg">
-                                <img src="/resume_notice.svg" style="margin-left:39px;margin-bottom:15px;">
-                                <span style="width: 320px;height: 55px; float:right;margin-top:16px;line-height:1.6;margin-left:22px;color:#A0A4B4">자유양식으로 지원받는 회사입니다. <br />지원서 양식이 필요하시면 다운받으십시오.</span>
+                                <img src="/resume_notice.svg" style="margin-left:39px;margin-bottom:16px;">
+                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자사 지원서 양식을 사용하는 회사입니다. 해당 지원서로 제출해주십시오.</span>
                             </span>
                         </div>
                         </td>
                     </tr>
                     <tr>
-                        <th class="font_bold font_21 font_blue" style="padding-top:83px;">지원서 제출</th>
+                        <th class="font_bold font_21 font_blue" style="padding-top:65px;">지원서 제출</th>
                         <td>
+                            <span style="position:relative;top:15px;left:59px;" class="text_subcolor">파일선택을 눌러 지원서를 제출하세요.</span>
                             <div style="float:right">
                                 <img src="/file_select.svg">
                             </div>
@@ -64,6 +74,7 @@
                     <tr>
                         <th class="font_bold font_21 font_blue">포트폴리오 제출</th>
                         <td>
+                            <span style="position:relative;top:15px;left:59px;" class="text_subcolor">파일선택을 눌러 지원서를 제출하세요.</span>
                             <div style="float:right">
                                 <img src="/file_select.svg">
                             </div>
@@ -108,4 +119,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    var email_text = document.getElementById('email_tailer');
+    email_text.addEventListener('change', function(){
+        if(email_text.value == '직접입력')
+        {
+            document.getElementById('email_text').style.display = '';
+        }
+        else
+        {
+            document.getElementById('email_text').style.display = 'none';
+        }
+    })
+    
+    document.getElementById('apply_info').addEventListener('click', function() {
+        document.getElementById('apply_info').style.display = 'none';
+    })
+</script>
 {% endblock %}
