@@ -31,7 +31,10 @@ input::placeholder{
 .font_bold
 {
     font-family:'Spoqa Han Sans Neo, Bold';
+    font-weight:600;
 }
+.font_12{font-size: 12px;}
+.font_15{font-size: 15px;}
 .font_18{font-size: 18px;}
 .font_20{font-size: 20px;}
 .font_21{font-size: 21px;}
@@ -39,12 +42,14 @@ input::placeholder{
 .font_25{font-size: 25px;}
 .font_28{font-size: 28px;}
 .font_32{font-size: 32px;}
+.font_40{font-size: 40px;}
 .font_50{font-size: 50px;}
 /* 폰트 관련 CSS */
 
 /* 폰트 색깔 CSS */
 .text_maincolor{color:#1A1A1A}
 .text_subcolor{color:#A0A4B4}
+.text_blue{color:#000F9F}
 /* 폰트 색깔 CSS */
 
 .wrap
@@ -81,16 +86,16 @@ input::placeholder{
     width:1200px;
     margin:0 auto;
     position: relative;
-    top:196px;
+    top:100px;
     padding-bottom:160px;
 }
 .main_title
 {
-    padding-top:76px;
-    padding-bottom:80px;
+    padding-top:96px;
+    padding-bottom:75px;
     width:100%;
     display:inline-block;
-    height:160px;
+    /* height:160px; */
 }
 
 .title_select
@@ -109,7 +114,7 @@ input::placeholder{
     /* bottom:60px; */
     border: 1px solid #D9D9D9;
     background: url('select_arrow.svg') no-repeat 151px;
-    box-shadow: 0px 0px 20px #0000001A;
+    /* box-shadow: 0px 0px 20px #0000001A; */
     appearance: none;
 }
 .main_subselectbox
@@ -148,10 +153,11 @@ input::placeholder{
 /* 메인페이지 selectbox css */
 .main_content
 {
-    padding-top:40px;
+    /* padding-top:40px; */
     width:1245px;
     max-height:1500px;
     overflow:hidden;
+    padding-top:5px;
 }
 
 .content_notice
@@ -240,14 +246,16 @@ input::placeholder{
 .notice_title
 {
     margin-top:40px;
-    width:650px;
+    width:780px;
     color: #101010;
     margin-bottom:60px;
+    height:86px;
 }
 .notice_image
 {
     width:780px;
     height:480px;
+    
     
 }
 .notice_info
@@ -284,11 +292,18 @@ input::placeholder{
     text-align: left;
     margin-right:45px;
     vertical-align: baseline;
-    padding:75px 0;
+    padding-top:60px;
+    padding-bottom:70px;
 }
 .notice_position_detail tr td
 {
-    padding:75px 0;
+    padding-top:60px;
+    padding-bottom:70px;
+    font-size:18px;
+    color:#1A1A1A;
+    line-height: 35px;
+    width:540px;
+    padding-left:30px;
 }
 .notice_position_subdetail{
     width:100%;
@@ -316,6 +331,11 @@ input::placeholder{
     font-size:18px;
     font-family: 'Spoqa Han Sans Neo, Regular';
 }
+.notice_position_list
+{
+    position: relative;
+    bottom:5px;
+}
 .notice_position_list tr td
 {
     display:list-item;
@@ -324,7 +344,6 @@ input::placeholder{
     font-family: 'Spoqa Han Sans Neo, Regular';
     margin:0 21px;
     color: #1A1A1A;
-    padding-bottom:12px;
 }
 /* 포지션 정보 css */
 
@@ -396,16 +415,20 @@ input::placeholder{
     /* position:fixed;
     top:360px;
     right:830px; */
-    float:right;
+    /* float:right; */
     display:block;
-    position:relative;
-    top:200px;
+    /* position:relative; */
+    /* top:200px; */
+}
+.notice_info_content
+{
+    line-height:35px;
 }
 .fixed_information
 {
     position: fixed !important;
     top:150px;
-    left:60.5%;
+    /* left:60.5%; */
 }
 .notice_information_detail
 {
@@ -458,7 +481,7 @@ input::placeholder{
     text-align:left;
 }
 .apply_form_table tr th{
-    width:121px;
+    width:145px;
     padding-top:61px;
     padding-bottom:18px;
 }
@@ -468,10 +491,15 @@ input::placeholder{
 }
 .apply_text
 {
-    width:100%;
+    width:643px;
     padding:18px;
     border:0;
     border-bottom:1px solid #A0A4B44D;
+    padding-left:0;
+}
+.apply_text:focus
+{
+    outline: none;
 }
 .apply_email
 {
@@ -483,4 +511,9 @@ input::placeholder{
 .apply_email:focus
 {
     outline:none;
+}
+.apply_select
+{
+    appearance: none;
+    background: url("/email_arrow.svg") 160px no-repeat;
 }

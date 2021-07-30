@@ -4,9 +4,9 @@
 {% block content %}
 <div class="main">
     <div class="main_title">
-        <p style="font-size:23px; color:#909090;margin:20px 0">채용 공고</p>
+        <p style="color:#909090;margin-bottom:20px" class="font_23 font_bold">채용 공고</p>
         <span>
-        <h2 style="font-size:40px;width:60%;color:#1a1a1a;display:contents">지금 당신을 기다리고 있어요</h2>
+        <h2 style="width:60%;display:inline-block" class="font_40 font_bold text_maincolor">지금 당신을 기다리고 있어요</h2>
         {% if group %}
         <div class="main_selectbox selected" id="main_select"> 
             <span>{{group}}</span>
@@ -48,11 +48,11 @@
                 <img src="{{Notice.notice_image}}" style="width:276px;height:170px;border-radius:25px 25px 0 0;">
             </div>
             <div class="content_detail">
-                <span style="margin-bottom:7px;display:block;font-size:12px;color:#1F1F1F;">
+                <span style="margin-bottom:7px;display:block;" class="font_12 text_maincolor font_medium">
                     <span>{{Notice.company_name}}</span>
-                    <span style="background-color:#F4F4FF;color:#000f9f;margin-left:6px;">{{Notice.job_group}}</span>
+                    <span style="background-color:#F4F4FF;margin-left:6px;" class="text_blue font_medium font_12">{{Notice.job_group}}</span>
                 </span>
-                <p style="line-height:1.4; font-size:15px;height:55px;color:#1F1F1F;">
+                <p style="line-height:23px;height:55px;" class="font_bold text_maincolor font_15">
                     {{Notice.notice_title}}
                 </p>
                 {% if Notice.is_continue == 1 %}

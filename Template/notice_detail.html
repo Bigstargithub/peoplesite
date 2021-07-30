@@ -17,24 +17,24 @@
             </span>
         </span>
         <div class="notice_title">
-            <p class="font_bold font_32">
+            <p class="font_bold font_32" style="line-height:46px">
                 {{notice.notice_title}}
             </p>
         </div>
         <div class="notice_image">
-            <img src="/{{notice.notice_image}}" width="100%" height="100%">
+            <img src="/{{notice.notice_image}}" width="100%" height="100%" style="border-radius:25px 25px 25px 0;">
         </div>
         <div class="notice_info">
             <div class="notice_info_title notice_subtitle">
-                <p class="font_bold font_28">회사 소개</p>
+                <p class="font_bold font_28 text_maincolor">회사 소개</p>
             </div>
-            <div class="notice_info_content" id="notice_info">
+            <div class="notice_info_content font_18 font_medium" id="notice_info">
                 {{notice.company_info}}
             </div>
         </div>
         <div class="notice_position">
             <div class="notice_position_title notice_subtitle">
-                <p class="font_bold font_28">포지션 정보</p>
+                <p class="font_bold font_28 text_maincolor">포지션 정보</p>
             </div>
             <div class="notice_position_div">
                 <table colspacing="0" colpadding="0" class="notice_position_detail">
@@ -66,7 +66,7 @@
                                     <th>채용기간</th>
                                     <td id="notice_date">{{notice.notice_date}}</td>
                                 </tr>
-                                <tr>
+                                <tr style="border-bottom:2px solid #D9D9D9">
                                     <th>근무위치</th>
                                     <td>{{notice.company_location}}</td>
                                 </tr>
@@ -210,11 +210,13 @@
             </div>
         </div>
         <div class="submit_notice">
-            <p class="font_bold font_28" style="margin-bottom:40px">지금 당신을 기다리고 있습니다.</p>
+            <p class="font_bold font_28" style="margin-bottom:40px">지금 당신을 기다리고 있어요!</p>
             {% if notice.is_continue == 1 %}
-            <img src="/detail_ing_big.svg" style="margin-bottom:25px;">
+            <a href="/apply/{{notice.number}}">
+                <img src="/detail_ing_big.svg" style="margin-bottom:26px;">
+            </a>
             {% else %}
-            <img src="/detail_end_big.svg" style="margin-bottom:25px;">
+            <img src="/detail_end_big.svg" style="margin-bottom:26px;">
             {% endif %}
             <p class="font_18 font_medium">
                 <span style="color:#A0A4B4;margin-right:20px">채용문의</span>
@@ -222,7 +224,8 @@
             </p>
         </div>
     </div>
-    <div class="notice_information" id="notice_information">
+    <div style="float:right;position:relative;width:370px;">
+        <div class="notice_information" id="notice_information" style="position:relative;top:215px;">
         <div class="notice_information_detail" >
             <p class="font_bold font_23" style="color:#1A1A1A;margin-bottom:15px;">{{notice.company_name}}</p>
             <div class="font_medium font_20" style="color: #000F9F;background:#F4F4FF;width:fit-content;margin-bottom:29px;">
@@ -237,16 +240,23 @@
                 <img src="/online_channel.svg">
             </div>
         </a>
-        <a href="/apply/{{notice.number}}" target_"_blank">
+        {% if notice.is_continue == 1 %}
+        <a href="/apply/{{notice.number}}" target"_blank">
             <div class="notice_apply">
                 <img src="/company_apply.svg">
             </div>
         </a>
+        {% else %}
+        <div class="notice_apply">
+            <img src="/apply_end.svg">
+        </div>
+        {% endif %}
         <div class="notice_Qna">
             <span class="font_medium font_13">
                 <span style="color:#A0A4B4;margin-right:10px">채용문의</span>
                 <span style="color:#566371">문성훈 팀장(010-9139-5223)</span>
             </span>
+        </div>
         </div>
         </div>
     </div>
@@ -272,22 +282,22 @@
     window.addEventListener('scroll',function(){
         let scroll_location = document.documentElement.scrollTop;
         const information = document.getElementById('notice_information');
-        const company_video_detail = document.getElementById('company_video_detail');
+        const company_video_detail = document.getElementById('company_interview');
+        const class_interview = document.getElementsByClassName('company_interview');
         if(scroll_location >= 370)
         {   
             information.classList.add('fixed_information');
-            if(company_video_detail.offsetTop <= scroll_location)
+            if(class_interview[0].offsetTop - information.offsetHeight <= scroll_location)
             {
                 information.classList.remove('fixed_information');
                 information.style.position = 'absolute';
-                information.style.top = company_video_detail.offsetTop+'px';
-                information.style.left = '69%';
+                information.style.top = class_interview[0].offsetTop - information.offsetHeight + 150+'px';
+                //information.style.left = '69%';
             }
             else
             {
-                information.style.position = '';
-                information.style.top = '';
-                information.style.left = '';
+                information.style.position = 'relative';
+                information.style.top = '215px';
             }
         }
         else
