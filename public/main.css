@@ -27,11 +27,17 @@ input::placeholder{
 .font_medium
 {
     font-family:'Spoqa Han Sans Neo, Medium';
+    font-weight:normal;
 }
 .font_bold
 {
     font-family:'Spoqa Han Sans Neo, Bold';
     font-weight:600;
+}
+.font_regular
+{
+    font-family: "Spoqa Han Sans Neo, Regular";
+    font-weight:normal;
 }
 .font_12{font-size: 12px;}
 .font_15{font-size: 15px;}
@@ -516,4 +522,50 @@ input::placeholder{
 {
     appearance: none;
     background: url("/email_arrow.svg") 160px no-repeat;
+}
+/* 레이어팝업 css */
+.layer_popup .layer_dim
+{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#00000033;
+    opacity: 1;
+}
+.layer_detail
+{
+    width:850px;
+    height:830px;
+    background:#FFFFFF;
+    box-shadow: 0px 0px 70px #00000034;
+    position: fixed;
+    margin:0 auto;
+    top:20%;
+    left:0;
+    right:0;
+}
+.detail_title{
+    width:720px;
+    margin-left:70px;
+    margin-right:60px;
+    margin-top:70px;
+    padding-bottom:25px;
+    border-bottom:5px solid #1A1A1A;
+}
+.detail_content_layout
+{
+    width:720px;
+    height:584px;
+    overflow:scroll;
+    margin-top:50px;
+    margin-left:70px;
+}
+.detail_content
+{
+    width:660px;
+    height:584px;
+    line-height:30px;
+    display:inline-block;
 }
