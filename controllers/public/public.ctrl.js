@@ -54,7 +54,12 @@ exports.get_notice_detail = async( req, res) => {
 
 exports.get_apply = async (req, res) => {
     const id = req.params.id;
-    res.render('reg_notice', {
-        id,
-    });
+    const notice = await models.notice_list.findOne({ where: {number: id}});
+    if(notice)
+    {
+        res.render('reg_notice', {
+            id,
+            notice,
+        });
+    }
 }

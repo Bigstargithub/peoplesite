@@ -54,10 +54,19 @@
                         <td colspan=2>
                         <div style="width:800px;display:flex;height:77px">
                             <span>
-
+                                {% if notice.is_resume == 0 %}
+                                <a href="/sample_resume.docx" download>
+                                {% elif notice.is_resume == 1 %}
+                                <a href="/{{notice.resume_file}}" download>
+                                {% endif %}
                                 <img src="/submit_resume.svg">
+                                </a>
                                 <img src="/resume_notice.svg" style="margin-left:39px;margin-bottom:16px;">
+                                {% if notice.is_resume == 0 %}
+                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자유양식으로 지원받는 회사입니다. 지원서 양식이 필요하시면 다운받으십시오.</span>
+                                {% elif notice.is_resume == 1 %}
                                 <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자사 지원서 양식을 사용하는 회사입니다. 해당 지원서로 제출해주십시오.</span>
+                                {% endif %}
                             </span>
                         </div>
                         </td>
@@ -65,19 +74,22 @@
                     <tr>
                         <th class="font_bold font_21 font_blue" style="padding-top:65px;">지원서 제출</th>
                         <td>
-                            <span style="position:relative;top:15px;left:59px;" class="text_subcolor">파일선택을 눌러 지원서를 제출하세요.</span>
+                            <span style="position:relative;top:15px;left:59px;" class="font_medium font_20 text_subcolor" id="resume_file_name">파일선택을 눌러 지원서를 제출하세요.</span>
                             <div style="float:right">
-                                <img src="/file_select.svg">
+                                <img src="/file_select.svg" id="resume_file_select">
                             </div>
+                            <input type="file" name="resume_file" id="resume_file" style="display:none">
                         </td>
                     </tr>
                     <tr>
                         <th class="font_bold font_21 font_blue">포트폴리오 제출</th>
                         <td>
-                            <span style="position:relative;top:15px;left:59px;" class="text_subcolor">파일선택을 눌러 지원서를 제출하세요.</span>
+                            <span style="position:relative;top:15px;left:59px;" class="font_medium font_20 text_subcolor" id="portfolio_file_name">파일선택을 눌러 지원서를 제출하세요.</span>
                             <div style="float:right">
-                                <img src="/file_select.svg">
+                                <img src="/file_select.svg" id="portfolio_file_select">
                             </div>
+                            <input type="file" name="portfolio_file" id="portfolio_file" style="display:none;">
+                            <p style="position:relative; top:30px; left:59px;" class="font_medium font_18 text_subcolor">* 포트폴리오 필수 제출입니다.</p>
                         </td>
                     </tr>
                 </table>
@@ -88,34 +100,114 @@
                     <tr>
                         <th style="padding-top:42px;padding-bottom:32px;border-bottom:1px solid #A0A4B44D">
                             <span>
-                                <div style="width:27px; height:27px; border:1px solid #A1A4B381;border-radius:3px;text-align:center;display:inline-block;margin-right:13px;vertical-align:middle" ><img src="/not_check.svg" id="is_all_checked" style="position:relative;top:5px;"></div>
-                                <span style="position:relative;top:2px" class="font_medium font_18 text_maincolor">모두 동의</span>
+                                <img src="/not_all_agree.svg" id="is_all_checked" style="position:relative;top:5px;margin-right:13px;">
+                                <span style="font-weight:normal" class="font_medium font_18 text_maincolor">모두 동의</span>
                             </span>
                         </th>
                     </tr>
                     <tr>
                         <th>
                             <span>
-                                <div style="display:inline-block;margin-right:18px"><img src="/not_check.svg"></div>
+                                <div style="display:inline-block;margin-right:18px"><img src="/not_check.svg" id="collect_check"></div>
                                 <span class="font_medium font_18 text_maincolor">[필수] 개인정보 수집 및 이용 동의</span>
-                                <span class="font_medium font_18" style="margin-left:15px"><u>보기</u></span>
+                                <span class="font_medium font_18" style="margin-left:15px" id="show_collect"><u>보기</u></span>
+                                <input type="hidden" id="is_collect" value="0">
                             </span>
                         </th>
                     </tr>
                     <tr>
                         <th style="padding-top:10px;">
                             <span>
-                                <div style="display:inline-block;margin-right:18px"><img src="/not_check.svg"></div>
-                                <span class="font_medium font_18 text_maincolor">[필수] 개인정보 수집 및 이용 동의</span>
-                                <span class="font_medium font_18" style="margin-left:15px"><u>보기</u></span>
+                                <div style="display:inline-block;margin-right:18px"><img src="/not_check.svg" id="three_check"></div>
+                                <span class="font_medium font_18 text_maincolor">[필수] 개인정보 제 3자 제공 동의</span>
+                                <span class="font_medium font_18" style="margin-left:15px" id="show_three"><u>보기</u></span>
+                                <input type="hidden" id="is_three" value="0">
                             </span>
                         </th>
                     </tr>
                 </table>
                 <div>
-                    <img src="/not_agree_apply.svg">
+                    <img src="/not_agree_apply.svg" id="apply_img">
+                    <input type="hidden" name="is_apply" id="is_apply" value="0">
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div class="layer_popup" id="collect_detail" style="display:none">
+    <div class="layer_dim" id="layer_dim"></div>
+    <div class="layer_detail" id="layer_detail">
+        <div class="detail_title">
+            <span class="font_25 font_bold">개인정보 수집 및 이용 동의</span>
+            <img src="/close_detail.svg" style="float:right" id="detail_close">
+        </div>
+        <div class="detail_content_layout">
+            <div class="detail_content font_18 font_regular">
+            <p>(주)가인지캠퍼스(이하 “회사”라 함)은 제공하는 “가인지피플” 및 관련 제반 서비스(이하 “본건서비스”)를 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다.</p>
+            <br />
+
+            <p>본건 서비스는 채용 관련 안내, 공지사항 전달, 채용 및 웹사이트 이용 관련 연락, 채용 적합성 판단 및 서류심사/면접 등의 근거 자료, 인재 DB 활용을 하기 위한 목적으로 수집 및 이용됩니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오. </p>
+            <br />
+
+            <p class="font_bold font_20 text_maincolor">◼︎ 개인정보 수집·이용 내역</p>
+            <br />
+
+            <p class="font_bold font_20 text_maincolor">수집·이용 항목</p>
+            <p>성명, 영문 성명, 전화번호, 이메일, 생년월일, 자기소개서, 이력서, 학력사항, 사진, 동영상, 자격사항, 경력사항, 포트폴리오, 경력기술서, 외국어 사항, 첨부파일, 지원 분야, 희망연봉, 직전 연봉, 추천인, 지원 경로, 기타 직접 또는 다른 정보와 쉽게 결합하여 개인을 알아볼 수 있는 정보수집·이용 목적 / 개인정보 등록을 통한 입사 지원 </p>
+            <br/>
+
+            <p class="font_bold font_20 text_maincolor">보유 기간</p>
+            <p>지원 접수 후 3년간</p>
+            <br/>
+
+            <p>※ 지원서상에 작성하신 개인 정보는 회사의 인재 채용을 위해 3년간 인재풀로 활용 후 지체 없이 파기됩니다. 원하지 않을 경우 파기를 요청하시면 인재풀 등록에 대한 거부 의사로 판단하여 지원자의 개인 정보는 지체 없이 파기됩니다. </p>
+            <br />
+
+            <p>※ 위의 개인 정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 원활한 기업 측으로의 지원자 정보 전달을 진행할 수 없어 본건 서비스에 제한을 받을 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layer_popup" id="three_detail" style="display:none">
+    <div class="layer_dim" id="dim_three"></div>
+    <div class="layer_detail">
+        <div class="detail_title">
+            <span class="font_bold font_25">개인정보 제 3자 제공 동의</span>
+            <img src="/close_detail.svg" style="float:right" id="three_close">
+        </div>
+        <div class="detail_content_layout">
+            <div class="detail_content font_18 font_regular">
+            <p>(주)가인지캠퍼스(이하 “회사”라 함)은 제공하는 “가인지피플” 및 그리팅 관련 제반 서비스(이하 “본건서비스”)를 위하여 아래와 같이 개인정보를 제3자 제공하고자 합니다.</p>
+            <br />
+
+            <p>본건 서비스는 채용 관련 안내, 공지사항 전달, 채용 및 웹사이트 이용 관련 연락, 채용 적합성 판단 및 서류심사/면접 등의 근거 자료, 인재 DB 활용을 하기 위한 목적으로 수집 및 이용됩니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오.</p>
+            <br />
+
+            <p class="font_bold font_20">◼︎ 개인정보 3자 제공 내역</p>
+            <br />
+
+            <p class="font_bold font_20">제공받는 자</p>
+            <p>지원자가 지원하는 회사</p>
+            <br />
+
+            <p class="font_bold font_20">제공 목적</p>
+            <p>채용과정 절차 진행, 심사 및 인사 관련 업무</p>
+            <br />
+
+            <p class="font_bold font_20">제공 항목</p>
+            <p>성명, 영문 성명, 전화번호, 이메일, 생년월일, 자기소개서, 이력서, 학력사항, 사진, 동영상, 자격사항, 경력사항, 포트폴리오, 경력기술서, 외국어 사항, 첨부파일, 지원 분야, 희망연봉, 직전 연봉, 추천인, 지원 경로, 기타 직접 또는 다른 정보와 쉽게 결합하여 개인을 알아볼 수 있는 정보</p>
+            <br />
+
+            <p class="font_bold font_20">보유 기간</p>
+            <p>지원 접수 후 3년간</p>
+            <br />
+
+            <p>※ 지원서상에 작성하신 개인 정보는 회사의 인재 채용을 위해 3년간 인재풀로 활용 후 지체 없이 파기됩니다. 원하지 않을 경우 파기를 요청하시면 인재풀 등록에 대한 거부 의사로 판단하여 지원자의 개인 정보는 지체 없이 파기됩니다.</p>
+            <br />
+
+            <p>※ 위의 개인 정보 제3자 제공에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 원활한 기업 측으로의 지원자 정보 전달을 진행할 수 없어 본건 서비스에 제한을 받을 수 있습니다.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -135,6 +227,135 @@
     
     document.getElementById('apply_info').addEventListener('click', function() {
         document.getElementById('apply_info').style.display = 'none';
+    })
+
+    //이력서 [파일선택] 클릭 시
+    document.getElementById('resume_file_select').addEventListener('click', function (){
+        document.getElementById('resume_file').click();
+    })
+
+    //이력서 제출 시 파일명 나오도록
+    document.getElementById('resume_file').addEventListener('change', function(e) {
+        var file_name = document.getElementById('resume_file_name');
+        file_name.innerText = this.files[0].name;
+        file_name.style.color = '#1a1a1a';
+        file_name.style.textDecoration = 'underline';
+    })
+
+    //포트폴리오 [파일선택] 클릭 시
+    document.getElementById('portfolio_file_select').addEventListener('click', function() {
+        document.getElementById('portfolio_file').click();
+    })
+
+    document.getElementById('portfolio_file').addEventListener('change',function() {
+        var file_name = document.getElementById('portfolio_file_name');
+        console.log(this.files[0]);
+        file_name.innerText = this.files[0].name;
+        file_name.style.textDecoration = 'underline';
+        file_name.classList.add('text_maincolor');
+        file_name.classList.remove('text_subcolor');
+    });
+
+    
+
+    document.getElementById('is_all_checked').addEventListener('click', function(e){
+        var collect = document.getElementById('is_collect').value;
+        var three = document.getElementById('is_three').value;
+        if(collect == 1 && three == 1)
+        {
+            e.target.src = '/not_all_agree.svg';
+            document.getElementById('is_collect').value = 0;
+            document.getElementById('is_three').value = 0;
+            document.getElementById('collect_check').src = '/not_check.svg';
+            document.getElementById('three_check').src = '/not_check.svg';
+            document.getElementById('is_apply').value == 0;
+                document.getElementById('apply_img').src = '/not_agree_apply.svg';
+        }
+        else
+        {
+            e.target.src = '/not_all_agree.svg';
+            document.getElementById('is_collect').value = 1;
+            document.getElementById('is_three').value = 1;
+            document.getElementById('collect_check').src = '/yes_check.svg';
+            document.getElementById('three_check').src = '/yes_check.svg';
+            document.getElementById('is_apply').value == 1;
+                document.getElementById('apply_img').src = '/apply_agree.svg';
+        }
+    });
+    //개인정보 수집 및 이용 동의 레이아웃 JS 
+    document.getElementById('show_collect').addEventListener('click',function(){
+        document.getElementById('collect_detail').style.display = 'block';
+    })
+
+    document.getElementById('layer_dim').addEventListener('click', function() {
+        document.getElementById('collect_detail').style.display = 'none';
+    })
+
+    document.getElementById('detail_close').addEventListener('click', function() {
+        document.getElementById('collect_detail').style.display = 'none';
+    })
+
+    //개인정보 제 3자 제공 동의 JS
+    document.getElementById('show_three').addEventListener('click', function() {
+        document.getElementById('three_detail').style.display = 'block';
+    })
+    
+    document.getElementById('dim_three').addEventListener('click', function() {
+        document.getElementById('three_detail').style.display = 'none';
+    })
+
+    document.getElementById('three_close').addEventListener('click', function() {
+        document.getElementById('three_detail').style.display = 'none';
+    })
+
+    //동의 체크 할 시에 JS
+    document.getElementById('collect_check').addEventListener('click',function() {
+        var collect = document.getElementById('is_collect').value;
+        var three = document.getElementById('is_three').value;
+        var img_collect = document.getElementById('collect_check');
+        if(collect == 1)
+        {
+            img_collect.src = '/not_check.svg';
+            document.getElementById('is_collect').value = 0;
+            if(document.getElementById('is_apply').value == 1)
+            {
+                document.getElementById('is_apply').value == 0;
+                document.getElementById('apply_img').src = '/not_agree_apply.svg';
+            }
+        }
+        else
+        {
+            img_collect.src = '/yes_check.svg';
+            document.getElementById('is_collect').value = 1;
+            if(three == 1)
+            {
+                document.getElementById('is_apply').value == 1;
+                document.getElementById('apply_img').src = '/apply_agree.svg';
+            }
+        }
+    });
+
+    document.getElementById('three_check').addEventListener('click', function() {
+        var collect = document.getElementById('is_collect').value;
+        var three = document.getElementById('is_three').value;
+        var img_collect = document.getElementById('three_check');
+        if(three == 1)
+        {
+            document.getElementById('is_three').value = 0;
+            img_collect.src= '/not_check.svg';
+            document.getElementById('is_apply').value == 0;
+            document.getElementById('apply_img').src = '/not_agree_apply.svg';
+        }
+        else 
+        {
+            document.getElementById('is_three').value = 1;
+            img_collect.src= '/yes_check.svg';
+            if(collect == 1)
+            {
+                document.getElementById('is_apply').value == 1;
+                document.getElementById('apply_img').src = '/apply_agree.svg';
+            }
+        }
     })
 </script>
 {% endblock %}
