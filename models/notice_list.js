@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+const models = require('../models');
 
 module.exports = function(sequelize, dataTypes){
     const notice_list = sequelize.define('notice_list', {
@@ -34,6 +35,14 @@ module.exports = function(sequelize, dataTypes){
         notice_interview: {type: Sequelize.TEXT},
         is_active: {type: Sequelize.INTEGER(1), defaultValue: 0},
     });
+
+    notice_list.associate = function(models)
+    {
+        models.notice_list.hasMany(models.notice_member,{
+            foreignKey: 'notice_number',
+            onDelete: 'cascade',
+        })
+    }
 
     return notice_list;
 }
