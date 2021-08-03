@@ -40,10 +40,21 @@
             </div>
             <div class="notice_detail_move">
                 <div class="notice_button_move">
-                    <button type="button" class="move_button" id="notice_move">공고로 이동</button>
-                    <button type="button" class="copy_button" id="notice_copy">공고 복사</button>
+                    <a href="/notice/{{Notice.number}}">
+                        <button type="button" class="move_button" id="notice_move">공고로 이동</button>
+                    </a>
+                    <button type="button" class="copy_button" id="notice_copy" onClick="copy_notice({{Notice.number}})">공고 복사</button>
                 </div>
             </div>
+            <script type="text/javascript">
+                function copy_notice(number)
+                {
+                    var link = 'http://localhost:3010/notice/'+ number;
+                    link.select();
+                    document.execCommend('copy');
+                    alert('복사하였습니다.');
+                }
+            </script>
         </div>
         {% endfor %}
     </div>

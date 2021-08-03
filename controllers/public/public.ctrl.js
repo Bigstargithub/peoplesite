@@ -63,3 +63,32 @@ exports.get_apply = async (req, res) => {
         });
     }
 }
+
+exports.post_apply = async (req, res) => {
+    const id = req.params.id;
+
+    //파일명 추출
+    const resume_file_path = req.files['resume_file'][0].path;
+    var portfolio_file_path = "";
+    if(req.files['portfolio_file'] != undefined)
+    {
+        portfolio_file_path = req.files['portfolio_file'][0].path;
+    }
+
+    //POST에서 받은 데이터 추출
+    const { name, email,phone} = req.body;
+
+    models.notice_member.create({
+        notice_number: id,
+        member_name: name,
+        member_email:email,
+        member_phone: phone,
+        resume_file: resume_file_path,
+        portfolio_file: portfolio_file_path,
+    }).then(() => {
+        res.cookie('apply',1);
+        }
+    )
+
+
+}

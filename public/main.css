@@ -47,6 +47,7 @@ input::placeholder{
 .font_23{font-size: 23px;}
 .font_25{font-size: 25px;}
 .font_28{font-size: 28px;}
+.font_30{font-size: 30px;}
 .font_32{font-size: 32px;}
 .font_40{font-size: 40px;}
 .font_50{font-size: 50px;}
@@ -161,7 +162,7 @@ input::placeholder{
 {
     /* padding-top:40px; */
     width:1245px;
-    max-height:1500px;
+    max-height:1490px;
     overflow:hidden;
     padding-top:5px;
 }
@@ -542,7 +543,7 @@ input::placeholder{
     box-shadow: 0px 0px 70px #00000034;
     position: fixed;
     margin:0 auto;
-    top:20%;
+    top:15%;
     left:0;
     right:0;
 }
@@ -568,4 +569,19 @@ input::placeholder{
     height:584px;
     line-height:30px;
     display:inline-block;
+}
+.apply_:focus
+{
+    border-bottom:2px solid #001998;
+}
+.apply_input::placeholder
+{
+    color:#A0A4B4;
+    font-family: 'Spoqa Han Sans Neo, Medium';
+    font-size:20px;
+}
+.not_type::placeholder
+{
+    color:#FF2636;
+    font-weight:500;
 }

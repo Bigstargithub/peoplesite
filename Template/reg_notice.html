@@ -12,23 +12,25 @@
                 <img src="/apply_info.svg" id="apply_info">
         </div>
         <div class="apply_table">
-            <form action="/apply/{{id}}" mehod="post" name="apply_form" id="apply_form">
+            <form action="/apply/{{id}}" method="post" name="apply_form" id="apply_form" enctype="multipart/form-data">
                 <table cellspacing="0" cellpadding="0" id="apply_form_table" class="apply_form_table">
                     <tr>
                         <th class="font_bold font_25" style="padding-top:35px;">지원자 정보</th>
                     </tr>
-                    <tr>
+                    <tr id="name_tr">
                         <th class="font_bold font_21" style="padding-top:52px;">이름</th>
-                        <td><input type="text" class="apply_text font_medium font_20" name="name" id="name" placeholder="이름을 입력하세요."></td>
+                        <td id="name_td">
+                                <input type="text" class="apply_text font_medium font_20 apply_input" name="name" id="name" placeholder="이름을 입력하세요.">
+                        </td>
                     </tr>
-                    <tr>
+                    <tr id="email_tr">
                         <th class="font_bold font_21">이메일</th>
                          <td>
                             <input type="hidden" name="email" id="email">
                             <span>
-                                <input type="text" id="email_header" class="apply_email font_medium font_20" style="width:175px">
+                                <input type="text" id="email_header" class="apply_email font_medium font_20 apply_input" style="width:175px">
                                 <span> @ </span>
-                                <select id="email_tailer" class="font_medium font_20 apply_select apply_email" style="width:175px">
+                                <select id="email_tailer" class="font_medium font_20 apply_select apply_email apply_input" style="width:175px">
                                     <option value=""></option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="gmail.com">gmail.com</option>
@@ -37,16 +39,17 @@
                                     <option value="hanmail.net">hanmail.net</option>
                                     <option value="nate.com">nate.com</option>
                                     <option value="직접입력">직접입력</option>
-                                <input type="text" id="email_text" class="font_medium font_20 apply_email" style="width:206px;margin-left:28px;display:none;" placeholder="직접입력">
+                                <input type="text" id="email_text" class="font_medium font_20 apply_email apply_input" style="width:190px;margin-left:28px;display:none;" placeholder="직접입력">
                             </span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="phone_tr">
                         <th class="font_bold font_21">전화번호</th>
-                        <td><input type="text" class="apply_text font_medium font_20" name="phone" id="phone" placeholder="연락이 가능한 번호를 입력해주세요."></td>
+                        <td><input type="text" class="apply_text font_medium font_20 apply_input" name="phone" id="phone" placeholder="연락이 가능한 번호를 입력해주세요."></td>
                     </tr>
                 </table>
                 <table cellspacing="0" cellpadding="0" class="apply_form_table">
+                    
                     <tr>
                         <th class="font_bold font_25" style="padding-top:35px;padding-bottom:60px;">지원서류 제출</th>
                     </tr>
@@ -71,7 +74,7 @@
                         </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="resume_tr">
                         <th class="font_bold font_21 font_blue" style="padding-top:65px;">지원서 제출</th>
                         <td>
                             <span style="position:relative;top:15px;left:59px;" class="font_medium font_20 text_subcolor" id="resume_file_name">파일선택을 눌러 지원서를 제출하세요.</span>
@@ -81,7 +84,7 @@
                             <input type="file" name="resume_file" id="resume_file" style="display:none">
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="portfolio_tr">
                         <th class="font_bold font_21 font_blue">포트폴리오 제출</th>
                         <td>
                             <span style="position:relative;top:15px;left:59px;" class="font_medium font_20 text_subcolor" id="portfolio_file_name">파일선택을 눌러 지원서를 제출하세요.</span>
@@ -89,7 +92,13 @@
                                 <img src="/file_select.svg" id="portfolio_file_select">
                             </div>
                             <input type="file" name="portfolio_file" id="portfolio_file" style="display:none;">
-                            <p style="position:relative; top:30px; left:59px;" class="font_medium font_18 text_subcolor">* 포트폴리오 필수 제출입니다.</p>
+                            <p style="position:relative; top:30px; left:59px;" class="font_medium font_18 text_subcolor">
+                            {% if notice.is_portfolio == 1 %}
+                            * 포트폴리오 필수 제출입니다.
+                            {% elif notice.is_portfolio == 0 %}
+                            * 포트폴리오 선택 제출입니다.
+                            {% endif %}
+                            </p>
                         </td>
                     </tr>
                 </table>
@@ -212,12 +221,26 @@
     </div>
 </div>
 
+<div class="layer_popup" id="complete_apply" style="display:none">
+    <div class="layer_dim">
+        <div class="layer_detail" style="width:540px; height:320px; top:35%; text-align:center;">
+            <p class="font_bold font_30" style="line-height:37px;margin-top:71px;">지원이 완료되었습니다.</p>
+            <p class="font_medium font_18" style="margin-top:18px;margin-bottom:57px;">
+                <span class="text_subcolor">채용 문의</span>
+                <span style="color:#566371;margin-left:15px;">문성훈 팀장(010-9139-5223)</span>
+            </p>
+            <a href="/">
+                <img src="/apply_complete.svg">
+            </a>
+        </div>
+    </div>
+</div>
 <script>
     var email_text = document.getElementById('email_tailer');
     email_text.addEventListener('change', function(){
         if(email_text.value == '직접입력')
         {
-            document.getElementById('email_text').style.display = '';
+            document.getElementById('email_text').style.display = 'inline-block';
         }
         else
         {
@@ -268,17 +291,19 @@
             document.getElementById('is_three').value = 0;
             document.getElementById('collect_check').src = '/not_check.svg';
             document.getElementById('three_check').src = '/not_check.svg';
-            document.getElementById('is_apply').value == 0;
+            document.getElementById('is_apply').value = 0;
                 document.getElementById('apply_img').src = '/not_agree_apply.svg';
         }
         else
         {
-            e.target.src = '/not_all_agree.svg';
+            e.target.src = '/all_agree.svg';
+            e.target.style.width = '27px';
+            e.target.style.height = '27px';
             document.getElementById('is_collect').value = 1;
             document.getElementById('is_three').value = 1;
             document.getElementById('collect_check').src = '/yes_check.svg';
             document.getElementById('three_check').src = '/yes_check.svg';
-            document.getElementById('is_apply').value == 1;
+            document.getElementById('is_apply').value = 1;
                 document.getElementById('apply_img').src = '/apply_agree.svg';
         }
     });
@@ -319,7 +344,7 @@
             document.getElementById('is_collect').value = 0;
             if(document.getElementById('is_apply').value == 1)
             {
-                document.getElementById('is_apply').value == 0;
+                document.getElementById('is_apply').value = 0;
                 document.getElementById('apply_img').src = '/not_agree_apply.svg';
             }
         }
@@ -329,7 +354,7 @@
             document.getElementById('is_collect').value = 1;
             if(three == 1)
             {
-                document.getElementById('is_apply').value == 1;
+                document.getElementById('is_apply').value = 1;
                 document.getElementById('apply_img').src = '/apply_agree.svg';
             }
         }
@@ -343,7 +368,7 @@
         {
             document.getElementById('is_three').value = 0;
             img_collect.src= '/not_check.svg';
-            document.getElementById('is_apply').value == 0;
+            document.getElementById('is_apply').value = 0;
             document.getElementById('apply_img').src = '/not_agree_apply.svg';
         }
         else 
@@ -352,10 +377,79 @@
             img_collect.src= '/yes_check.svg';
             if(collect == 1)
             {
-                document.getElementById('is_apply').value == 1;
+                document.getElementById('is_apply').value = 1;
                 document.getElementById('apply_img').src = '/apply_agree.svg';
             }
         }
+    })
+
+    document.getElementById('apply_img').addEventListener('click', function() {
+        let is_can_apply = document.getElementById('is_apply').value
+        let is_submit_apply = true;
+        if(is_can_apply == 0)
+        {
+            return false;
+        }
+
+        if(document.getElementById('name').value == '')
+        {
+            document.getElementById('name').style.borderBottom = '2px solid #FF2636';
+            document.getElementById('name').classList.add('not_type');
+            is_submit_apply = false;
+        }
+
+        if(document.getElementById('email_tailer').value != '직접입력')
+        {
+            document.getElementById('email_text').value = document.getElementById('email_tailer').value;
+        }
+
+        document.getElementById('email').value = document.getElementById('email_header').value + '@' + document.getElementById('email_text').value
+        if(document.getElementById('email_header').value == '' || document.getElementById('email_text').value == '')
+        {
+            document.getElementById('email_header').style.borderBottom = '2px solid #FF2636';
+            document.getElementById('email_tailer').style.borderBottom = '2px solid #FF2636';
+            document.getElementById('email_text').style.borderBottom = '2px solid #FF2636';
+            document.getElementById('email_header').classList.add('not_type');
+            document.getElementById('email_text').classList.add('not_type');
+            is_submit_apply = false;
+        }
+
+        if(document.getElementById('phone').value == '')
+        {
+            document.getElementById('phone').style.borderBottom = '2px solid #FF2636';
+            document.getElementById('phone').classList.add('not_type');
+            is_submit_apply =false;
+        }
+
+        if(document.getElementById('resume_file').value == '')
+        {
+            document.getElementById('resume_file_name').style.color = '#FF2636';
+            is_submit_apply = false;
+        }
+        
+        if({{notice.is_portfolio}} == 1)
+        {
+            if(document.getElementById('portfolio_file').value == '')
+            {
+                document.getElementById('portfolio_file_name').style.color = '#FF2636';
+                //document.getElementById('portfolio_tr').scrollIntoView(true);
+                is_submit_apply = false;
+            }
+        }
+
+        if(!is_submit_apply)
+        {
+            document.getElementById('portfolio_tr').scrollIntoView(false);
+        }
+        else
+        {
+            document.getElementById('complete_apply').style.display = '';
+            document.getElementById('apply_form').submit();
+        }
+        
+
+        
+        
     })
 </script>
 {% endblock %}
