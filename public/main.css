@@ -87,6 +87,10 @@ input::placeholder{
 {
     width:219px;
 }
+#do_everything{
+    float:right;
+    margin-top:10px;
+}
 /* header css */
 
 .main{
@@ -109,6 +113,11 @@ input::placeholder{
 {
     /* float:right; */
 }
+.main_ready
+{
+    /* width:60%; */
+    display:inline-block
+}
 /* 메인페이지 selectbox css */
 .main_selectbox
 {
@@ -123,6 +132,9 @@ input::placeholder{
     background: url('select_arrow.svg') no-repeat 151px;
     /* box-shadow: 0px 0px 20px #0000001A; */
     appearance: none;
+}
+.main_selected{
+    background: url('arrow_up.svg') no-repeat 151px;
 }
 .main_subselectbox
 {
@@ -591,3 +603,56 @@ input::placeholder{
     padding-top:35px;
     text-align: center;
 }
+
+/* 모바일 버전 CSS */
+
+@media (max-width:750px) {
+    /* 모바일 헤더 CSS */
+    .header_logo
+    {
+        width: 87%;
+        margin:0 6.4%;
+        margin-top:1.8%;
+    }
+    .logo{
+        width:26.67%;
+    }
+    /* 모바일 헤더 CSS */
+
+    /* 모바일 메인 CSS */
+    #do_everything{
+        margin-top:0;
+    }
+    .main{
+        width:87%;
+        margin:0;
+        margin:0 6.4%;
+    }
+    .main_title
+    {
+        padding-top:0px;
+    }
+    .main_notice
+    {
+        font-size:28px;
+        margin-top:60px;
+    }
+    .main_ready
+    {
+        font-size:48px;
+        width:53.33%;
+    }
+    .main_selectbox
+    {
+        width:18.1%;
+        background: url('select_arrow.svg') no-repeat 90%;
+    }
+    .main_selected{
+        background: url('arrow_up.svg') no-repeat 90%;
+    }
+    
+    /* 모바일 메인 CSS */
+
+}
+
+/* 모바일 버전 CSS */
