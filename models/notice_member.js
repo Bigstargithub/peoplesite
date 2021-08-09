@@ -13,7 +13,7 @@ module.exports = function(sequelize, dataTypes)
         portfolio_file: {type: Sequelize.STRING(200)},
         job_description:{type: Sequelize.TEXT},
         comment: {type: Sequelize.TEXT},
-        state: {type:Sequelize.INTEGER(2)},
+        state: {type:Sequelize.STRING(20), defaultValue: '서류지원 완료'},
     },
     {tableName: 'notice_member'});
 

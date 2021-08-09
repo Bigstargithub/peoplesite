@@ -39,6 +39,7 @@ exports.post_login = (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
+            res.cookie('admin_id',process.env.admin_id);
             return res.redirect('/admin');
         });
     })(req, res, next);
@@ -279,4 +280,32 @@ exports.post_modify_notice = async (req, res) => {
         console.error(error);
     }
     res.send('<script>alert("공고를 수정하였습니다.");window.location.href="/admin";</script>')
+}
+
+exports.get_applies_list = async (req, res) => {
+    const id = req.params.id;
+
+    const applies_list = await models.notice_member.findAll({where: {notice_number: id}});
+    if(applies_list)
+    {
+        res.render('admin/notice_apply_member', {
+            apply_list: applies_list,
+        })
+    }
+}
+
+exports.post_update_applies = async (req, res) => {
+    const id = req.params.id;
+    const { comment, state } = req.body;
+
+    models.notice_member.update({
+        state,
+        comment,
+    },{
+        where: {number: id}
+    }).then(() => {
+        res.send("<script>alert('저장되었습니다');window.history.back();</script>");
+    })
+
+
 }
