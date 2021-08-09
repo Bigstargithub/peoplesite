@@ -49,9 +49,14 @@
             <script type="text/javascript">
                 function copy_notice(number)
                 {
+                    var textarea = document.createElement('textarea');
                     var link = 'http://localhost:3010/notice/'+ number;
-                    link.select();
-                    document.execCommend('copy');
+                    textarea.value = link;
+                    document.body.appendChild(textarea);
+
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
                     alert('복사하였습니다.');
                 }
             </script>
@@ -72,7 +77,7 @@
     for(Member of member)
     {
         Member.addEventListener('click', function(event) {
-            console.log(event.target.dataset.id);
+            location.href= '/admin/notice/applies/'+event.target.dataset.id;
         })
     }
 

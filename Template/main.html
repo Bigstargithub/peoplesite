@@ -4,9 +4,12 @@
 {% block content %}
 <div class="main">
     <div class="main_title">
-        <p style="color:#909090;margin-bottom:20px" class="font_23 font_bold">채용 공고</p>
+        <p style="color:#909090;margin-bottom:20px" class="font_23 font_bold main_notice">채용 공고</p>
         <span>
-        <h2 style="width:60%;display:inline-block" class="font_40 font_bold text_maincolor">지금 당신을 기다리고 있어요</h2>
+            <span>
+                <h2 style="" class="font_40 font_bold text_maincolor main_ready">지금 당신을&nbsp;</h2>
+                <h2 style="" class="font_40 font_bold text_maincolor main_ready">기다리고 있어요!</h2>
+            </span>
         {% if group %}
         <div class="main_selectbox selected" id="main_select"> 
             <span>{{group}}</span>
@@ -75,12 +78,12 @@
         if( is_show == "none")
         {
             document.getElementById('main_subselectbox').style.display = 'block'
-            document.getElementById('main_select').style.background = `url('arrow_up.svg') no-repeat 151px`;
+            document.getElementById('main_select').classList.add('main_selected');
         }
         else
         {
             document.getElementById('main_subselectbox').style.display = 'none';
-            document.getElementById('main_select').style.background = ``;
+            document.getElementById('main_select').classList.remove('main_selected');
         }
     })
 

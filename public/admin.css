@@ -352,3 +352,28 @@ input::placeholder{
     padding:5px;
     margin-top:5px;
 }
+/* 지원자 리스트 페이지  CSS */
+.people_apply_table
+{
+    text-align: center;
+    width:100%;
+    margin:0 auto;
+}
+.people_apply_title
+{
+    background-color: #000f9f;
+    color:#fff;
+}
+.people_apply_detail
+{
+    background-color: #fff;
+    color:#000f9f;
+}
+.apply_comment{
+    width:95%;
+    height:150px;
+    overflow: scroll;
+    padding:5px;
+    border:0px;
+}
+/* 지원자 리스트 페이지  CSS */

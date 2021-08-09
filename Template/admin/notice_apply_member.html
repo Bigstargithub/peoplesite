@@ -1,0 +1,40 @@
+{% extends 'admin/header.html' %}
+
+{% block content %}
+<div class="people_notice">
+    <div class="notice_title">
+        <h2>지원자 리스트</h2>
+    </div>
+    <div class="people_list">
+    <table colspacing="0" colpadding="1" class="people_apply_table">
+        <tr class="people_apply_title">
+            <td style="width:100px">이름</td>
+            <td style="width:300px">이메일</td>
+            <td style="width:150px">휴대폰번호</td>
+            <td style="width:200px">합격여부</td>
+            <td style="width:100px">이력서파일</td>
+            <td style="width:100px">포트폴리오</td>
+            <td style="width:300px">코멘트</td>
+            <td style="width:100px">저장</td>
+        </tr>
+        {% for Apply in apply_list %}
+        <form action="/admin/apply/modify/{{Apply.number}}" method="post" name="apply_post">
+        <tr class="people_apply_detail">
+            <td style="width:100px">{{Apply.member_name}}</td>
+            <td style="width:300px">{{Apply.member_email}}</td>
+            <td style="width:150px">{{Apply.member_phone}}</td>
+            <td style="width:200px">
+                <input type="text" class="apply_text" id="apply_text" name="state" value="{{Apply.state}}">
+            </td>
+            <td style="width:100px"><a href="/{{Apply.resume_file}}" download>저장</a></td>
+            <td style="width:100px">{% if Apply.portfolio_file != '' %}<a href="/{{Apply.portfolio_file}}" download>저장</a>{% endif %}</td>
+            <td style="width:300px"><textarea id="comment" name="comment" class="apply_comment">{{Apply.comment}}</textarea></td>
+            <td style="width:100px"><input type="submit" value="저장" class="apply_submit_button" id="apply_submit"></td>
+        </tr>
+        </form>
+        {% endfor %}
+    </table>
+    
+    </div>
+</div>
+{% endblock %}
