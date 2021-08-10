@@ -92,7 +92,7 @@ input::placeholder{
     margin-top:10px;
 }
 /* header css */
-
+/* main css */
 .main{
     width:1200px;
     margin:0 auto;
@@ -177,7 +177,12 @@ input::placeholder{
     padding-top:5px;
     overflow:hidden;
 }
-
+.notice_main_image
+{
+    width:276px;
+    height:170px;
+    border-radius:25px 25px 0 0;
+}
 .content_notice
 {
     width:272px;
@@ -226,6 +231,11 @@ input::placeholder{
     height:125px;
     padding-top:57px;
 }
+.Do_footer{
+    font-family:'Spoqa Han Sans Neo, bold'; 
+    color: #566371; 
+    font-size: 23px;
+}
 .footer_title
 {
     font-family: 'Spoqa Han Sans Neo, Medium';
@@ -244,6 +254,11 @@ input::placeholder{
 {
     width:fit-content;
     display: inline-block;
+}
+.information_detail
+{
+    width:766px;
+    line-height: 26px;
 }
 /* footer CSS */
 
@@ -273,8 +288,6 @@ input::placeholder{
 {
     width:780px;
     height:480px;
-    
-    
 }
 .notice_info
 {
@@ -603,15 +616,19 @@ input::placeholder{
     padding-top:35px;
     text-align: center;
 }
-
+.mobile_notice_title
+{
+    line-height:23px;
+    height:55px;
+}
 /* 모바일 버전 CSS */
 
 @media (max-width:750px) {
     /* 모바일 헤더 CSS */
     .header_logo
     {
-        width: 87%;
-        margin:0 6.4%;
+        width: 90%;
+        margin:0 auto;
         margin-top:1.8%;
     }
     .logo{
@@ -624,13 +641,15 @@ input::placeholder{
         margin-top:0;
     }
     .main{
-        width:87%;
-        margin:0;
-        margin:0 6.4%;
+        width:100%;
     }
     .main_title
     {
         padding-top:0px;
+        padding-bottom:60px;
+        display:block;
+        width:90%;
+        margin:0 auto;
     }
     .main_notice
     {
@@ -640,7 +659,7 @@ input::placeholder{
     .main_ready
     {
         font-size:48px;
-        width:53.33%;
+        width:55.33%;
     }
     .main_selectbox
     {
@@ -650,9 +669,66 @@ input::placeholder{
     .main_selected{
         background: url('arrow_up.svg') no-repeat 90%;
     }
-    
+    .main_content{
+        width:95%;
+        margin:0 auto;
+    }
+    .content_notice{
+        width:45.4%;
+        margin-left:3%;
+        margin-right:0;
+        height:auto;
+    }
+    .notice_main_image
+    {
+        width:100%;
+        height:11.3em;
+    }
+    .notice_company_name, .notice_job_group
+    {
+        font-size:18px;
+    }
+    .content_image{
+        height:auto;
+    }
+    .mobile_notice_title
+    {
+        width:100%;
+        font-size:24px;
+        display: block;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
     /* 모바일 메인 CSS */
 
+    /* mobile footer css */
+    .footer
+    {
+        height:400px;
+    }
+    .footer_content{
+        width:90%;
+        margin:0 auto;
+        margin-top:70px;
+    }
+    .Do_footer{
+        font-size:28px;
+        font-weight: 600;
+    }
+    .company_information
+    {
+        width:69.4%;
+        font-size:16px;
+        line-height:26px;
+    }
+    /* mobile footer css */
+    .information_detail
+    {
+        width:100%;
+    }
 }
 
 /* 모바일 버전 CSS */

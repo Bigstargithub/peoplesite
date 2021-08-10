@@ -48,14 +48,14 @@
         <a href="notice/{{Notice.number}}">
         <div class="content_notice">
             <div class="content_image">
-                <img src="{{Notice.notice_image}}" style="width:276px;height:170px;border-radius:25px 25px 0 0;">
+                <img src="{{Notice.notice_image}}" class="notice_main_image" style="">
             </div>
             <div class="content_detail">
-                <span style="margin-bottom:7px;display:block;" class="font_12 text_maincolor font_medium">
+                <span style="margin-bottom:7px;display:block;" class="notice_company_name font_12 text_maincolor font_medium">
                     <span>{{Notice.company_name}}</span>
-                    <span style="background-color:#F4F4FF;margin-left:6px;" class="text_blue font_medium font_12">{{Notice.job_group}}</span>
+                    <span style="background-color:#F4F4FF;margin-left:6px;" class="notice_job_group text_blue font_medium font_12">{{Notice.job_group}}</span>
                 </span>
-                <p style="line-height:23px;height:55px;" class="font_bold text_maincolor font_15">
+                <p class="mobile_notice_title font_bold text_maincolor font_15">
                     {{Notice.notice_title}}
                 </p>
                 {% if Notice.is_continue == 1 %}
@@ -65,6 +65,7 @@
                 {% endif %}
             </div>
         </div>
+        </a>
         {% endfor %}
     </div>
     <div class="plus_notice" style="display:none">
