@@ -193,6 +193,7 @@
                 {% endfor %}
             </div>
         </div>
+        {% if notice.main_video != "" %}
         <div class="company_video">
             <div class="company_video_title notice_subtitle">
                 <p class="font_bold font_28">회사 영상</p>
@@ -201,6 +202,7 @@
                 <iframe src="{{notice.main_video}}" width="780px" height="480px" style="border-radius:25px;border:0;"></iframe>
             </div>
         </div>
+        {% endif %}
         <div class="company_interview">
             <div class="company_interview_title notice_subtitle">
                 <p class="font_bold font_28">인터뷰</p>
