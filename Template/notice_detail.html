@@ -289,11 +289,11 @@
         if(scroll_location >= 370)
         {   
             information.classList.add('fixed_information');
-            if(class_interview[0].offsetTop - information.offsetHeight <= scroll_location)
+            if(class_interview[0].offsetHeight + class_interview[0].offsetTop - screen.height + information.offsetHeight - 60 <= scroll_location)
             {
                 information.classList.remove('fixed_information');
                 information.style.position = 'absolute';
-                information.style.top = class_interview[0].offsetTop - information.offsetHeight + 150+'px';
+                information.style.top = class_interview[0].offsetHeight + class_interview[0].offsetTop - screen.height + information.offsetHeight - 60+ 'px';
                 //information.style.left = '69%';
             }
             else

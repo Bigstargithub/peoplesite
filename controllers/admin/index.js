@@ -67,6 +67,8 @@ router.post('/notice/status/:id', is_login, ctrl.update_notice_status);
 
 router.get('/notice/modify/:id', is_login, ctrl.get_modify_notice);
 
+router.get('/notice/delete/:id', is_login, ctrl.delete_notice);
+
 router.post('/notice/modify/:id', is_login, sample_file.fields([{'name': 'notice_main_image'}, {'name': 'resume_file'}]), ctrl.post_modify_notice);
 
 //지원자 리스트 페이지

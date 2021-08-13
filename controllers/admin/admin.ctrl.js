@@ -181,6 +181,18 @@ exports.get_modify_notice = async (req, res) => {
     
 }
 
+exports.delete_notice = async (req, res) => {
+    const id = req.params.id;
+    models.notice_list.destroy({
+        where: {
+            number: id
+        }
+    })
+    .then(
+        res.send('<script>alert("삭제되었습니다"); location.href="/admin"; </script>')
+    );
+}
+
 exports.post_modify_notice = async (req, res) => {
     try{
         const id = req.params.id;
