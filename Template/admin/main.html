@@ -89,6 +89,18 @@
         })
     }
 
+    const delete_notice = document.getElementsByClassName('notice_delete');
+    for(Delete of delete_notice)
+    {
+        Delete.addEventListener('click', function(event){
+            if(confirm('정말 삭제하시겠습니까?'))
+            {
+                location.href = '/admin/notice/delete/' + event.target.dataset.id;
+            }
+            
+        })
+    }
+
     const continue_select = document.getElementsByClassName('notice_continue');
 
     for(Continue_select of continue_select)
