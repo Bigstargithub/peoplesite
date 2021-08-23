@@ -4,8 +4,11 @@
 {% block content %}
 <div class="notice">
     <div>
+    <div class="mo_notice_image" id="mo_notice_image" style="display:none">
+        <img src="/{{notice.notice_image}}" class="notice_thumb_image">
+    </div>
     <div class="notice_detail">
-        <span>
+        <span class="notice_detail_span">
             <span class="font_bold font_23" style="color:#A0A4B4;margin-right:10px;">{{notice.company_name}}</span>
             <span class="font_bold font_23" style="color:#000F9F;margin-right:10px;">{{notice.job_group}}</span>
             <span style="vertical-align:middle">
@@ -21,8 +24,8 @@
                 {{notice.notice_title}}
             </p>
         </div>
-        <div class="notice_image">
-            <img src="/{{notice.notice_image}}" width="100%" height="100%" style="border-radius:25px 25px 25px 0;">
+        <div class="notice_image" id="notice_image">
+            <img src="/{{notice.notice_image}}" class="notice_thumb_image">
         </div>
         <div class="notice_info">
             <div class="notice_info_title notice_subtitle">
@@ -31,12 +34,170 @@
             <div class="notice_info_content font_18 font_medium" id="notice_info">
                 {{notice.company_info}}
             </div>
+            <div class="mo_online_channel" id="mo_online_channel">
+                {% if notice.company_channel != '' %}
+                <a href="{{notice.company_channel}}" target="_blank">
+                    <img src="/mo_online_channel.svg">
+                </a>
+                {% endif %}
+            </div>
         </div>
         <div class="notice_position">
             <div class="notice_position_title notice_subtitle">
-                <p class="font_bold font_28 text_maincolor">포지션 정보</p>
+                <p class="font_bold font_28 text_maincolor position_info">포지션 정보</p>
             </div>
-            <div class="notice_position_div">
+            <!-- 모바일 포지션 정보 -->
+            <div class="mo_position_info" id="mo_position">
+                <ul>
+                    <li class="mo_summary font_bold font_26">요약</li>
+                    <li>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">직무 및 직급</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.job_duty}}</li>
+                        </ul>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">고용형태</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.employ_type}}</li>
+                        </ul>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">경력</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.career}}</li>
+                        </ul>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">회사규모 및 매출</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.company_size}}</li>
+                        </ul>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">업종</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.job_sector}}</li>
+                        </ul>
+                        <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">채용 기간</li>
+                            <li class="font_24" style="margin-bottom:40px" id="mo_notice_date">{{notice.notice_date}}</li>
+                        </ul>
+                         <ul class="mo_summary_detail">
+                            <li class="font_bold font_24" style="margin-bottom:16px">근무위치</li>
+                            <li class="font_24" style="margin-bottom:40px">{{notice.company_location}}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 포지션 소개 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">포지션 소개</p>
+                    <p id="mo_position_intro" style="margin-bottom:70px">{{notice.position_info}}</p>
+                </div>
+            </div>
+            <!-- 포지션 소개 -->
+
+            <!-- 주요업무 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">주요 업무</p>
+                    <ul class="mo_position_ul">
+                        {% for Main in main_work %}
+                        <li class="font_24 font_regular">{{Main}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 주요업무 -->
+
+            <!-- 자격요건 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">자격요건</p>
+                    <ul class="mo_position_ul">
+                        {% for Qualify in job_qualify %}
+                        <li class="font_24 font_regular">{{Qualify}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 자격요건 -->
+
+            <!-- 우대사항 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">우대사항</p>
+                    <ul class="mo_position_ul">
+                        {% for Prefer in job_prefer %}
+                        <li class="font_24 font_regular">{{Prefer}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 우대사항 -->
+
+            <!-- 근무조건 및 복지 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">근무조건 및 복지</p>
+                    <ul class="mo_position_ul">
+                        {% for Welfare in job_welfare %}
+                        <li class="font_24 font_regular">{{Welfare}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 근무조건 및 복지 -->
+
+            <!-- 팀구성 및 커뮤니케이션 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">팀 구성 및 커뮤니케이션</p>
+                    <ul class="mo_position_ul">
+                        {% for Communication in company_communication %}
+                        <li class="font_24 font_regular">{{Communication}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 팀구성 및 커뮤니케이션 -->
+
+            <!-- 조직문화 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">조직문화</p>
+                    <ul class="mo_position_ul">
+                        {% for Culture in company_culture %}
+                        <li class="font_24 font_regular">{{Culture}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 조직문화 -->
+
+            <!-- 인재상 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">인재상</p>
+                    <ul class="mo_position_ul">
+                        {% for People in company_people %}
+                        <li class="font_24 font_regular">{{People}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 인재상 -->
+
+             <!-- 향후 커리어 -->
+            <div class="mo_position_intro">
+                <div class="notice_position_title notice_subtitle" style="border-bottom:0">
+                    <p class="font_bold font_26 text_maincolor position_intro_title">향후커리어</p>
+                    <ul class="mo_position_ul">
+                        {% for Next in next_career %}
+                        <li class="font_24 font_regular">{{Next}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- 향후 커리어 -->
+            
+            </div>
+            <!-- PC 포지션 정보 -->
+            <div class="notice_position_div" id="pc_position">
                 <table colspacing="0" colpadding="0" class="notice_position_detail">
                     <tr>
                         <th>요약</th>
@@ -178,6 +339,35 @@
                 </table>
             </div>
         </div>
+        <!-- PC 포지션 정보 -->
+
+        <!-- 모바일 채용프로세스 -->
+        <div class="mo_notice_process">
+            <div class="notice_process_title notice_subtitle">
+                <p class="font_bold font_28">채용프로세스</p>
+            </div>
+            <div class="mo_notice_process_detail">
+            <ul>
+                <li>
+                    <table>
+                    {% for Process in notice_process %}
+                        <tr>
+                            <th style="width:58px">
+                                <div class="mo_process_index">{{loop.index}}</div>
+                            </th>
+                            <td>
+                                <span class="font_24 font_regular">{{Process}}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                </li>
+            </ul>
+            </div>
+        </div>
+        <!-- 모바일 채용프로세스 -->
+
+        <!-- PC 채용프로세스 -->
         <div class="notice_process">
             <div class="notice_process_title notice_subtitle">
                 <p class="font_bold font_28">채용프로세스</p>
@@ -193,13 +383,15 @@
                 {% endfor %}
             </div>
         </div>
+        <!-- PC 채용프로세스 -->
+
         {% if notice.main_video != "" %}
         <div class="company_video">
             <div class="company_video_title notice_subtitle">
                 <p class="font_bold font_28">회사 영상</p>
             </div>
             <div class="company_video_detail" id="company_video_detail">
-                <iframe src="{{notice.main_video}}" width="780px" height="480px" style="border-radius:25px;border:0;"></iframe>
+                <iframe src="{{notice.main_video}}" class="company_main_video"></iframe>
             </div>
         </div>
         {% endif %}
@@ -264,6 +456,35 @@
     </div>
 </div>
 <script>
+
+    function resizeWindow() {
+        if(document.body.offsetWidth > 750)
+        {
+            document.getElementById('notice_image').style.display = 'block';
+            document.getElementById('mo_notice_image').style.display = 'none';
+            document.getElementById('mo_online_channel').style.display = 'none';
+            document.getElementById('mo_position').style.display = 'none';
+            document.getElementById('pc_position').style.display = 'block';
+            document.getElementsByClassName('notice_process')[0].style.display = 'block';
+            document.getElementsByClassName('mo_notice_process')[0].style.display = 'none';
+        }
+        else
+        {
+            document.getElementById('notice_image').style.display = 'none';
+            document.getElementById('mo_notice_image').style.display = 'block';
+            document.getElementById('mo_online_channel').style.display = 'block';
+            document.getElementById('mo_position').style.display = 'block';
+            document.getElementById('pc_position').style.display = 'none';
+            document.getElementsByClassName('notice_process')[0].style.display = 'none';
+            document.getElementsByClassName('mo_notice_process')[0].style.display = 'block';
+        }
+    }
+    resizeWindow();
+    //모바일 썸네일 이미지 표출
+    window.addEventListener('resize', function(){
+        resizeWindow();
+    })
+    
     //HTML 에디터 변환
     var content = document.getElementById('notice_info');
     content.innerHTML = content.innerText;
@@ -271,13 +492,19 @@
     content_position.innerHTML = content_position.innerText;
     var content_interview = document.getElementById('company_interview');
     content_interview.innerHTML = content_interview.innerText;
+    //모바일 포지션 소개
+    var mo_position_intro = document.getElementById('mo_position_intro');
+    mo_position_intro.innerHTML = mo_position_intro.innerText;
 
     //날짜 변경
     var date = '{{notice.notice_date}}';
     var date_time = new Date(date);
     
     var date_content = document.getElementById('notice_date');
-    date_content.innerHTML = date_time.getUTCFullYear() + '년 '+ date_time.getUTCMonth() + '월 ' + date_time.getUTCDay() + '일까지';
+    var mo_date_content = document.getElementById('mo_notice_date');
+    date_content.innerHTML = date_time.getUTCFullYear() + '년 '+ (date_time.getMonth()+1) + '월 ' + date_time.getDate() + '일까지';
+    mo_date_content.innerHTML = date_time.getUTCFullYear() + '년 '+ (date_time.getMonth()+1) + '월 ' + date_time.getDate() + '일까지';
+
 
     // div 고정하기
     
