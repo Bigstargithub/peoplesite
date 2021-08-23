@@ -2,22 +2,27 @@ const models = require('../../models');
 const {Op} = require('sequelize');
 
 exports.get_main = async (req, res) => {
-    var test_num = 20
+    let test_num = 20
+    let group = req.params.group;
+    const group_list = ['마케터', '인사', '영업', '사무', '개발', 'R&D', '디자인', '기타']
     const notice_list =  await models.notice_list.findAll({});
     res.render('main',{
         test_num,
         notice_list,
+        group_list,
     });
 }
 
 exports.get_main_group = async(req, res) => {
     const group = req.params.group;
+    const group_list = ['마케터', '인사', '영업', '사무', '개발', 'R&D', '디자인', '기타']
     const notice_list = await models.notice_list.findAll({ where: {job_group: group}});
     if(notice_list)
     {
         res.render('main',{
             notice_list,
             group,
+            group_list,
         })
     }
 }

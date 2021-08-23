@@ -74,7 +74,36 @@
 </div>
 <div class="layer_popup" id="mo_select_box" style="display:none">
     <div class="mobile_select" id="mobile_select">
-        
+        <div class="mobile_filter">
+            <div class="mo_select_title">
+                <span>채용 필터</span>
+                <span style="float:right">
+                    <img src="/close_detail.svg" id="mobile_select_close" style="width:34px;">
+                </span>
+            </div>
+            <div class="mo_select_content">
+                {% if group == undefined %}
+                <div class="mo_select_all font_26 option_selected" id="main_select_all" href="/">
+                    전체
+                </div>
+                {% else %}
+                <div class="mo_select_all font_26" id="main_select_all" href="/">
+                    전체
+                </div>
+                {% endif %}
+                <div class="mo_select_detail font_26">
+                <span>
+                {% for Group in group_list %}
+                    {% if Group == group %}
+                    <span class="main_option option_selected" data-set="{{Group}}">{{Group}}</span>
+                    {% else %}
+                    <span class="main_option" data-set="{{Group}}">{{Group}}</span>
+                    {% endif %}
+                {% endfor %}
+                </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -97,6 +126,14 @@
         {
             document.getElementById('mo_select_box').style.display = 'block';
         }
+    })
+
+    document.getElementById('main_select_all').addEventListener('click', function(){
+        location.href = '/';
+    })
+
+    document.getElementById('mo_select_box').addEventListener('click', function(event) {
+        document.getElementById('mo_select_box').style.display = 'none';
     })
 
     var temp = document.getElementsByClassName('main_option');
@@ -132,10 +169,5 @@
             document.getElementsByClassName('plus_notice')[0].style.display = 'none';
         }
     })
-    document.getElementById('mo_select_box').addEventListener('click', function() {
-        document.getElementById('mo_select_box').style.display = 'none';
-    })
-
-    console.log(document.body.offsetWidth);
 </script>
 {% endblock %}

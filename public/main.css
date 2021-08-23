@@ -45,7 +45,9 @@ input::placeholder{
 .font_20{font-size: 20px;}
 .font_21{font-size: 21px;}
 .font_23{font-size: 23px;}
+.font_24{font-size: 24px;}
 .font_25{font-size: 25px;}
+.font_26{font-size: 26px;}
 .font_28{font-size: 28px;}
 .font_30{font-size: 30px;}
 .font_32{font-size: 32px;}
@@ -239,7 +241,13 @@ input::placeholder{
     font-family:'Spoqa Han Sans Neo, bold'; 
     color: #566371; 
     font-size: 23px;
+    font-weight:600;
 }
+/* .footer_list li
+{
+    margin-top:10px;
+    display:flex;
+} */
 .footer_title
 {
     font-family: 'Spoqa Han Sans Neo, Medium';
@@ -284,7 +292,7 @@ input::placeholder{
 .notice_title
 {
     margin-top:40px;
-    width:780px;
+    width:100%;
     color: #101010;
     margin-bottom:60px;
     height:86px;
@@ -293,6 +301,12 @@ input::placeholder{
 {
     width:780px;
     height:480px;
+}
+.notice_thumb_image
+{
+    width:100%;
+    height:100%;
+    border-radius:25px 25px 25px 0;
 }
 .notice_info
 {
@@ -417,6 +431,13 @@ input::placeholder{
 .company_video_detail
 {
     margin-top:40px;
+}
+.company_main_video
+{
+    width:780px;
+    height:480px;
+    border-radius:25px;
+    border:0;
 }
 /* 회사 영상 css */
 
@@ -630,11 +651,15 @@ input::placeholder{
 
 @media (max-width:750px) {
     /* 모바일 헤더 CSS */
+    .header
+    {
+        height:70px;
+    }
     .header_logo
     {
         width: 90%;
         margin:0 auto;
-        margin-top:1.8%;
+        margin-top:2.6%;
     }
     .logo{
         width:26.67%;
@@ -748,7 +773,7 @@ input::placeholder{
     }
     .layer_popup
     {
-        position:fixed;
+        position:absolute;
         top:0;
         left:0;
         width:100%;
@@ -767,6 +792,170 @@ input::placeholder{
         z-index: 1001;
         opacity: 1;
     }
+    .mobile_filter
+    {
+        width:87.2%;
+        margin:0 auto;
+    }
+    .mo_select_title
+    {
+        margin-top:54px;
+        font-size:34px;
+        font-weight:600;
+    }
+    .mo_select_all
+    {
+        margin-top:70px;
+        padding-bottom:30px;
+        border-bottom:1px solid #D9D9D9;
+        color: #9D9D9D;
+    }
+    .mo_select_detail
+    {
+        padding-top:40px;
+    }
+    .main_option
+    {
+        height:32px;
+        padding:0;
+        font-size:26px;
+        width:49%;
+        display:inline-block;
+        margin-bottom:60px;
+    }
+    .main_option:hover
+    {
+        padding-left:0px;
+    }
+    .option_selected
+    {
+        color: #000f9f;
+    }
+
+    /* 모바일 상세페이지 CSS */
+    .notice
+    {
+        width: 100%;
+        margin-top:110px;
+    }
+    .notice_image{
+        width:100%;
+        height:462px;
+        border:0;
+        border-radius:0;
+    }
+    .notice_thumb_image
+    {
+        border-radius:0;
+    }
+    .notice_information
+    {
+        display:none;
+    }
+    .notice_detail
+    {
+        width:87.2%;
+        margin-top:50px;
+        margin-left:6.4%;
+    }
+    .notice_detail_span
+    {
+        font-size:26px;
+    }
+    .mo_online_channel
+    {
+        margin-top:30px;
+    }
+    /* 모바일 요약 CSS */
+    .notice_subtitle
+    {
+        padding-bottom:20px;
+    }
+    .position_info
+    {
+        font-size:32px;
+    }
+    .mo_position_info
+    {
+        padding-bottom:30px;
+        border-bottom:1px solid #D9D9D9;
+    }
+    .mo_position_info ul
+    {
+        list-style: none;
+        display:inline;
+    }
+    .mo_summary
+    {
+        color: #566371;
+        margin:50px 0 49px 0;
+    }
+    /* 모바일 요약 CSS */
+
+    /* 모바일 포지션 소개 CSS */
+    .position_intro_title
+    {
+        margin:60px 0 50px 0;
+        color: #566371;
+    }
+    /* 모바일 포지션 소개 CSS */
+
+    /* ul, li 포지션 정보 CSS */
+    .mo_position_ul
+    {
+        padding:0;
+        line-height:45px;
+    }
+    .mo_position_ul li
+    {
+        list-style-position: inside;
+    }
+    /* ul, li 포지션 정보 CSS */
+
+    /* 모바일 채용프로세스 CSS */
+    .mo_notice_process
+    {
+        width:87.2%;
+        margin:0 auto;
+    }
+    .mo_notice_process ul
+    {
+        padding:0;
+    }
+    .mo_notice_process ul li
+    {
+        list-style: none;
+    }
+    .mo_notice_process_detail
+    {
+        margin-top:60px;
+    }
+    .mo_process_index
+    {
+        width:40px;
+        height:40px;
+        background-color: #EFEFEF;
+        text-align:center;
+        vertical-align: middle;
+        display:table-cell;
+        border-radius:40px;
+        margin-right:2.6%;
+    }
+    /* 모바일 채용프로세스 CSS */
+
+    /* 모바일 회사영상 CSS */
+    .company_video_title
+    {
+        width:87.2%;
+        margin:auto;
+    }
+    .company_main_video
+    {
+        width:100%;
+        border-radius:0;
+    }
+
+    /* 모바일 상세페이지 CSS */
 }
 
 /* 모바일 버전 CSS */
