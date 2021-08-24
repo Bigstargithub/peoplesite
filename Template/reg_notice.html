@@ -6,21 +6,137 @@
     <div class="apply_content">
         <div class="apply_title">
             <p class="font_bold font_23 text_subcolor" style="margin-bottom:20px;">지금 당신을 기다리고 있어요!</p>
-            <span class="font_bold font_50 text_maincolor">지원서 작성하기</span>
+            <span class="font_bold font_50 text_maincolor apply_title">지원서 작성하기</span>
         </div>
         <div class="apply_info">
-                <img src="/apply_info.svg" id="apply_info">
+            <img src="/apply_info.svg" id="apply_info">
         </div>
-        <div class="apply_table">
+        <!-- 모바일 지원 div -->
+        <div class="mo_apply" id="mo_apply">
+            <div class="apply_detail" id="apply_detail">
+                <div class="font_32 font_bold apply_info_title">
+                    지원자 정보
+                </div>
+                <div class="apply_info_detail">
+                    <div class="font_bold font_26 apply_info_detail_title">
+                        이름
+                    </div>
+                    <input type="text" placeholder="이름을 입력하세요." name="name" id="mo_name" class="font_24 font_medium mo_input_text">
+                </div>
+                <div class="apply_info_detail">
+                    <div class="font_bold font_26 apply_info_detail_title">
+                        이메일
+                    </div>
+                    <input type="hidden" name="email" id="mo_email">
+                    <input type="text" id="mo_email_header" class="font_24 font_medium mo_input_text mo_email">
+                    @
+                    <select id="mo_email_talier" class="font_24 font_medium mo_input_text mo_email mo_email_tailer">
+                        <option value=""></option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="kakao.com">kakao.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="직접입력">직접입력</option>
+                    </select>
+                    <input type="text" id="mo_email_text" class="font_24 font_medium mo_input_text" style="margin-top:50px;display:none" placeholder="직접입력">
+                </div>
+                <div class="apply_info_detail" style="margin-bottom:100px">
+                    <div class="font_bold font_26 apply_info_detail_title">
+                        전화번호
+                    </div>
+                    <input type="text" placeholder="연락이 가능한 번호를 입력해주세요." name="phone" id="mo_phone" 
+                    class="font_24 font_medium mo_input_text">
+                </div>
+            </div>
+            <div class="mo_apply_resume">
+                <div class="font_bold font_32 mo_apply_resume_title">
+                    지원서류 제출
+                </div>
+                <table style="width:100%;margin-top:50px;">
+                    <tr>
+                        <th style="width:5.8%;height:5.8%;padding-right:3%;vertical-align:baseline;">
+                            <img src="/resume_notice.svg" style="width:100%;">
+                        </th>
+                        <td style="width:68.3%;color:#A0A4B4;" class="font_24 font_medium">
+                            {% if notice.is_resume == 0 %}
+                            자유양식으로 지원받는 회사입니다.<br/>지원서 양식이 필요하시면 다운받으십시오.
+                            {% elif notice.is_resume == 1 %}
+                            자사 지원서 양식을 사용하는 회사입니다.<br />해당 지원서로 제출해주십시오.
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+                <div class="mo_apply_resume_download">
+                    {% if notice.is_resume == 0 %}
+                    <a href="/sample_resume.docx" download>
+                    {% elif notice.is_resume == 1 %}
+                    <a href="/{{notice.resume_file}}" download>
+                    {% endif %}
+                    <img src="/mo_apply_resume_download.svg">
+                </div>
+                <div class="mo_apply_resume_submit font_26">
+                    <div class="text_blue font_bold mo_apply_resume_submit_title">
+                        지원서 제출
+                    </div>
+                    <div class="mo_apply_resume_submit_file_name" style="color:#A0A4B4">
+                        <table class="mo_apply_resume_table">
+                            <tr>
+                                <td>
+                                    지원서를 제출해주세요.
+                                </td>
+                                <td style="width:62%">
+                                    <label for="mo_submit_resume_file" style="float:right;width:100%;text-align:right;">
+                                        <img src="/file_select.svg" style="width:40%">
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="file" name="resume_file" id="mo_submit_resume_file" style="display:none;">
+                    </div>
+                </div>
+                <div class="mo_apply_portfolio_submit font_26">
+                    <div class="text_blue font_bold mo_apply_portfolio_submit_title">
+                        <span style="margin-right:20px">포트폴리오 제출</span>
+                        {% if notice.is_portfolio == 0 %}
+                        <span class="font_21 font_medium" style="color:#A0A4B4">* 포트폴리오 선택 제출입니다.</span>
+                        {% elif notice.is_portfolio == 1 %}
+                        <span class="font_21 font_medium" style="color:#A0A4B4">* 포트폴리오 필수 제출입니다.</span>
+                        {% endif %}
+                    </div>
+                    <div class="font_24 font_medium mo_apply_portfolio_submit_file_name" style="color:#A0A4B4">
+                        <table class="mo_apply_portfolio_table">
+                            <tr>
+                                <td>
+                                    포트폴리오를 제출해주세요.
+                                </td>
+                                <td style="width:55%">
+                                    <label for="mo_submit_portfolio_file" style="float:right;width:100%;text-align:right;">
+                                        <img src="/file_select.svg" style="width:45%">
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="file" name="portfolio_file" style="display:none;" id="mo_submit_portfolio_file">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 모바일 지원 div -->
+
+        <!-- PC 지원 div -->
+        <div class="apply_table" id="apply_table">
             <form action="/apply/{{id}}" method="post" name="apply_form" id="apply_form" enctype="multipart/form-data">
                 <table cellspacing="0" cellpadding="0" id="apply_form_table" class="apply_form_table">
                     <tr>
-                        <th class="font_bold font_25" style="padding-top:35px;">지원자 정보</th>
+                        <th class="font_bold font_25 apply_person_info" style="padding-top:35px;">지원자 정보</th>
                     </tr>
                     <tr id="name_tr">
                         <th class="font_bold font_21" style="padding-top:52px;">이름</th>
                         <td id="name_td">
-                                <input type="text" class="apply_text font_medium font_20 apply_input" name="name" id="name" placeholder="이름을 입력하세요.">
+                                <input type="text" class="apply_text font_medium font_20 apply_input" name="name" 
+                                id="name" placeholder="이름을 입력하세요.">
                         </td>
                     </tr>
                     <tr id="email_tr">
@@ -141,6 +257,7 @@
                 </div>
             </form>
         </div>
+        <!-- PC 지원 div -->
     </div>
 </div>
 <div class="layer_popup" id="collect_detail" style="display:none">
@@ -236,7 +353,44 @@
     </div>
 </div>
 <script>
+    function resizeWindowApply() {
+        if(document.body.offsetWidth > 750)
+        {
+            document.getElementById('apply_info').src = "/apply_info.svg";
+            document.getElementById('apply_table').style.display = 'block';
+            document.getElementById('mo_apply').style.display = 'none';
+        }
+        else
+        {
+            document.getElementById('apply_info').src = "/mo_apply_info.svg";
+            document.getElementById('apply_table').style.display = 'none';
+            document.getElementById('mo_apply').style.display = 'block';
+        }
+    }
+
+    resizeWindowApply();
+    //화면 너비 변경 이벤트 처리
+    window.addEventListener('resize', function() {
+        resizeWindowApply();
+    })
+
+    //이메일 '직접입력' 선택 시 이벤트 처리
     var email_text = document.getElementById('email_tailer');
+    var mo_email_text = document.getElementById('mo_email_talier');
+
+    //모바일 이메일 이벤트 처리
+    mo_email_text.addEventListener('change',function(event){
+        if(mo_email_text.value == '직접입력')
+        {
+            document.getElementById('mo_email_text').style.display = '';
+        }
+        else
+        {
+            document.getElementById('mo_email_text').style.display = 'none';
+        }
+    })
+
+    //PC 이메일 이벤트 처리
     email_text.addEventListener('change', function(){
         if(email_text.value == '직접입력')
         {

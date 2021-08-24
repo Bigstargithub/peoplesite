@@ -9,8 +9,8 @@
     </div>
     <div class="notice_detail">
         <span class="notice_detail_span">
-            <span class="font_bold font_23" style="color:#A0A4B4;margin-right:10px;">{{notice.company_name}}</span>
-            <span class="font_bold font_23" style="color:#000F9F;margin-right:10px;">{{notice.job_group}}</span>
+            <span style="color:#A0A4B4;margin-right:10px;">{{notice.company_name}}</span>
+            <span style="color:#000F9F;margin-right:10px;">{{notice.job_group}}</span>
             <span style="vertical-align:middle">
                 {% if notice.is_continue == 1 %}
                 <img src="/notice_detail_ing.svg"></span>
@@ -20,7 +20,7 @@
             </span>
         </span>
         <div class="notice_title">
-            <p class="font_bold font_32" style="line-height:46px">
+            <p class="font_bold font_32 notice_title_detail">
                 {{notice.notice_title}}
             </p>
         </div>
@@ -29,9 +29,9 @@
         </div>
         <div class="notice_info">
             <div class="notice_info_title notice_subtitle">
-                <p class="font_bold font_28 text_maincolor">회사 소개</p>
+                <p>회사 소개</p>
             </div>
-            <div class="notice_info_content font_18 font_medium" id="notice_info">
+            <div class="notice_info_content" id="notice_info">
                 {{notice.company_info}}
             </div>
             <div class="mo_online_channel" id="mo_online_channel">
@@ -86,7 +86,7 @@
             <div class="mo_position_intro">
                 <div class="notice_position_title notice_subtitle">
                     <p class="font_bold font_26 text_maincolor position_intro_title">포지션 소개</p>
-                    <p id="mo_position_intro" style="margin-bottom:70px">{{notice.position_info}}</p>
+                    <p id="mo_position_intro" class="position_intro_detail" style="margin-bottom:70px">{{notice.position_info}}</p>
                 </div>
             </div>
             <!-- 포지션 소개 -->
@@ -404,15 +404,15 @@
             </div>
         </div>
         <div class="submit_notice">
-            <p class="font_bold font_28" style="margin-bottom:40px">지금 당신을 기다리고 있어요!</p>
+            <p class="font_bold font_28 wait_people" style="margin-bottom:40px">지금 당신을 기다리고 있어요!</p>
             {% if notice.is_continue == 1 %}
             <a href="/apply/{{notice.number}}">
                 <img src="/detail_ing_big.svg" style="margin-bottom:26px;">
             </a>
             {% else %}
-            <img src="/detail_end_big.svg" style="margin-bottom:26px;">
+            <img src="/detail_end_big.svg" class="apply_button" style="margin-bottom:26px;">
             {% endif %}
-            <p class="font_18 font_medium">
+            <p class="font_18 font_medium apply_call">
                 <span style="color:#A0A4B4;margin-right:20px">채용문의</span>
                 <span style="color:#566371;">문성훈 팀장(010-9139-5223)</span>
             </p>
@@ -435,7 +435,7 @@
             </div>
         </a>
         {% if notice.is_continue == 1 %}
-        <a href="/apply/{{notice.number}}" target"_blank">
+        <a href="/apply/{{notice.number}}" target="_blank">
             <div class="notice_apply">
                 <img src="/company_apply.svg">
             </div>
@@ -455,6 +455,15 @@
         </div>
     </div>
 </div>
+<div class="fix_apply" id="fix_apply">
+    {% if notice.is_continue == 1 %}
+    <a href="/apply/{{notice.number}}" target="_blank">
+        <img src="/mo_fix_apply_ing.svg" style="margin:24px 0;">
+    </a>
+    {% else %}
+        <img src="/mo_fix_apply_end.svg" style="margin:24px 0;">
+    {% endif %}
+</div>
 <script>
 
     function resizeWindow() {
@@ -467,6 +476,7 @@
             document.getElementById('pc_position').style.display = 'block';
             document.getElementsByClassName('notice_process')[0].style.display = 'block';
             document.getElementsByClassName('mo_notice_process')[0].style.display = 'none';
+            document.getElementById('fix_apply').style.display = 'none';
         }
         else
         {
@@ -477,6 +487,7 @@
             document.getElementById('pc_position').style.display = 'none';
             document.getElementsByClassName('notice_process')[0].style.display = 'none';
             document.getElementsByClassName('mo_notice_process')[0].style.display = 'block';
+            document.getElementById('fix_apply').style.display = 'fix_apply';
         }
     }
     resizeWindow();
