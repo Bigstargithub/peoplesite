@@ -1129,6 +1129,10 @@ input::placeholder{
         font-size:24px;
         margin-top:40px;
     }
+    .mo_apply_resume_table
+    {
+        width:100%;
+    }
     .mo_apply_resume_table tr
     {
         margin-bottom:60px;
@@ -1143,8 +1147,104 @@ input::placeholder{
     {
         margin-top:40px;
     }
+    .mo_apply_portfolio_table
+    {
+        width:100%;
+    }
+    /* 모바일 포트폴리오 제출 CSS */
+    .mo_agree_info
+    {
+        font-size:32px;
+        font-weight:600;
+        margin-top:40px;
+        color:#1A1A1A;
+    }
     /* 모바일 포트폴리오 제출 CSS */
 
+    /* 가인지피플 서비스 이용약관 동의 CSS */
+    .mo_agree_table
+    {
+        margin-top:50px;
+        width:100%;
+        margin-bottom:91px;
+    }
+    .mo_agree_table_title
+    {
+        padding-bottom:30px;
+        border-bottom: 1px solid #A0A4B44D;
+    }
+    .mo_agree_table_detail
+    {
+        padding-top:32px;
+    }
+    #mo_not_all_agree
+    {
+        position:relative;
+        top:5px;
+    }
+    .mo_agree_table tr td
+    {
+        width:100%;
+        vertical-align: baseline;
+    }
+    .mo_apply_submit img
+    {
+        width:100%;
+        height:110px;
+    }
+    .mo_agree_text_detail
+    {
+        margin-left:4.2%;
+    }
+    /* 가인지피플 서비스 이용약관 동의 CSS */
+
+    /* 가인지피플 양식 채우지 않을 때 CSS */
+    .mo_not_type::placeholder
+    {
+        color:#FF2636;
+    }
+    .mo_not_type
+    {
+        border-bottom:2px solid #FF2636;
+    }
+    .mo_not_file
+    {
+        color:#FF2636;
+    }
+    /* 가인지피플 양식 채우지 않을 때 CSS */
+
+    /* 개인정보 전문 CSS */
+    .mo_layer_white
+    {
+        width:100%;
+        height:100%;
+        position:fixed;
+        top:0;
+        left:0;
+        background-color: #fff;
+        z-index:2000;
+    }
+    .mo_layer_detail
+    {
+        width:87.2%;
+        margin:0 auto;
+        margin-top:104px;
+    }
+    .mo_layer_close
+    {
+        text-align:right;
+    }
+    .mo_layer_title
+    {
+        padding-bottom:30px;
+        border-bottom:7px solid #1A1A1A;
+    }
+    .mo_layer_text_detail
+    {
+        margin-top:70px;
+        max-height:800px;
+        overflow:scroll;
+    }
     /* 모바일 지원서류 제출 CSS */
 
     /* 모바일 지원 div CSS */

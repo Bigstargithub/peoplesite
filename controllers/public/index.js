@@ -26,4 +26,6 @@ router.get('/notice/:id', ctrl.get_notice_detail);
 
 router.post('/apply/:id', upload.fields([{name:'resume_file'},{name:'portfolio_file'}]),ctrl.post_apply);
 
+router.post('/apply/mo/:id', upload.fields([{name: 'mo_submit_resume_file'}, {name: 'mo_submit_portfolio_file'}]),ctrl.post_mo_apply);
+
 module.exports = router;

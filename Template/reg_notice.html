@@ -13,6 +13,7 @@
         </div>
         <!-- 모바일 지원 div -->
         <div class="mo_apply" id="mo_apply">
+            <form action="/apply/mo/{{id}}" method="post" name="mo_apply_form" id="mo_apply_form" enctype="multipart/form-data">
             <div class="apply_detail" id="apply_detail">
                 <div class="font_32 font_bold apply_info_title">
                     지원자 정보
@@ -21,16 +22,16 @@
                     <div class="font_bold font_26 apply_info_detail_title">
                         이름
                     </div>
-                    <input type="text" placeholder="이름을 입력하세요." name="name" id="mo_name" class="font_24 font_medium mo_input_text">
+                    <input type="text" placeholder="이름을 입력하세요." name="mo_name" id="mo_name" class="font_24 font_medium mo_input_text">
                 </div>
                 <div class="apply_info_detail">
                     <div class="font_bold font_26 apply_info_detail_title">
                         이메일
                     </div>
-                    <input type="hidden" name="email" id="mo_email">
+                    <input type="hidden" name="mo_email" id="mo_email">
                     <input type="text" id="mo_email_header" class="font_24 font_medium mo_input_text mo_email">
                     @
-                    <select id="mo_email_talier" class="font_24 font_medium mo_input_text mo_email mo_email_tailer">
+                    <select id="mo_email_tailer" class="font_24 font_medium mo_input_text mo_email mo_email_tailer">
                         <option value=""></option>
                         <option value="naver.com">naver.com</option>
                         <option value="gmail.com">gmail.com</option>
@@ -46,7 +47,7 @@
                     <div class="font_bold font_26 apply_info_detail_title">
                         전화번호
                     </div>
-                    <input type="text" placeholder="연락이 가능한 번호를 입력해주세요." name="phone" id="mo_phone" 
+                    <input type="text" placeholder="연락이 가능한 번호를 입력해주세요." name="mo_phone" id="mo_phone" 
                     class="font_24 font_medium mo_input_text">
                 </div>
             </div>
@@ -75,6 +76,7 @@
                     <a href="/{{notice.resume_file}}" download>
                     {% endif %}
                     <img src="/mo_apply_resume_download.svg">
+                    </a>
                 </div>
                 <div class="mo_apply_resume_submit font_26">
                     <div class="text_blue font_bold mo_apply_resume_submit_title">
@@ -83,7 +85,7 @@
                     <div class="mo_apply_resume_submit_file_name" style="color:#A0A4B4">
                         <table class="mo_apply_resume_table">
                             <tr>
-                                <td>
+                                <td id="mo_resume_file_name">
                                     지원서를 제출해주세요.
                                 </td>
                                 <td style="width:62%">
@@ -93,7 +95,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <input type="file" name="resume_file" id="mo_submit_resume_file" style="display:none;">
+                        <input type="file" name="mo_submit_resume_file" id="mo_submit_resume_file" style="display:none;">
                     </div>
                 </div>
                 <div class="mo_apply_portfolio_submit font_26">
@@ -108,7 +110,7 @@
                     <div class="font_24 font_medium mo_apply_portfolio_submit_file_name" style="color:#A0A4B4">
                         <table class="mo_apply_portfolio_table">
                             <tr>
-                                <td>
+                                <td id="mo_portfolio_file_name">
                                     포트폴리오를 제출해주세요.
                                 </td>
                                 <td style="width:55%">
@@ -118,10 +120,44 @@
                                 </td>
                             </tr>
                         </table>
-                        <input type="file" name="portfolio_file" style="display:none;" id="mo_submit_portfolio_file">
+                        <input type="file" name="mo_submit_portfolio_file" style="display:none;" id="mo_submit_portfolio_file">
+                        <input type="hidden" id="is_need_portfolio" value="{{notice.is_portfolio}}">
                     </div>
                 </div>
             </div>
+            <div class="mo_agree_info">
+                    가인지피플 서비스 이용약관 동의
+            </div>
+            <table class="mo_agree_table">
+                <tr>
+                    <td class="mo_agree_table_title">
+                        <img src="/mo_not_all_agree.svg" id="mo_not_all_agree">
+                        <label for="mo_not_all_agree" style="margin-left:3%;" class="font_26 font_medium text_maincolor">모두 동의</label>
+                        <input type="hidden" id="is_all_agree" value="0">
+                    </td>
+                </tr>
+                <tr>
+                  <td class="mo_agree_table_detail">
+                    <img src="/mo_not_agree.svg" class="mo_not_agree" id="mo_agree_collect">
+                    <label class="mo_agree_collect font_26 font_medium text_maincolor" style="margin-left:3%">[필수] 개인정보 수집 및 이용 동의</label>
+                    <u id="mo_collect_detail" class="font_24 font_medium mo_agree_text_detail">보기</u>
+                    <input type="hidden" id="is_agree_collect" value="0">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="mo_agree_table_detail">
+                    <img src="/mo_not_agree.svg" class="mo_not_agree" id="mo_agree_3rd">
+                    <label for="mo_agree_3rd" style="margin-left:3%;" class="mo_not_agree font_26 font_medium text_maincolor">[필수] 개인정보 제 3자 제공 동의</label>
+                    <u id="mo_3rd_detail" class="font_24 font_medium mo_agree_text_detail">보기</u>
+                    <input type="hidden" id="is_agree_3rd" value="0">
+                  </td>
+                </tr>
+            </table>
+            <div class="mo_apply_submit">
+              <img src="/mo_apply_not_submit.svg" id="mo_apply_img">
+              <input type="hidden" id="is_can_submit" value="0">
+            </div>
+            </form>
         </div>
         <!-- 모바일 지원 div -->
 
@@ -226,7 +262,8 @@
                         <th style="padding-top:42px;padding-bottom:32px;border-bottom:1px solid #A0A4B44D">
                             <span>
                                 <img src="/not_all_agree.svg" id="is_all_checked" style="position:relative;top:5px;margin-right:13px;">
-                                <span style="font-weight:normal" class="font_medium font_18 text_maincolor">모두 동의</span>
+                                <label for="is_all_checked" style="font-weight:normal" class="font_medium font_18 text_maincolor">모두 동의</label>
+
                             </span>
                         </th>
                     </tr>
@@ -337,6 +374,84 @@
         </div>
     </div>
 </div>
+<!-- 수집 및 이용 동의 div -->
+<div id="mo_detail_collect_div" style="display:none">
+  <div class="mo_layer_white">
+    <div class="mo_layer_detail">
+      <div class="mo_layer_close">
+        <img src="/mo_info_close.svg" id="mo_close_img_collect">
+      </div>
+      <div class="font_40 font_bold mo_layer_title">
+        개인정보 수집 및 이용 동의
+      </div>
+      <div class="font_26 font_regular mo_layer_text_detail">
+        <p>(주)가인지캠퍼스(이하 “회사”라 함)은 제공하는 “가인지피플” 및 관련 제반 서비스(이하 “본건서비스”)를 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다.</p>
+        <br />
+
+        <p>본건 서비스는 채용 관련 안내, 공지사항 전달, 채용 및 웹사이트 이용 관련 연락, 채용 적합성 판단 및 서류심사/면접 등의 근거 자료, 인재 DB 활용을 하기 위한 목적으로 수집 및 이용됩니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오. </p>
+        <br />
+
+        <p class="font_30 font_bold">◼︎ 개인정보 수집·이용 내역</p>
+        <br />
+
+        <p class="font_bold">수집·이용 항목</p> 
+        <p>성명, 영문 성명, 전화번호, 이메일, 생년월일, 자기소개서, 이력서, 학력사항, 사진, 동영상, 자격사항, 경력사항, 포트폴리오, 경력기술서, 외국어 사항, 첨부파일, 지원 분야, 희망연봉, 직전 연봉, 추천인, 지원 경로, 기타 직접 또는 다른 정보와 쉽게 결합하여 개인을 알아볼 수 있는 정보수집·이용 목적 / 개인정보 등록을 통한 입사 지원</p>
+        <br />
+
+        <p class="font_bold">보유 기간</p>
+        <p>지원 접수 후 3년간</p>
+        <br />
+
+        <p>※ 지원서상에 작성하신 개인 정보는 회사의 인재 채용을 위해 3년간 인재풀로 활용 후 지체 없이 파기됩니다. 원하지 않을 경우 파기를 요청하시면 인재풀 등록에 대한 거부 의사로 판단하여 지원자의 개인 정보는 지체 없이 파기됩니다.</p>
+        <br />
+
+        <p>※ 위의 개인 정보 수집·이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 원활한 기업 측으로의 지원자 정보 전달을 진행할 수 없어 본건 서비스에 제한을 받을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 수집 및 이용 동의 div -->
+
+<!-- 제 3자 동의 div -->
+<div id="mo_detail_3rd_div" style="display:none">
+  <div class="mo_layer_white">
+    <div class="mo_layer_detail">
+      <div class="mo_layer_close">
+        <img src="/mo_info_close.svg" id="mo_close_img_3rd">
+      </div>
+      <div class="font_40 font_bold mo_layer_title">
+        개인정보 제 3자 제공 동의
+      </div>
+      <div class="font_26 font_regular mo_layer_text_detail">
+        
+        <p>(주)가인지캠퍼스(이하 “회사”라 함)은 제공하는 “가인지피플” 및 그리팅 관련 제반 서비스(이하 “본건서비스”)를 위하여 아래와 같이 개인정보를 제3자 제공하고자 합니다. </p>
+        <br/>
+
+        <p>본건 서비스는 채용 관련 안내, 공지사항 전달, 채용 및 웹사이트 이용 관련 연락, 채용 적합성 판단 및 서류심사/면접 등의 근거 자료, 인재 DB 활용을 하기 위한 목적으로 수집 및 이용됩니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오. </p>
+        <br />
+
+        <p class="font_bold">◼︎ 개인정보 3자 제공 내역</p>
+        <br/>
+        <p class="font_bold">제공받는 자</p>
+        <p>지원자가 지원하는 회사</p> 
+        <br />
+
+        <p class="font_bold">제공 목적</p> 
+        <p>채용과정 절차 진행, 심사 및 인사 관련 업무 제공 항목 성명, 영문 성명, 전화번호, 이메일, 생년월일, 자기소개서, 이력서, 학력사항, 사진, 동영상, 자격사항, 경력사항, 포트폴리오, 경력기술서, 외국어 사항, 첨부파일, 지원 분야, 희망연봉, 직전 연봉, 추천인, 지원 경로, 기타 직접 또는 다른 정보와 쉽게 결합하여 개인을 알아볼 수 있는 정보</p>
+        <br />
+
+        <p class="font_bold">보유 기간</p>
+        <p>지원 접수 후 3년간</p>
+        <br />
+        
+        <p>※ 지원서상에 작성하신 개인 정보는 회사의 인재 채용을 위해 3년간 인재풀로 활용 후 지체 없이 파기됩니다. 원하지 않을 경우 파기를 요청하시면 인재풀 등록에 대한 거부 의사로 판단하여 지원자의 개인 정보는 지체 없이 파기됩니다.</p>
+        <br />
+        
+        <p>※ 위의 개인 정보 제3자 제공에 대한 동의를 거부할 권리가 있습니다. 그러나 동의를 거부할 경우 원활한 기업 측으로의 지원자 정보 전달을 진행할 수 없어 본건 서비스에 제한을 받을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="layer_popup" id="complete_apply" style="display:none">
     <div class="layer_dim">
@@ -353,6 +468,201 @@
     </div>
 </div>
 <script>
+    // 모바일 이력서 제출
+     document.getElementById('mo_submit_resume_file').addEventListener('change', function(e){
+        var mo_file_resume_name = document.getElementById('mo_resume_file_name');
+        mo_file_resume_name.innerText = this.files[0].name;
+        mo_file_resume_name.style.color = '#1a1a1a';
+        mo_file_resume_name.style.textDecoration = 'underline';
+    })
+
+    // 모바일 포트폴리오 제출 시
+    document.getElementById('mo_submit_portfolio_file').addEventListener('change',function(){
+        var mo_file_portfolio_name = document.getElementById('mo_portfolio_file_name');
+        mo_file_portfolio_name.innerText = this.files[0].name;
+        mo_file_portfolio_name.style.color = '#1a1a1a';
+        mo_file_portfolio_name.style.textDecoration = 'underline';
+    })
+
+    //버튼을 눌렀을 때 값 변경 함수
+    function agreeClickButton(Button)
+    {
+        if(document.getElementById(Button).value == '0')
+        {
+            document.getElementById(Button).value = 1;
+        }
+        else
+        {
+            document.getElementById(Button).value = 0;
+        }
+    }
+
+    //전체 동의했는 지 여부 파악
+    function isAllAgreeButton(Button)
+    {
+        if(document.getElementById(Button).value == 1)
+        {
+            document.getElementById('is_all_agree').value = 1;
+            document.getElementById('mo_not_all_agree').src = '/mo_all_agree.svg';
+            document.getElementById('is_can_submit').value = 1;
+            document.getElementById('mo_apply_img').src = '/mo_apply_submit.svg';
+        }
+    }
+    //전체 동의 취소 함수
+    function cancelAllAgree()
+    {
+        document.getElementById('is_all_agree').value = 0;
+        document.getElementById('mo_not_all_agree').src = '/mo_not_all_agree.svg';
+        document.getElementById('is_can_submit').value = 0;
+        document.getElementById('mo_apply_img').src = '/mo_apply_not_submit.svg';
+    }
+
+    //모바일 전체동의 클릭 시
+    document.getElementById('mo_not_all_agree').addEventListener('click', function(event){
+        agreeClickButton('is_all_agree');
+        if(document.getElementById('is_all_agree').value == 0)
+        {
+            document.getElementById('mo_not_all_agree').src = '/mo_not_all_agree.svg';
+            cancelAllAgree();
+        }
+        else
+        {
+            document.getElementById('mo_not_all_agree').src = '/mo_all_agree.svg';
+            document.getElementById('is_can_submit').value = 1;
+        }
+        document.getElementById('mo_agree_collect').click();
+        document.getElementById('mo_agree_3rd').click();
+    })
+
+    //모바일 개별동의 클릭 시
+    document.getElementById('mo_agree_collect').addEventListener('click', function(){
+        agreeClickButton('is_agree_collect');
+        if(document.getElementById('is_agree_collect').value == 1)
+        {
+            document.getElementById('mo_agree_collect').src = '/mo_agree.svg';
+            isAllAgreeButton('is_agree_3rd');
+        }
+        else
+        {
+            document.getElementById('mo_agree_collect').src = '/mo_not_agree.svg';
+            if(document.getElementById('is_all_agree').value == 1)
+            {
+                cancelAllAgree();
+            }
+        }
+    })
+
+    //모바일 개별동의 클릭 시
+    document.getElementById('mo_agree_3rd').addEventListener('click', function() {
+        agreeClickButton('is_agree_3rd');
+        if(document.getElementById('is_agree_3rd').value == 1)
+        {
+            document.getElementById('mo_agree_3rd').src = '/mo_agree.svg';
+            isAllAgreeButton('is_agree_collect');
+        }
+        else
+        {
+            document.getElementById('mo_agree_3rd').src = '/mo_not_agree.svg';
+            if(document.getElementById('is_all_agree').value == 1)
+            {
+                cancelAllAgree();
+            }
+        }
+    })
+
+    function istextBoxNotType(Textbox)
+    {
+        if(document.getElementById(Textbox).value == '')
+        {
+            document.getElementById(Textbox).classList.add('mo_not_type');
+            return false;
+        }
+        else
+        {
+            document.getElementById(Textbox).classList.remove('mo_not_type');
+            return true;
+        }
+    }
+   function isFileNotType(Files,Text)
+    {
+        if(document.getElementById(Files).value == '')
+        {
+            document.getElementById(Text).classList.add('mo_not_file');
+            return false;
+        }
+        else
+        {
+            document.getElementById(Text).classList.remove('mo_not_file');
+            return true;
+        }
+    }
+
+
+    //모바일 form 제출
+    document.getElementById('mo_apply_img').addEventListener('click', function() {
+      var is_submit = true;
+      if(document.getElementById('is_can_submit').value != 0)
+      {
+        if(!istextBoxNotType('mo_name'))
+        {
+          is_submit = false;
+        }
+        if(!istextBoxNotType('mo_email_header'))
+        {
+          istextBoxNotType('mo_email_tailer');
+          is_submit = false;
+        }
+        //이메일 직접입력 이메일 처리
+        else if(document.getElementById('mo_email_tailer').value == '직접입력')
+        {
+          document.getElementById('mo_email').value = document.getElementById('mo_email_header').value + '@' + document.getElementById('mo_email_text').value;
+        }
+        else
+        {
+          document.getElementById('mo_email').value = document.getElementById('mo_email_header').value + '@' + document.getElementById('mo_email_tailer').value;
+        }
+
+        if(!istextBoxNotType('mo_phone'))
+        {
+          is_submit = false;
+        }
+
+        if(!isFileNotType('mo_submit_resume_file','mo_resume_file_name'))
+        {
+          is_submit = false;
+        }
+
+        if(!isFileNotType('mo_submit_portfolio_file','mo_portfolio_file_name'))
+        {
+          is_submit = false;
+        }
+
+        if(is_submit)
+        {
+          document.getElementById('mo_apply_form').submit();
+        }
+
+      }
+    })
+
+    // 동의 내용 detail 보이기
+    document.getElementById('mo_collect_detail').addEventListener('click', function() {
+      document.getElementById('mo_detail_collect_div').style.display = 'block';
+    })
+
+    document.getElementById('mo_3rd_detail').addEventListener('click', function() {
+      document.getElementById('mo_detail_3rd_div').style.display = 'block';
+    })
+
+    document.getElementById('mo_close_img_collect').addEventListener('click', function(){
+      document.getElementById('mo_detail_collect_div').style.display = 'none';
+    })
+
+     document.getElementById('mo_close_img_3rd').addEventListener('click', function(){
+      document.getElementById('mo_detail_3rd_div').style.display = 'none';
+    })
+
+    //화면 너비 변경 시 함수
     function resizeWindowApply() {
         if(document.body.offsetWidth > 750)
         {
@@ -376,7 +686,7 @@
 
     //이메일 '직접입력' 선택 시 이벤트 처리
     var email_text = document.getElementById('email_tailer');
-    var mo_email_text = document.getElementById('mo_email_talier');
+    var mo_email_text = document.getElementById('mo_email_tailer');
 
     //모바일 이메일 이벤트 처리
     mo_email_text.addEventListener('change',function(event){
@@ -388,7 +698,8 @@
         {
             document.getElementById('mo_email_text').style.display = 'none';
         }
-    })
+    });
+
 
     //PC 이메일 이벤트 처리
     email_text.addEventListener('change', function(){
