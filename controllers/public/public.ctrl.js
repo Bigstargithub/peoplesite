@@ -94,6 +94,32 @@ exports.post_apply = async (req, res) => {
         res.cookie('apply',1);
         }
     )
+}
 
+//모바일 지원
+exports.post_mo_apply = (req, res) => {
+    const id = req.params.id;
+    const { mo_name, mo_email, mo_phone } = req.body;
 
+    //파일명 추출
+    // console.log(req.files);
+    const mo_resume_file_path = req.files['mo_submit_resume_file'][0].path;
+    var mo_portfolio_file_path = "";
+
+    if(req.files['mo_submit_portfolio_file'][0].path != undefined)
+    {
+        mo_portfolio_file_path = req.files['mo_submit_portfolio_file'][0].path;
+    }
+    
+
+    models.notice_member.create({
+        notice_number: id,
+        member_name: mo_name,
+        member_email: mo_email,
+        member_phone: mo_phone,
+        resume_file: mo_resume_file_path,
+        portfolio_file: mo_portfolio_file_path,
+    }).then(() => {
+        res.send("<script>alert('지원이 완료되었습니다.'); location.href='/';</script>");
+    });
 }

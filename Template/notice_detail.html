@@ -457,7 +457,7 @@
 </div>
 <div class="fix_apply" id="fix_apply">
     {% if notice.is_continue == 1 %}
-    <a href="/apply/{{notice.number}}" target="_blank">
+    <a href="/apply/{{notice.number}}">
         <img src="/mo_fix_apply_ing.svg" style="margin:24px 0;">
     </a>
     {% else %}
@@ -487,7 +487,7 @@
             document.getElementById('pc_position').style.display = 'none';
             document.getElementsByClassName('notice_process')[0].style.display = 'none';
             document.getElementsByClassName('mo_notice_process')[0].style.display = 'block';
-            document.getElementById('fix_apply').style.display = 'fix_apply';
+            document.getElementById('fix_apply').style.display = 'block';
         }
     }
     resizeWindow();
