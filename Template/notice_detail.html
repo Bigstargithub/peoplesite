@@ -81,7 +81,6 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
             <!-- 포지션 소개 -->
             <div class="mo_position_intro">
                 <div class="notice_position_title notice_subtitle">
@@ -195,7 +194,7 @@
             </div>
             <!-- 향후 커리어 -->
             
-            </div>
+        </div>
             <!-- PC 포지션 정보 -->
             <div class="notice_position_div" id="pc_position">
                 <table colspacing="0" colpadding="0" class="notice_position_detail">
@@ -524,7 +523,7 @@
         const information = document.getElementById('notice_information');
         const company_video_detail = document.getElementById('company_interview');
         const class_interview = document.getElementsByClassName('company_interview');
-        if(scroll_location >= 370)
+        if(scroll_location >= 170)
         {   
             information.classList.add('fixed_information');
             if(class_interview[0].offsetHeight + class_interview[0].offsetTop - screen.height + information.offsetHeight - 60 <= scroll_location)

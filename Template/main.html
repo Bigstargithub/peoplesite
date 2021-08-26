@@ -44,6 +44,11 @@
         </p>
     </div>
     <div class="main_content" style="max-height:1490px;">
+        {% if notice_list == '' %}
+        <div class="non_notice">
+            공고 정보가 없습니다.
+        </div>
+        {% endif %}
         {% for Notice in notice_list %}
         <a href="notice/{{Notice.number}}">
         <div class="content_notice">
@@ -107,6 +112,24 @@
     </div>
 </div>
 <script>
+    //모바일, PC 레이아웃 변경
+    function resizeWidthMain()
+    {
+        if(document.body.offsetWidth > 750)
+        {
+            document.getElementById('mo_select_box').style.display = 'none';
+        }
+        else
+        {
+            const temp = document.getElementsByClassName('main_content')[0];
+            document.getElementsByClassName('main_content')[0].style.maxHeight = '3430px';
+        }
+    }
+
+    resizeWidthMain();
+    window.addEventListener('resize', function() {
+        resizeWidthMain();
+    })
     document.getElementById('main_select').addEventListener('click', function() {
         if(document.body.offsetWidth > 750)
         {
@@ -153,7 +176,12 @@
     }
 
     var content_height = document.getElementsByClassName('main_content')[0];
-    if(content_height.offsetHeight >= 1496)
+    var viewport_height = 1495;
+    if(document.body.offsetWidth <= 750)
+    {
+        viewport_height = 3435;
+    }
+    if(content_height.offsetHeight >= viewport_height)
     {
         document.getElementsByClassName('plus_notice')[0].style.display = '';
     }
@@ -161,10 +189,13 @@
     document.getElementById('plus_img').addEventListener('click', function() {
         const temp = document.getElementsByClassName('main_content')[0];
 
-        var max_height = parseInt(temp.style.maxHeight.replace(/[^0-9]/g,'')) + 754;
+        var max_height = parseInt(temp.style.maxHeight.replace(/[^0-9]/g,'')) + 745;
+        if(document.body.offsetWidth <= 750)
+        {
+            max_height = parseInt(temp.style.maxHeight.replace(/[^0-9]/g,'')) + 865;
+        }
         temp.style.maxHeight = max_height + "px";
-        console.log(temp.scrollHeight+""+max_height);
-        if(temp.scrollHeight <= max_height)
+        if(temp.scrollHeight-30 <= max_height)
         {
             document.getElementsByClassName('plus_notice')[0].style.display = 'none';
         }
