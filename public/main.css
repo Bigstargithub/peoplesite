@@ -110,7 +110,14 @@ input::placeholder{
     display:inline-block;
     /* height:160px; */
 }
-
+.non_notice
+{
+    width:100%;
+    height:40px;
+    text-align:center;
+    padding-top:100px;
+    font-size:18px;
+}
 .title_select
 {
     /* float:right; */
@@ -132,11 +139,12 @@ input::placeholder{
     /* bottom:60px; */
     border: 1px solid #D9D9D9;
     background: url('select_arrow.svg') no-repeat 151px;
-    /* box-shadow: 0px 0px 20px #0000001A; */
     appearance: none;
+    border-radius:5px;
 }
 .main_selected{
     background: url('arrow_up.svg') no-repeat 151px;
+    box-shadow: 0px 0px 20px #0000001A;
 }
 .main_subselectbox
 {
@@ -182,6 +190,7 @@ input::placeholder{
     width:1245px;
     padding-top:5px;
     overflow:hidden;
+    max-height:1490px;
 }
 .notice_main_image
 {
@@ -462,6 +471,10 @@ input::placeholder{
 {
     margin-top:40px;
 }
+.company_interview_detail img
+{
+    width:100%;
+}
 /* 인터뷰 css */
 
 /* 지원하기 css */
@@ -662,10 +675,15 @@ input::placeholder{
 /* 모바일 버전 CSS */
 
 @media (max-width:750px) {
+    html
+    {
+        font-size:62.5%;
+    }
     /* 모바일 헤더 CSS */
     .header
     {
-        height:70px;
+        height:35px;
+        box-shadow: 0px 1px 5px #00000029;
     }
     .header_logo
     {
@@ -674,13 +692,14 @@ input::placeholder{
         margin-top:2.6%;
     }
     .logo{
-        width:26.67%;
+        width:10rem;
     }
     /* 모바일 헤더 CSS */
 
     /* 모바일 메인 CSS */
     #do_everything{
         margin-top:0;
+        width:10rem;
     }
     .main{
         width:100%;
@@ -695,18 +714,28 @@ input::placeholder{
     }
     .main_notice
     {
-        font-size:28px;
-        margin-top:60px;
+        font-size:1.44em;
+        margin-top:30px;
     }
     .main_ready
     {
-        font-size:48px;
+        font-size:2.5em;
         width:55.33%;
     }
     .main_selectbox
     {
         width:18.1%;
         background: url('select_arrow.svg') no-repeat 90%;
+        font-size:1.1rem;
+        position:relative;
+        bottom:1.3rem;
+        background-size: 9%;
+    }
+    .main_selectbox span
+    {
+        position:relative;
+        right:1rem;
+        font-size:1.15rem;
     }
     .main_selected{
         background: url('arrow_up.svg') no-repeat 90%;
@@ -714,21 +743,24 @@ input::placeholder{
     .main_content{
         width:95%;
         margin:0 auto;
+        max-height:3000px;
     }
     .content_notice{
         width:45.4%;
         margin-left:3%;
         margin-right:0;
         height:auto;
+        border-radius:1rem 1rem 1rem 0;
     }
     .notice_main_image
     {
         width:100%;
-        height:11.3em;
+        height:fit-content;
+        border-radius:1rem 1rem 1rem 0;
     }
     .notice_company_name, .notice_job_group
     {
-        font-size:18px;
+        font-size:0.9rem;
     }
     .content_image{
         height:auto;
@@ -736,14 +768,14 @@ input::placeholder{
     .mobile_notice_title
     {
         width:100%;
-        font-size:24px;
+        font-size:1.2rem;
         display: -webkit-box;
         overflow:hidden;
         /* white-space: nowrap; */
         text-overflow: ellipsis;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        line-height: 36px;
+        line-height: 1.8rem;
         height:68px;
     }
     /* 모바일 메인 CSS */
@@ -997,7 +1029,7 @@ input::placeholder{
     }
     .company_interview_detail img
     {
-        width:750px;
+        width:100%;
     }
     /* 모바일 인터뷰 CSS */
 
@@ -1027,12 +1059,14 @@ input::placeholder{
     .fix_apply
     {
         width:100%;
-        height:140px;
         background-color:#fff;
         position:fixed;
         bottom:0;
         box-shadow: 0px 1px -25px #0000001a;
         text-align: center;
+    }
+    .fix_apply img{
+        width:100%;
     }
     /* 모바일 상세페이지 CSS */
 
