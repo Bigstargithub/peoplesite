@@ -124,6 +124,6 @@ exports.post_mo_apply = (req, res) => {
     });
 }
 
-exports.get_text_apply = (_, res)  => {
+exports.get_text_apply = (req, res)  => {
     res.render('mo_complete_apply');
 }

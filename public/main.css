@@ -1399,6 +1399,17 @@ input::placeholder{
     /* 모바일 지원 div CSS */
     
     /* 모바일 지원페이지 CSS */
+
+    /* 모바일 지원완료 CSS */
+    .mo_complete_apply_layer
+    {
+        position:relative;
+        width:100%;
+        height:390px;
+        top:0;
+        background-color:#fff;
+    }
+    /* 모바일 지원완료 CSS */
 }
 
 /* 모바일 버전 CSS */

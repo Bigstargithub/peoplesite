@@ -28,6 +28,6 @@ router.post('/apply/:id', upload.fields([{name:'resume_file'},{name:'portfolio_f
 
 router.post('/apply/mo/:id', upload.fields([{name: 'mo_submit_resume_file'}, {name: 'mo_submit_portfolio_file'}]),ctrl.post_mo_apply);
 
-router.get('/apply/text', ctrl.get_text_apply);
+router.get('/applies/text', ctrl.get_text_apply);
 
 module.exports = router;
