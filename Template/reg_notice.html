@@ -5,11 +5,11 @@
 <div class="apply">
     <div class="apply_content">
         <div class="apply_title">
-            <p class="font_bold font_23 text_subcolor" style="margin-bottom:20px;">지금 당신을 기다리고 있어요!</p>
+            <p class="font_bold font_23 text_subcolor wait_apply">지금 당신을 기다리고 있어요!</p>
             <span class="font_bold font_50 text_maincolor apply_title">지원서 작성하기</span>
         </div>
         <div class="apply_info">
-            <img src="/apply_info.svg" id="apply_info">
+            <img src="/apply_info.svg" class="apply_info_img" id="apply_info">
         </div>
         <!-- 모바일 지원 div -->
         <div class="mo_apply" id="mo_apply">
@@ -43,7 +43,7 @@
                     </select>
                     <input type="text" id="mo_email_text" class="font_24 font_medium mo_input_text" style="margin-top:50px;display:none" placeholder="직접입력">
                 </div>
-                <div class="apply_info_detail" style="margin-bottom:100px">
+                <div class="apply_info_detail" style="margin-bottom:5rem">
                     <div class="font_bold font_26 apply_info_detail_title">
                         전화번호
                     </div>
@@ -55,12 +55,12 @@
                 <div class="font_bold font_32 mo_apply_resume_title">
                     지원서류 제출
                 </div>
-                <table style="width:100%;margin-top:50px;">
+                <table style="width:100%;margin-top:2.5rem">
                     <tr>
                         <th style="width:5.8%;height:5.8%;padding-right:3%;vertical-align:baseline;">
                             <img src="/resume_notice.svg" style="width:100%;">
                         </th>
-                        <td style="width:68.3%;color:#A0A4B4;" class="font_24 font_medium">
+                        <td style="width:68.3%;color:#A0A4B4;font-size:1.2rem" class="font_medium">
                             {% if notice.is_resume == 0 %}
                             자유양식으로 지원받는 회사입니다.<br/>지원서 양식이 필요하시면 다운받으십시오.
                             {% elif notice.is_resume == 1 %}
@@ -98,13 +98,13 @@
                         <input type="file" name="mo_submit_resume_file" id="mo_submit_resume_file" style="display:none;">
                     </div>
                 </div>
-                <div class="mo_apply_portfolio_submit font_26">
+                <div class="mo_apply_portfolio_submit">
                     <div class="text_blue font_bold mo_apply_portfolio_submit_title">
                         <span style="margin-right:20px">포트폴리오 제출</span>
                         {% if notice.is_portfolio == 0 %}
-                        <span class="font_21 font_medium" style="color:#A0A4B4">* 포트폴리오 선택 제출입니다.</span>
+                        <span class="font_medium" style="color:#A0A4B4;font-size:1.05rem">* 포트폴리오 선택 제출입니다.</span>
                         {% elif notice.is_portfolio == 1 %}
-                        <span class="font_21 font_medium" style="color:#A0A4B4">* 포트폴리오 필수 제출입니다.</span>
+                        <span class="font_medium" style="color:#A0A4B4;font-size:1.05rem">* 포트폴리오 필수 제출입니다.</span>
                         {% endif %}
                     </div>
                     <div class="font_24 font_medium mo_apply_portfolio_submit_file_name" style="color:#A0A4B4">
@@ -132,23 +132,23 @@
                 <tr>
                     <td class="mo_agree_table_title">
                         <img src="/mo_not_all_agree.svg" id="mo_not_all_agree">
-                        <label for="mo_not_all_agree" style="margin-left:3%;" class="font_26 font_medium text_maincolor">모두 동의</label>
+                        <label for="mo_not_all_agree" style="margin-left:3%;font-sizt:1.3rem" class="font_medium text_maincolor">모두 동의</label>
                         <input type="hidden" id="is_all_agree" value="0">
                     </td>
                 </tr>
                 <tr>
                   <td class="mo_agree_table_detail">
                     <img src="/mo_not_agree.svg" class="mo_not_agree" id="mo_agree_collect">
-                    <label class="mo_agree_collect font_26 font_medium text_maincolor" style="margin-left:3%">[필수] 개인정보 수집 및 이용 동의</label>
-                    <u id="mo_collect_detail" class="font_24 font_medium mo_agree_text_detail">보기</u>
+                    <label class="mo_agree_collect font_medium text_maincolor" style="margin-left:3%;font-size:1.3rem">[필수] 개인정보 수집 및 이용 동의</label>
+                    <u id="mo_collect_detail" class="font_medium mo_agree_text_detail">보기</u>
                     <input type="hidden" id="is_agree_collect" value="0">
                   </td>
                 </tr>
                 <tr>
                   <td class="mo_agree_table_detail">
                     <img src="/mo_not_agree.svg" class="mo_not_agree" id="mo_agree_3rd">
-                    <label for="mo_agree_3rd" style="margin-left:3%;" class="mo_not_agree font_26 font_medium text_maincolor">[필수] 개인정보 제 3자 제공 동의</label>
-                    <u id="mo_3rd_detail" class="font_24 font_medium mo_agree_text_detail">보기</u>
+                    <label for="mo_agree_3rd" style="margin-left:3%;font-size:1.3rem" class="mo_not_agree font_medium text_maincolor">[필수] 개인정보 제 3자 제공 동의</label>
+                    <u id="mo_3rd_detail" class="font_medium mo_agree_text_detail">보기</u>
                     <input type="hidden" id="is_agree_3rd" value="0">
                   </td>
                 </tr>
@@ -218,9 +218,9 @@
                                 </a>
                                 <img src="/resume_notice.svg" style="margin-left:39px;margin-bottom:16px;">
                                 {% if notice.is_resume == 0 %}
-                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자유양식으로 지원받는 회사입니다. 지원서 양식이 필요하시면 다운받으십시오.</span>
+                                <span style="width: 332px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자유양식으로 지원받는 회사입니다. <br/>지원서 양식이 필요하시면 다운받으십시오.</span>
                                 {% elif notice.is_resume == 1 %}
-                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자사 지원서 양식을 사용하는 회사입니다. 해당 지원서로 제출해주십시오.</span>
+                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자사 지원서 양식을 사용하는 회사입니다. <br/>해당 지원서로 제출해주십시오.</span>
                                 {% endif %}
                             </span>
                         </div>
@@ -391,7 +391,7 @@
         <p>본건 서비스는 채용 관련 안내, 공지사항 전달, 채용 및 웹사이트 이용 관련 연락, 채용 적합성 판단 및 서류심사/면접 등의 근거 자료, 인재 DB 활용을 하기 위한 목적으로 수집 및 이용됩니다. 내용을 자세히 읽으신 후 동의 여부를 결정하여 주십시오. </p>
         <br />
 
-        <p class="font_30 font_bold">◼︎ 개인정보 수집·이용 내역</p>
+        <p class="font_bold" style="font-size:1.5rem;">◼︎ 개인정보 수집·이용 내역</p>
         <br />
 
         <p class="font_bold">수집·이용 항목</p> 
@@ -908,11 +908,14 @@
         }
         else
         {
-            document.getElementById('complete_apply').style.display = '';
+            if(document.body.offsetWidth > 1024)
+            {
+                document.getElementById('complete_apply').style.display = '';
+            }
             document.getElementById('apply_form').submit();
         }
         
-
+        
         
         
     })

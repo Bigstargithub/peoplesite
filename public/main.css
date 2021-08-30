@@ -7,6 +7,7 @@ body{
     min-width:100%;
     min-height:100%;
     font-family: 'Spoqa Han Sans Neo,Bold';
+    font-size:62.5%;
 }
 
 a
@@ -234,7 +235,7 @@ input::placeholder{
 {
     margin-top:160px;
     width: 100%;
-    height:240px;
+    height:400px;
     box-shadow: 0px -1px 25px #0000001A;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 1;
@@ -257,6 +258,13 @@ input::placeholder{
     margin-top:10px;
     display:flex;
 } */
+.footer_logo
+{
+    float:right;
+    position:relative;
+    bottom:26px;
+
+}
 .footer_title
 {
     font-family: 'Spoqa Han Sans Neo, Medium';
@@ -282,6 +290,11 @@ input::placeholder{
 {
     width:766px;
 }
+.footer_tail
+{
+    display:inline-block;
+    font-size:1.4rem;
+}
 /* footer CSS */
 
 /* 공고 상세페이지 CSS */
@@ -300,11 +313,11 @@ input::placeholder{
 }
 .notice_title
 {
-    margin-top:40px;
+    margin-top:2rem;
     width:100%;
     color: #101010;
-    margin-bottom:60px;
-    height:86px;
+    margin-bottom:3rem;
+    height:4.3rem;
 }
 .notice_title_detail
 {
@@ -480,9 +493,17 @@ input::placeholder{
 /* 지원하기 css */
 .submit_notice
 {
-    margin-top:70px;
-    padding-bottom:70px;
+    margin-top:3.5rem;
+    padding-bottom:3.5rem;
     border-bottom:1px solid #D9d9d9;
+}
+.detail_ing_big
+{
+    margin-bottom:26px;
+}
+.wait_people
+{
+    margin-bottom:40px;
 }
 /* 지원하기 css */
 
@@ -540,6 +561,10 @@ input::placeholder{
     width:800px;
     margin:0 auto;
     margin-top:210px;
+}
+.wait_apply
+{
+    margin-bottom:20px;
 }
 .apply_title
 {
@@ -674,7 +699,7 @@ input::placeholder{
 }
 /* 모바일 버전 CSS */
 
-@media (max-width:750px) {
+@media (max-width:1023px) {
     html
     {
         font-size:62.5%;
@@ -724,7 +749,7 @@ input::placeholder{
     }
     .main_selectbox
     {
-        width:18.1%;
+        width:11.7%;
         background: url('select_arrow.svg') no-repeat 90%;
         font-size:1.1rem;
         position:relative;
@@ -776,34 +801,53 @@ input::placeholder{
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         line-height: 1.8rem;
-        height:68px;
+        max-height:34px;
     }
     /* 모바일 메인 CSS */
 
     /* mobile footer css */
     .footer
     {
-        height:400px;
+        height:260px;
+        margin-top:8rem;
     }
     .footer_content{
         width:90%;
         margin:0 auto;
-        margin-top:70px;
+        padding-top:35px;
     }
     .footer_tail
     {
         display:inline-block;
         margin-top:31px;
+        font-size:1.1rem;
     }
     .Do_footer{
-        font-size:28px;
+        font-size:1.4rem;
         font-weight: 600;
     }
     .company_information
     {
-        width:69.4%;
+        width:82.2%;
         font-size:16px;
         line-height:26px;
+        margin-top:10px;
+    }
+    .footer_title
+    {
+        font-size:.8rem;
+        margin-right:0.5rem;
+    }
+    .footer_detail
+    {
+        font-size:.8rem;
+        margin-right:1rem;
+    }
+    .footer_logo
+    {
+        bottom:1.8rem;
+        width:16.6%;
+
     }
     /* mobile footer css */
     .information_detail
@@ -828,7 +872,7 @@ input::placeholder{
     .mobile_select
     {
         width:100%;
-        height:750px;
+        height:46.06%;
         position:absolute;
         bottom:0;
         background:#fff;
@@ -843,29 +887,30 @@ input::placeholder{
     }
     .mo_select_title
     {
-        margin-top:54px;
-        font-size:34px;
+        margin-top:27px;
+        font-size:1.7rem;
         font-weight:600;
     }
     .mo_select_all
     {
-        margin-top:70px;
+        margin-top:3.5rem;
         padding-bottom:30px;
         border-bottom:1px solid #D9D9D9;
         color: #9D9D9D;
+        font-size:1.3rem;
     }
     .mo_select_detail
     {
-        padding-top:40px;
+        padding-top:2rem;
     }
     .main_option
     {
-        height:32px;
+        height:auto;
         padding:0;
-        font-size:26px;
-        width:49%;
+        font-size:1.3rem;
+        width:48%;
         display:inline-block;
-        margin-bottom:60px;
+        margin-bottom:3rem;
     }
     .main_option:hover
     {
@@ -888,13 +933,17 @@ input::placeholder{
         border:0;
         border-radius:0;
     }
+    .notice_detail_ing
+    {
+        width:4rem;
+    }
     .notice_title_detail
     {
-        font-size:42px;
+        font-size:2.1rem;
     }
     .notice_info_content
     {
-        font-size:24px;
+        font-size:1.2rem;
     }
     .notice_thumb_image
     {
@@ -912,29 +961,33 @@ input::placeholder{
     }
     .notice_detail_span
     {
-        font-size:26px;
+        font-size:1.3rem
     }
     .mo_online_channel
     {
-        margin-top:30px;
+        margin-top:1.5rem;
+        width:47.54%;
     }
     .notice_info_title
     {
-        font-size:32px;
+        font-size:1.6rem;
     }
     /* 모바일 요약 CSS */
+    .notice_position
+    {
+        margin-top:3.5rem;
+    }
     .notice_subtitle
     {
-        padding-bottom:20px;
+        padding-bottom:1rem;
     }
     .position_info
     {
-        font-size:32px;
+        font-size:1.6rem;
     }
     .mo_position_info
     {
-        padding-bottom:30px;
-        border-bottom:1px solid #D9D9D9;
+        padding-bottom:1.5rem;
     }
     .mo_position_info ul
     {
@@ -944,19 +997,25 @@ input::placeholder{
     .mo_summary
     {
         color: #566371;
-        margin:50px 0 49px 0;
+        margin:2.5rem 0;
+        font-size:1.3rem
+    }
+    .mo_summary_detail
+    {
+        font-size:1.2rem;
     }
     /* 모바일 요약 CSS */
 
     /* 모바일 포지션 소개 CSS */
     .position_intro_title
     {
-        margin:60px 0 50px 0;
+        margin:3rem 0 2.5rem 0;
         color: #566371;
+        font-size:1.3rem;
     }
     .position_intro_detail
     {
-        font-size:24px;
+        font-size:1.2rem;
     }
     /* 모바일 포지션 소개 CSS */
 
@@ -964,19 +1023,24 @@ input::placeholder{
     .mo_position_ul
     {
         padding:0;
-        line-height:45px;
+        line-height:2.75rem;
     }
     .mo_position_ul li
     {
         list-style-position: inside;
+        font-size:1.2rem;
     }
     /* ul, li 포지션 정보 CSS */
 
     /* 모바일 채용프로세스 CSS */
     .mo_notice_process
     {
-        width:87.2%;
+        width:100%;
         margin:0 auto;
+    }
+    .notice_process_title
+    {
+        font-size:1.6rem;
     }
     .mo_notice_process ul
     {
@@ -985,47 +1049,60 @@ input::placeholder{
     .mo_notice_process ul li
     {
         list-style: none;
-        margin-bottom:100px;
+        margin-bottom:5rem;
     }
     .mo_notice_process_detail
     {
-        margin-top:60px;
+        margin-top:3rem;
     }
     .mo_process_index
     {
-        width:40px;
-        height:40px;
+        width:2rem;
+        height:2rem;
         background-color: #EFEFEF;
         text-align:center;
         vertical-align: middle;
         display:table-cell;
-        border-radius:40px;
+        border-radius:2rem;
         margin-right:2.6%;
     }
     /* 모바일 채용프로세스 CSS */
 
     /* 모바일 회사영상 CSS */
+    .company_video
+    {
+        margin-bottom:5rem;
+    }
     .company_video_title
     {
-        width:87.2%;
+        width:100%;
         margin: 0 auto;
+        font-size:1.4rem;
     }
     .company_main_video
     {
-        width:100%;
+        max-width:100vw;
         border-radius:0;
+    }
+    .company_video_detail
+    {
+        width:fit-content;
+        position:relative;
+        right:7.2%;
+        margin-top:2rem;
     }
     /* 모바일 회사영상 CSS */
 
     /* 모바일 인터뷰 CSS */
     .company_interview
     {
-        width:87.2%;
+        width:100%;
         margin:0 auto;
+        padding-bottom:2rem;
     }
     .company_interview_detail
     {
-        font-size:24px;
+        font-size:1.2rem;
     }
     .company_interview_detail img
     {
@@ -1034,6 +1111,14 @@ input::placeholder{
     /* 모바일 인터뷰 CSS */
 
     /* 지원 CSS */
+    .wait_apply
+    {
+        font-size:1.15rem;
+    }
+    .apply_info_img
+    {
+        width:100%;
+    }
     .submit_notice
     {
         width:87.2%;
@@ -1047,11 +1132,16 @@ input::placeholder{
     }
     .wait_people
     {
-        font-size:32px;
+        font-size:1.6rem;
+        margin-bottom:2rem;
     }
     .apply_call
     {
-        font-size:23px;
+        font-size:1.35rem;
+    }
+    .detail_ing_big
+    {
+        margin-bottom:1.3rem;
     }
     /* 지원 CSS */
     
@@ -1064,6 +1154,7 @@ input::placeholder{
         bottom:0;
         box-shadow: 0px 1px -25px #0000001a;
         text-align: center;
+        z-index: 1001;
     }
     .fix_apply img{
         width:100%;
@@ -1074,14 +1165,16 @@ input::placeholder{
     .apply
     {
         width:87.2%;
+        margin-top:140px;
     }
     .apply_info
     {
-        margin-bottom:50px;
+        margin-top:3.5rem;
+        margin-bottom:2.5rem;
     }
     .apply_title
     {
-        font-size:54px;
+        font-size:2.7rem;
     }
 
     /* 모바일 지원 div CSS */
@@ -1093,23 +1186,26 @@ input::placeholder{
     }
     .apply_info_title
     {
-        margin-top:40px;
-        margin-bottom:60px;
+        margin-top:2rem;
+        margin-bottom:3rem;
+        font-size:1.6rem;
     }
     .apply_info_detail
     {
-        margin-bottom:60px;
+        margin-bottom:3rem;
     }
     .apply_info_detail_title
     {
-        margin-bottom:40px;
+        margin-bottom:2rem;
+        font-size:1.3rem;
     }
     .mo_input_text
     {
         width:100%;
         border:0;
         border-bottom:2px solid #A0A4B44D;
-        padding-bottom:18px;
+        padding-bottom:.9rem;
+        font-size:1.2rem;
     }
     .mo_input_text:focus
     {
@@ -1119,10 +1215,10 @@ input::placeholder{
     /* 모바일 지원 이메일 textbox CSS */
     .mo_email
     {
-        width:47.79%;
+        width:47%;
         border:0;
         border-bottom:2px solid #A0A4B44D;
-        padding-bottom: 18px;
+        padding-bottom: .9rem;
     }
     .mo_email:focus
     {
@@ -1143,11 +1239,12 @@ input::placeholder{
     }
     .mo_apply_resume_title
     {
-        margin-top:40px;
+        margin-top:2rem;
+        font-size:1.6rem;
     }
     .mo_apply_resume_download
     {
-        margin-top:40px;
+        margin-top:2rem;
         width:100%;
     }
     .mo_apply_resume_download img
@@ -1156,12 +1253,13 @@ input::placeholder{
     }
     .mo_apply_resume_submit_title
     {
-        margin-top:60px;
+        margin-top:3rem;
+        font-size:1.3rem;
     }
     .mo_apply_resume_submit_file_name
     {
-        font-size:24px;
-        margin-top:40px;
+        font-size:1.2rem;
+        margin-top:2rem;
     }
     .mo_apply_resume_table
     {
@@ -1169,17 +1267,22 @@ input::placeholder{
     }
     .mo_apply_resume_table tr
     {
-        margin-bottom:60px;
+        margin-bottom:3rem;
     }
     /* 모바일 포트폴리오 제출 CSS */
     .mo_apply_portfolio_submit
     {
-        margin-top:60px;
-        margin-bottom:100px;
+        margin-top:3rem;
+        margin-bottom:5rem;
+    }
+    .mo_apply_portfolio_submit_title
+    {
+        font-size:1.3rem;
     }
     .mo_apply_portfolio_submit_file_name
     {
-        margin-top:40px;
+        margin-top:2rem;
+        font-size:1.2rem;
     }
     .mo_apply_portfolio_table
     {
@@ -1188,9 +1291,9 @@ input::placeholder{
     /* 모바일 포트폴리오 제출 CSS */
     .mo_agree_info
     {
-        font-size:32px;
+        font-size:1.6rem;
         font-weight:600;
-        margin-top:40px;
+        margin-top:2rem;
         color:#1A1A1A;
     }
     /* 모바일 포트폴리오 제출 CSS */
@@ -1198,23 +1301,24 @@ input::placeholder{
     /* 가인지피플 서비스 이용약관 동의 CSS */
     .mo_agree_table
     {
-        margin-top:50px;
+        margin-top:2.5rem;
         width:100%;
-        margin-bottom:91px;
+        margin-bottom:4.55rem;
     }
     .mo_agree_table_title
     {
-        padding-bottom:30px;
+        padding-bottom:1.5rem;
         border-bottom: 1px solid #A0A4B44D;
     }
     .mo_agree_table_detail
     {
-        padding-top:32px;
+        padding-top:1.6rem;
     }
     #mo_not_all_agree
     {
         position:relative;
         top:5px;
+        width:2rem;
     }
     .mo_agree_table tr td
     {
@@ -1229,6 +1333,11 @@ input::placeholder{
     .mo_agree_text_detail
     {
         margin-left:4.2%;
+        font-size:1.2rem;
+    }
+    .mo_not_agree
+    {
+        width:1.1rem;
     }
     /* 가인지피플 서비스 이용약관 동의 CSS */
 
@@ -1262,7 +1371,7 @@ input::placeholder{
     {
         width:87.2%;
         margin:0 auto;
-        margin-top:104px;
+        margin-top:5.2rem;
     }
     .mo_layer_close
     {
@@ -1270,14 +1379,20 @@ input::placeholder{
     }
     .mo_layer_title
     {
-        padding-bottom:30px;
+        padding-bottom:1.5rem;
         border-bottom:7px solid #1A1A1A;
+        font-size:2rem;
     }
     .mo_layer_text_detail
     {
-        margin-top:70px;
-        max-height:800px;
+        margin-top:3.5rem;
+        max-height:470px;
         overflow:scroll;
+        font-size:1.3rem;
+    }
+    #mo_close_img_collect, #mo_close_img_3rd
+    {
+        width:2.3rem;
     }
     /* 모바일 지원서류 제출 CSS */
 

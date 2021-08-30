@@ -120,6 +120,10 @@ exports.post_mo_apply = (req, res) => {
         resume_file: mo_resume_file_path,
         portfolio_file: mo_portfolio_file_path,
     }).then(() => {
-        res.send("<script>alert('지원이 완료되었습니다.'); location.href='/';</script>");
+        res.render('mo_complete_apply');
     });
+}
+
+exports.get_text_apply = (_, res)  => {
+    res.render('mo_complete_apply');
 }
