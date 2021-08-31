@@ -123,7 +123,3 @@ exports.post_mo_apply = (req, res) => {
         res.render('mo_complete_apply');
     });
 }
-
-exports.get_text_apply = (req, res)  => {
-    res.render('mo_complete_apply');
-}
