@@ -1,15 +1,53 @@
 const models = require('../../models');
 const {Op} = require('sequelize');
+const puppeteer = require('puppeteer');
 
 exports.get_main = async (req, res) => {
     let test_num = 20
     let group = req.params.group;
     const group_list = ['마케터', '인사', '영업', '사무', '개발', 'R&D', '디자인', '기타']
     const notice_list =  await models.notice_list.findAll({});
+    var test_page = "";
+
+    // async function run () {
+    //     const browser = await puppeteer.launch();
+    //     const page = await browser.newPage();
+
+        // await page.setRequestInterception(true);
+        // page.on('request', (req) => {
+        //     switch (req.resoureType()){
+        //         case 'styleSheet' :
+        //         case 'font' :
+        //         case 'image' :
+        //         req.abort();
+        //         break;
+
+        //         default:
+        //             req.continue();
+        //             break;
+        //     }
+        // })
+      
+    //     await page.goto('http://www.casenews.co.kr/',{ timeout: 0, waitUntil: 'domcontentloaded'});
+    //     test_page = await page.$$('.height-435');
+
+    //     for(let Test of test_page)
+    //     {
+    //         const Test_style = await page.evaluate(el => el.getAttribute('style'),Test);
+    //         var Test_background = Test_style.split('(')[1];
+    //         test_page = Test_background.substring(0, Test_background.length -1);
+    //     }
+        
+    //     await browser.close();
+    //   }
+      
+    // await run();
+
     res.render('main',{
         test_num,
         notice_list,
         group_list,
+        test_page
     });
 }
 

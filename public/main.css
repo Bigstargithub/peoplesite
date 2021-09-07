@@ -81,10 +81,11 @@ input::placeholder{
 }
 .header_logo
 {
-    width:1200px;
+    max-width:1200px;
     margin:0 auto;
     height:100%;
     margin-top:11px;
+    padding:0 50px;
 }
 .logo
 {
@@ -97,10 +98,11 @@ input::placeholder{
 /* header css */
 /* main css */
 .main{
-    width:1200px;
+    max-width:1200px;
     margin:0 auto;
     position: relative;
     top:100px;
+    padding:0 50px;
     padding-bottom:160px;
 }
 .main_title
@@ -235,7 +237,7 @@ input::placeholder{
 {
     margin-top:160px;
     width: 100%;
-    height:400px;
+    height:250px;
     box-shadow: 0px -1px 25px #0000001A;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 1;
@@ -699,7 +701,7 @@ input::placeholder{
 }
 /* 모바일 버전 CSS */
 
-@media (max-width:1023px) {
+@media (max-width:768px) {
     html
     {
         font-size:62.5%;
@@ -780,7 +782,7 @@ input::placeholder{
     .notice_main_image
     {
         width:100%;
-        height:fit-content;
+        height:100%;
         border-radius:1rem 1rem 1rem 0;
     }
     .notice_company_name, .notice_job_group
@@ -788,7 +790,7 @@ input::placeholder{
         font-size:0.9rem;
     }
     .content_image{
-        height:auto;
+        /* height:auto; */
     }
     .mobile_notice_title
     {
@@ -875,7 +877,7 @@ input::placeholder{
     .mobile_select
     {
         width:100%;
-        height:46.06%;
+        height:60.06%;
         position:absolute;
         bottom:0;
         background:#fff;
