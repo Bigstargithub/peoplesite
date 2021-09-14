@@ -207,7 +207,7 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                        <div style="width:800px;display:flex;height:77px">
+                        <div style="width:800px;display:flex;height:77px;position:relative;">
                             <span>
                                 {% if notice.is_resume == 0 %}
                                 <a href="/sample_resume.docx" download>
@@ -218,9 +218,9 @@
                                 </a>
                                 <img src="/resume_notice.svg" style="margin-left:39px;margin-bottom:16px;">
                                 {% if notice.is_resume == 0 %}
-                                <span style="width: 332px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자유양식으로 지원받는 회사입니다. <br/>지원서 양식이 필요하시면 다운받으십시오.</span>
+                                <span style="width: 352px;line-height:30px;color:#A0A4B4;margin-top:5px;font-size:1.8rem;position:absolute;top:0; right:-3px;" class="font_medium">자유양식으로 지원받는 회사입니다. <br/>지원서 양식이 필요하시면 다운받으십시오.</span>
                                 {% elif notice.is_resume == 1 %}
-                                <span style="width: 320px;float:right;line-height:30px;margin-left:22px;color:#A0A4B4;margin-top:5px;" class="font_20 font_medium">자사 지원서 양식을 사용하는 회사입니다. <br/>해당 지원서로 제출해주십시오.</span>
+                                <span style="width: 352px;line-height:30px;color:#A0A4B4;margin-top:5px;font-size:1.8rem;position:absolute;top:0; right:-3px;" class="font_medium">자사 지원서 양식을 사용하는 회사입니다. <br/>해당 지원서로 제출해주십시오.</span>
                                 {% endif %}
                             </span>
                         </div>

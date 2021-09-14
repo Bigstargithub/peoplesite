@@ -3,11 +3,14 @@
     src: url('./font/NotoSansCJKkr-Light.otf') format('truetype');
 }
 /* 공통 CSS */
+html
+{
+    font-size:62.5%;
+}
 body{
     min-width:100%;
     min-height:100%;
     font-family: 'Spoqa Han Sans Neo,Bold';
-    font-size:62.5%;
 }
 
 a
@@ -81,11 +84,11 @@ input::placeholder{
 }
 .header_logo
 {
-    max-width:1200px;
+    width:90%;
     margin:0 auto;
     height:100%;
     margin-top:11px;
-    padding:0 50px;
+    max-width:1200px;
 }
 .logo
 {
@@ -98,12 +101,12 @@ input::placeholder{
 /* header css */
 /* main css */
 .main{
-    max-width:1200px;
+    width:90%;
     margin:0 auto;
     position: relative;
     top:100px;
-    padding:0 50px;
     padding-bottom:160px;
+    max-width:1200px;
 }
 .main_title
 {
@@ -118,7 +121,7 @@ input::placeholder{
     width:100%;
     height:40px;
     text-align:center;
-    padding-top:100px;
+    padding:100px 0;
     font-size:18px;
 }
 .title_select
@@ -190,10 +193,11 @@ input::placeholder{
 .main_content
 {
     /* padding-top:40px; */
-    width:1245px;
+    width:103%;
     padding-top:5px;
     overflow:hidden;
     max-height:1490px;
+    max-width:1245px;
 }
 .notice_main_image
 {
@@ -244,10 +248,11 @@ input::placeholder{
 }
 .footer_content
 {
-    width:1200px;
+    width:90%;
     margin:0 auto;
     height:125px;
     padding-top:57px;
+    max-width:1200px;
 }
 .Do_footer{
     font-family:'Spoqa Han Sans Neo, bold'; 
@@ -283,15 +288,16 @@ input::placeholder{
 }
 .company_information
 {
-    width:850px;
+    width:84%;
     display: inline-block;
     line-height: 26px;
     margin-top:20px;
+    max-width:850px;
 }
-.information_detail
+/* .information_detail
 {
     width:766px;
-}
+} */
 .footer_tail
 {
     display:inline-block;
@@ -590,9 +596,10 @@ input::placeholder{
     text-align:left;
 }
 .apply_form_table tr th{
-    width:145px;
+    width:20%;
     padding-top:61px;
     padding-bottom:18px;
+    min-width:140px;
 }
 .apply_form_table tr td{
     vertical-align: bottom;
@@ -701,7 +708,7 @@ input::placeholder{
 }
 /* 모바일 버전 CSS */
 
-@media (max-width:768px) {
+@media (max-width:1023px) {
     html
     {
         font-size:62.5%;
@@ -781,8 +788,7 @@ input::placeholder{
     }
     .notice_main_image
     {
-        width:100%;
-        height:100%;
+        max-height:200px;
         border-radius:1rem 1rem 1rem 0;
     }
     .notice_company_name, .notice_job_group
@@ -790,7 +796,7 @@ input::placeholder{
         font-size:0.9rem;
     }
     .content_image{
-        /* height:auto; */
+        height:auto;
     }
     .mobile_notice_title
     {
@@ -851,8 +857,8 @@ input::placeholder{
     .footer_logo
     {
         bottom:1.8rem;
-        width:13.8%;
-
+        width:12%;
+        max-width:80px
     }
     /* mobile footer css */
     .information_detail
@@ -877,7 +883,7 @@ input::placeholder{
     .mobile_select
     {
         width:100%;
-        height:60.06%;
+        height:46.06%;
         position:absolute;
         bottom:0;
         background:#fff;
