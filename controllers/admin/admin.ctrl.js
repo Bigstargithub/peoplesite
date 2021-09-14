@@ -204,7 +204,7 @@ exports.post_modify_notice = async (req, res) => {
                 is_continue,
                 notice_title,
                 company_name,
-                company_introduce,
+                company_info: company_introduce,
                 notice_channel,
                 job_duty,
                 employ_type,
@@ -232,10 +232,10 @@ exports.post_modify_notice = async (req, res) => {
                     number: id,
                 }
             });
-        if(is_resume == 0)
-        {
-            const notice_detail = await models.notice_list.findOne({where: {number: id}});
+        const notice_detail = await models.notice_list.findOne({where: {number: id}});
 
+        if(is_resume == 0 && notice_detail.dataValues.resume_file)
+        {
             fs.unlink(notice_detail.dataValues.resume_file,(err) => err ?
             console.error(err) : console.log('와후'));
             models.notice_list.update({
